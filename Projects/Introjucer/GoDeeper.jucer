@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="NtTT2W" name="GoDeeper" projectType="guiapp" version="1.0.0"
+              bundleIdentifier="com.peterrudenko.GoDeeper" includeBinaryInAppConfig="1"
+              jucerVersion="4.0.1">
+  <MAINGROUP id="yXzcEv" name="GoDeeper">
+    <GROUP id="{79CDBC84-AA00-53E0-AF14-46C0DDAFF2E1}" name="Source">
+      <GROUP id="{5FF0CFD8-384F-D0A6-B315-9618BA55DBCB}" name="Models">
+        <FILE id="JgH8VL" name="XMLSerializer.cpp" compile="1" resource="0"
+              file="../../Source/Models/XMLSerializer.cpp"/>
+        <FILE id="LXFG8C" name="XMLSerializer.h" compile="0" resource="0" file="../../Source/Models/XMLSerializer.h"/>
+      </GROUP>
+      <GROUP id="{8FF8AF99-A6EC-399C-179E-8395333009DA}" name="UI">
+        <FILE id="H9Ng3E" name="LayerConnectionComponent.cpp" compile="1" resource="0"
+              file="../../Source/UI/LayerConnectionComponent.cpp"/>
+        <FILE id="eEngUl" name="LayerConnectionComponent.h" compile="0" resource="0"
+              file="../../Source/UI/LayerConnectionComponent.h"/>
+        <FILE id="fmyAH4" name="LayerNodeComponent.cpp" compile="1" resource="0"
+              file="../../Source/UI/LayerNodeComponent.cpp"/>
+        <FILE id="ct6NyR" name="LayerNodeComponent.h" compile="0" resource="0"
+              file="../../Source/UI/LayerNodeComponent.h"/>
+        <FILE id="s4oEqZ" name="MainComponent.cpp" compile="1" resource="0"
+              file="../../Source/UI/MainComponent.cpp"/>
+        <FILE id="RrRj0E" name="MainComponent.h" compile="0" resource="0" file="../../Source/UI/MainComponent.h"/>
+      </GROUP>
+      <FILE id="KwQRdu" name="Main.cpp" compile="1" resource="0" file="../../Source/Main.cpp"/>
+      <FILE id="gxdNZW" name="Precompiled.h" compile="0" resource="0" file="../../Source/Precompiled.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="../../Projects/MacOSX" extraFrameworks="OpenCL">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" osxSDK="default" osxCompatibility="default" osxArchitecture="default"
+                       isDebug="1" optimisation="1" targetName="GoDeeper" headerPath=""/>
+        <CONFIGURATION name="Release" osxSDK="default" osxCompatibility="default" osxArchitecture="default"
+                       isDebug="0" optimisation="3" targetName="GoDeeper" headerPath=""/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_video" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../ThirdParty/JUCE/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+    <VS2010 targetFolder="../../Projects/VisualStudio2010">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="1" optimisation="1" targetName="GoDeeper"/>
+        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="0" optimisation="3" targetName="GoDeeper"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_video" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../ThirdParty/JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2010>
+    <LINUX_MAKE targetFolder="../../Projects/LinuxMakefile">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" libraryPath="/usr/X11R6/lib/" isDebug="1" optimisation="1"
+                       targetName="GoDeeper"/>
+        <CONFIGURATION name="Release" libraryPath="/usr/X11R6/lib/" isDebug="0" optimisation="3"
+                       targetName="GoDeeper"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_video" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../ThirdParty/JUCE/modules"/>
+      </MODULEPATHS>
+    </LINUX_MAKE>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULES id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_audio_devices" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_audio_formats" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_audio_processors" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_core" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_cryptography" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_data_structures" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_events" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_graphics" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_gui_basics" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_gui_extra" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_opengl" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_video" showAllCode="1" useLocalCopy="0"/>
+  </MODULES>
+  <JUCEOPTIONS/>
+</JUCERPROJECT>

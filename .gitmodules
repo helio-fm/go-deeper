@@ -1,0 +1,6 @@
+[submodule "ThirdParty/TinyRNN"]
+	path = ThirdParty/TinyRNN
+	url = git://github.com/peterrudenko/TinyRNN.git
+[submodule "ThirdParty/JUCE"]
+	path = ThirdParty/JUCE
+	url = git://github.com/julianstorer/JUCE.git
