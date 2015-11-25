@@ -2,20 +2,14 @@
 
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="GoDeeper">
-      <UniqueIdentifier>{7C1C664C-6AC3-670F-8F18-44B03FDA57F1}</UniqueIdentifier>
+    <Filter Include="NeoCortex">
+      <UniqueIdentifier>{B6E65ACD-4DA1-CC85-F040-D96BC9BD5F24}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GoDeeper\Source">
-      <UniqueIdentifier>{D1786549-1A9E-6A77-C997-4517E24F72C9}</UniqueIdentifier>
+    <Filter Include="NeoCortex\Source">
+      <UniqueIdentifier>{EC0917E8-43E3-54B8-EEF6-3E0407ABBCD6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GoDeeper\Source\Models">
-      <UniqueIdentifier>{A414FA25-AD20-5EC2-F6FC-752370071056}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GoDeeper\Source\Models\Threads">
-      <UniqueIdentifier>{1FBBC117-3363-4097-5E75-618B1D9D8A3B}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GoDeeper\Source\UI">
-      <UniqueIdentifier>{B68C6ABB-DC49-56E1-E107-94FACBE313DB}</UniqueIdentifier>
+    <Filter Include="NeoCortex\Resources">
+      <UniqueIdentifier>{42EF799A-5C11-3FA9-D7A4-41A64E33B1DA}</UniqueIdentifier>
     </Filter>
     <Filter Include="Juce Modules">
       <UniqueIdentifier>{422C46B7-0467-2DB0-BF3C-16DFCAFD69AC}</UniqueIdentifier>
@@ -313,26 +307,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\Playground\Models\BatchMidiProcessor.cpp">
-      <Filter>GoDeeper\Source\Models</Filter>
+    <ClCompile Include="..\..\Source\Plugin\PluginEditor.cpp">
+      <Filter>NeoCortex\Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Playground\Models\MidiTrainIteration.cpp">
-      <Filter>GoDeeper\Source\Models</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Playground\Models\XMLSerializer.cpp">
-      <Filter>GoDeeper\Source\Models</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Playground\UI\LayerConnectionComponent.cpp">
-      <Filter>GoDeeper\Source\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Playground\UI\LayerNodeComponent.cpp">
-      <Filter>GoDeeper\Source\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Playground\UI\MainComponent.cpp">
-      <Filter>GoDeeper\Source\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Playground\Main.cpp">
-      <Filter>GoDeeper\Source</Filter>
+    <ClCompile Include="..\..\Source\Plugin\PluginProcessor.cpp">
+      <Filter>NeoCortex\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\ThirdParty\JUCE\modules\juce_audio_basics\buffers\juce_AudioDataConverters.cpp">
       <Filter>Juce Modules\juce_audio_basics\buffers</Filter>
@@ -1554,47 +1533,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\Playground\Models\NetworkCompileThread.h">
-      <Filter>GoDeeper\Source\Models\Threads</Filter>
+    <ClInclude Include="..\..\Source\Plugin\PluginEditor.h">
+      <Filter>NeoCortex\Source</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Playground\Models\NetworkHardcodeThread.h">
-      <Filter>GoDeeper\Source\Models\Threads</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Playground\Models\NetworkInitThread.h">
-      <Filter>GoDeeper\Source\Models\Threads</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Playground\Models\SerializeKernelsThread.h">
-      <Filter>GoDeeper\Source\Models\Threads</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Playground\Models\SerializeMemoryThread.h">
-      <Filter>GoDeeper\Source\Models\Threads</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Playground\Models\SerializeStateThread.h">
-      <Filter>GoDeeper\Source\Models\Threads</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Playground\Models\SerializeTopologyThread.h">
-      <Filter>GoDeeper\Source\Models\Threads</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Playground\Models\BatchMidiProcessor.h">
-      <Filter>GoDeeper\Source\Models</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Playground\Models\MidiTrainIteration.h">
-      <Filter>GoDeeper\Source\Models</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Playground\Models\XMLSerializer.h">
-      <Filter>GoDeeper\Source\Models</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Playground\UI\LayerConnectionComponent.h">
-      <Filter>GoDeeper\Source\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Playground\UI\LayerNodeComponent.h">
-      <Filter>GoDeeper\Source\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Playground\UI\MainComponent.h">
-      <Filter>GoDeeper\Source\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Playground\Precompiled.h">
-      <Filter>GoDeeper\Source</Filter>
+    <ClInclude Include="..\..\Source\Plugin\PluginProcessor.h">
+      <Filter>NeoCortex\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\ThirdParty\JUCE\modules\juce_audio_basics\buffers\juce_AudioDataConverters.h">
       <Filter>Juce Modules\juce_audio_basics\buffers</Filter>

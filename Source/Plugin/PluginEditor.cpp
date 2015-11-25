@@ -7,12 +7,12 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Introjucer version: 3.1.1
+  Created with Introjucer version: 4.0.1
 
   ------------------------------------------------------------------------------
 
   The Introjucer is part of the JUCE library - "Jules' Utility Class Extensions"
-  Copyright 2004-13 by Raw Material Software Ltd.
+  Copyright (c) 2015 - ROLI Ltd.
 
   ==============================================================================
 */
@@ -20,14 +20,16 @@
 //[Headers] You can add your own extra header files here...
 //[/Headers]
 
-#include "LayerNodeComponent.h"
+#include "PluginEditor.h"
 
 
 //[MiscUserDefs] You can add your own user definitions and misc code here...
 //[/MiscUserDefs]
 
 //==============================================================================
-LayerNodeComponent::LayerNodeComponent ()
+NeoCortexAudioProcessorEditor::NeoCortexAudioProcessorEditor (NeoCortexAudioProcessor &p)
+    : AudioProcessorEditor (&p),
+      processor (p)
 {
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
@@ -43,7 +45,7 @@ LayerNodeComponent::LayerNodeComponent ()
     //[/Constructor]
 }
 
-LayerNodeComponent::~LayerNodeComponent()
+NeoCortexAudioProcessorEditor::~NeoCortexAudioProcessorEditor()
 {
     //[Destructor_pre]. You can add your own custom destruction code here..
     //[/Destructor_pre]
@@ -55,7 +57,7 @@ LayerNodeComponent::~LayerNodeComponent()
 }
 
 //==============================================================================
-void LayerNodeComponent::paint (Graphics& g)
+void NeoCortexAudioProcessorEditor::paint (Graphics& g)
 {
     //[UserPrePaint] Add your own custom painting code here..
     //[/UserPrePaint]
@@ -66,7 +68,7 @@ void LayerNodeComponent::paint (Graphics& g)
     //[/UserPaint]
 }
 
-void LayerNodeComponent::resized()
+void NeoCortexAudioProcessorEditor::resized()
 {
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
@@ -90,8 +92,9 @@ void LayerNodeComponent::resized()
 
 BEGIN_JUCER_METADATA
 
-<JUCER_COMPONENT documentType="Component" className="LayerNodeComponent" componentName=""
-                 parentClasses="public Component" constructorParams="" variableInitialisers=""
+<JUCER_COMPONENT documentType="Component" className="NeoCortexAudioProcessorEditor"
+                 componentName="" parentClasses="public AudioProcessorEditor"
+                 constructorParams="NeoCortexAudioProcessor &amp;p" variableInitialisers="AudioProcessorEditor (&amp;p),&#10;processor (p)"
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
                  fixedSize="0" initialWidth="600" initialHeight="400">
   <BACKGROUND backgroundColour="ffffffff"/>

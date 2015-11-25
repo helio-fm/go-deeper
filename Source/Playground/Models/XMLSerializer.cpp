@@ -98,3 +98,8 @@ void XMLSerializer::deserialize(TinyRNN::SerializedObject::Ptr target, const std
         target->deserialize(context);
     }
 }
+
+void XMLSerializer::dumpHardcodedMemory(TinyRNN::HardcodedTrainingContext::Ptr targetContext) const
+{
+    // todo
+}

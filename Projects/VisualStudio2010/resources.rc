@@ -13,9 +13,9 @@ BEGIN
   BEGIN
     BLOCK "040904E4"
     BEGIN
-      VALUE "FileDescription",  "GoDeeper\0"
+      VALUE "FileDescription",  "NeoCortex\0"
       VALUE "FileVersion",  "1.0.0\0"
-      VALUE "ProductName",  "GoDeeper\0"
+      VALUE "ProductName",  "NeoCortex\0"
       VALUE "ProductVersion",  "1.0.0\0"
     END
   END

@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{F4EDDCF2-71CF-7F87-ABFD-628EA296681A}") = "NeoCortex", "NeoCortex.vcxproj", "{1D0B5D7A-5BDE-62CA-D496-99F8DCFD4C16}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D0B5D7A-5BDE-62CA-D496-99F8DCFD4C16}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1D0B5D7A-5BDE-62CA-D496-99F8DCFD4C16}.Debug|Win32.Build.0 = Debug|Win32
+		{1D0B5D7A-5BDE-62CA-D496-99F8DCFD4C16}.Release|Win32.ActiveCfg = Release|Win32
+		{1D0B5D7A-5BDE-62CA-D496-99F8DCFD4C16}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
