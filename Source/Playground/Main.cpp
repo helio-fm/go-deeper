@@ -10,6 +10,7 @@
 
 #include "Precompiled.h"
 #include "MainComponent.h"
+#include "TinyRNN.h"
 
 class GoDeeperApplication : public JUCEApplication
 {
@@ -29,6 +30,22 @@ public:
     virtual void initialise (const String& commandLine) override
     {
         StringArray args = StringArray::fromTokens(commandLine, " ", "'\"");
+        
+        // Estimated production network memory size for float:
+        //
+        // (256, {128, 64, 128}, 256) == 5.7Mb
+        // 1493058*4/1024/1024
+        //
+        // (256, {128, 128, 128}, 256) == 7.3Mb
+        // 1912450*4/1024/1024
+        //
+        // (256, {128, 256, 128}, 256) == 11Mb
+        // 2898690*4/1024/1024
+        //
+        // 256, {256, 128, 256}, 256 == 13.7Mb
+        // 3590018*4/1024/1024
+        
+        //TinyRNN::Network::Ptr network = TinyRNN::Network::Prefabs::longShortTermMemory("Arpr", 256, {128, 128, 128}, 256);
         
         Logger::writeToLog(commandLine);
         // todo
