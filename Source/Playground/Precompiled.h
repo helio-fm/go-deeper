@@ -14,6 +14,6 @@
 #include "JuceHeader.h"
 
 #define TINYRNN_OPENCL_ACCELERATION 1
-#include "../ThirdParty/TinyRNN/Source/TinyRNN.h"
+#include "TinyRNN.h"
 
 #endif  // PRECOMPILED_H_INCLUDED

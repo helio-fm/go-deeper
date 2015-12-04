@@ -1,65 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="NtTT2W" name="GoDeeper" projectType="guiapp" version="1.0.0"
-              bundleIdentifier="com.peterrudenko.GoDeeper" includeBinaryInAppConfig="1"
-              jucerVersion="4.0.1">
-  <MAINGROUP id="yXzcEv" name="GoDeeper">
+<JUCERPROJECT id="NtTT2W" name="NeoCortex" projectType="audioplug" version="1.0.0"
+              bundleIdentifier="com.peterrudenko.NeoCortex" includeBinaryInAppConfig="1"
+              jucerVersion="4.0.1" buildVST="1" buildVST3="1" buildAU="1" buildRTAS="1"
+              buildAAX="1" pluginName="NeoCortex" pluginDesc="NeoCortex" pluginManufacturer="Peter Rudenko"
+              pluginManufacturerCode="RDNK" pluginCode="Nctx" pluginChannelConfigs="{1, 1}, {2, 2}"
+              pluginIsSynth="0" pluginWantsMidiIn="1" pluginProducesMidiOut="1"
+              pluginSilenceInIsSilenceOut="1" pluginEditorRequiresKeys="0"
+              pluginAUExportPrefix="NeoCortexAU" pluginRTASCategory="" aaxIdentifier="com.peterrudenko.NeoCortex"
+              pluginAAXCategory="AAX_ePlugInCategory_Dynamics">
+  <MAINGROUP id="yXzcEv" name="NeoCortex">
     <GROUP id="{79CDBC84-AA00-53E0-AF14-46C0DDAFF2E1}" name="Source">
-      <GROUP id="{5FF0CFD8-384F-D0A6-B315-9618BA55DBCB}" name="Models">
-        <GROUP id="{7F9FB3CC-2F4F-AC8C-BFA2-38B969EF0B97}" name="Threads">
-          <FILE id="I5KyjV" name="NetworkCompileThread.h" compile="0" resource="0"
-                file="../../Source/Playground/Models/NetworkCompileThread.h"/>
-          <FILE id="mRlf5f" name="NetworkHardcodeThread.h" compile="0" resource="0"
-                file="../../Source/Playground/Models/NetworkHardcodeThread.h"/>
-          <FILE id="hOtArF" name="NetworkInitThread.h" compile="0" resource="0"
-                file="../../Source/Playground/Models/NetworkInitThread.h"/>
-          <FILE id="oLuPOg" name="SerializeKernelsThread.h" compile="0" resource="0"
-                file="../../Source/Playground/Models/SerializeKernelsThread.h"/>
-          <FILE id="ktU6mw" name="SerializeMemoryThread.h" compile="0" resource="0"
-                file="../../Source/Playground/Models/SerializeMemoryThread.h"/>
-          <FILE id="NxkHAH" name="SerializeStateThread.h" compile="0" resource="0"
-                file="../../Source/Playground/Models/SerializeStateThread.h"/>
-          <FILE id="uKak3V" name="SerializeTopologyThread.h" compile="0" resource="0"
-                file="../../Source/Playground/Models/SerializeTopologyThread.h"/>
-        </GROUP>
-        <FILE id="zKgHG1" name="BatchMidiProcessor.cpp" compile="1" resource="0"
-              file="../../Source/Playground/Models/BatchMidiProcessor.cpp"/>
-        <FILE id="GZlaN1" name="BatchMidiProcessor.h" compile="0" resource="0"
-              file="../../Source/Playground/Models/BatchMidiProcessor.h"/>
-        <FILE id="N5Z3NC" name="MidiTrainIteration.cpp" compile="1" resource="0"
-              file="../../Source/Playground/Models/MidiTrainIteration.cpp"/>
-        <FILE id="ZUqz87" name="MidiTrainIteration.h" compile="0" resource="0"
-              file="../../Source/Playground/Models/MidiTrainIteration.h"/>
-        <FILE id="YedEWM" name="XMLSerializer.cpp" compile="1" resource="0"
-              file="../../Source/Playground/Models/XMLSerializer.cpp"/>
-        <FILE id="DerBkB" name="XMLSerializer.h" compile="0" resource="0" file="../../Source/Playground/Models/XMLSerializer.h"/>
-      </GROUP>
-      <GROUP id="{8FF8AF99-A6EC-399C-179E-8395333009DA}" name="UI">
-        <FILE id="ynqnrF" name="LayerConnectionComponent.cpp" compile="1" resource="0"
-              file="../../Source/Playground/UI/LayerConnectionComponent.cpp"/>
-        <FILE id="ybCPqt" name="LayerConnectionComponent.h" compile="0" resource="0"
-              file="../../Source/Playground/UI/LayerConnectionComponent.h"/>
-        <FILE id="DtZtjL" name="LayerNodeComponent.cpp" compile="1" resource="0"
-              file="../../Source/Playground/UI/LayerNodeComponent.cpp"/>
-        <FILE id="PLfcUK" name="LayerNodeComponent.h" compile="0" resource="0"
-              file="../../Source/Playground/UI/LayerNodeComponent.h"/>
-        <FILE id="myXJSP" name="MainComponent.cpp" compile="1" resource="0"
-              file="../../Source/Playground/UI/MainComponent.cpp"/>
-        <FILE id="oTAd10" name="MainComponent.h" compile="0" resource="0" file="../../Source/Playground/UI/MainComponent.h"/>
-      </GROUP>
-      <FILE id="zxBf9L" name="Main.cpp" compile="1" resource="0" file="../../Source/Playground/Main.cpp"/>
-      <FILE id="XsLpFC" name="Precompiled.h" compile="0" resource="0" file="../../Source/Playground/Precompiled.h"/>
+      <FILE id="CE05Cz" name="PluginEditor.cpp" compile="1" resource="0"
+            file="../../Source/Plugin/PluginEditor.cpp"/>
+      <FILE id="DSsaFP" name="PluginEditor.h" compile="0" resource="0" file="../../Source/Plugin/PluginEditor.h"/>
+      <FILE id="IITeyl" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="../../Source/Plugin/PluginProcessor.cpp"/>
+      <FILE id="FWlYan" name="PluginProcessor.h" compile="0" resource="0"
+            file="../../Source/Plugin/PluginProcessor.h"/>
     </GROUP>
+    <GROUP id="{DD02E391-3AAC-AFD0-5216-83A2E65AB195}" name="Resources"/>
   </MAINGROUP>
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="../../Projects/MacOSX" extraFrameworks="OpenCL">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" osxSDK="default" osxCompatibility="10.7 SDK" osxArchitecture="64BitUniversal"
-                       isDebug="1" optimisation="1" targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../ThirdParty/TinyRNN/Source"
-                       cppLibType="libc++" cppLanguageStandard="c++11"/>
-        <CONFIGURATION name="Release" osxSDK="default" osxCompatibility="10.7 SDK" osxArchitecture="64BitUniversal"
-                       isDebug="0" optimisation="3" targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../ThirdParty/TinyRNN/Source"
-                       cppLibType="libc++" cppLanguageStandard="c++11"/>
+        <CONFIGURATION name="Debug" osxSDK="default" osxCompatibility="default" osxArchitecture="default"
+                       isDebug="1" optimisation="1" targetName="NeoCortex" headerPath="/usr/local/include"/>
+        <CONFIGURATION name="Release" osxSDK="default" osxCompatibility="default" osxArchitecture="default"
+                       isDebug="0" optimisation="3" targetName="NeoCortex" headerPath="/usr/local/include"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../ThirdParty/JUCE/modules"/>
@@ -80,9 +48,9 @@
     <VS2010 targetFolder="../../Projects/VisualStudio2010">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="1" optimisation="1" targetName="GoDeeper" headerPath="./../../ThirdParty/TinyRNN/Source"/>
+                       isDebug="1" optimisation="1" targetName="NeoCortex"/>
         <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="0" optimisation="3" targetName="GoDeeper" headerPath="./../../ThirdParty/TinyRNN/Source"/>
+                       isDebug="0" optimisation="3" targetName="NeoCortex"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../ThirdParty/JUCE/modules"/>
@@ -100,13 +68,12 @@
         <MODULEPATH id="juce_audio_processors" path="../../ThirdParty/JUCE/modules"/>
       </MODULEPATHS>
     </VS2010>
-    <LINUX_MAKE targetFolder="../../Projects/LinuxMakefile/GoDeeper" cppLanguageStandard="-std=c++11"
-                extraLinkerFlags="-lOpenCL">
+    <LINUX_MAKE targetFolder="../../Projects/LinuxMakefile/NeoCortex" cppLanguageStandard="-std=c++11">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" libraryPath="/usr/X11R6/lib/" isDebug="1" optimisation="1"
-                       targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../ThirdParty/TinyRNN/Source"/>
+                       targetName="NeoCortex" headerPath="/usr/local/include"/>
         <CONFIGURATION name="Release" libraryPath="/usr/X11R6/lib/" isDebug="0" optimisation="3"
-                       targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../ThirdParty/TinyRNN/Source"/>
+                       targetName="NeoCortex" headerPath="/usr/local/include"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_video" path="../../ThirdParty/JUCE/modules"/>

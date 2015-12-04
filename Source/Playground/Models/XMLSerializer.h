@@ -48,6 +48,8 @@ public:
     String serialize(TinyRNN::SerializedObject::Ptr target, const std::string &rootNodeName) const;
     void deserialize(TinyRNN::SerializedObject::Ptr target, const std::string &data);
     
+    void dumpHardcodedMemory(TinyRNN::HardcodedTrainingContext::Ptr targetContext) const;
+    
     template<typename T>
     T *createAndLoadInstanceOfType(const File file)
     {
