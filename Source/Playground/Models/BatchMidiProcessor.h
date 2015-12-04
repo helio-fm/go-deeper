@@ -25,16 +25,19 @@ public:
         { this->masterReference.clear(); }
         
         virtual void onDumpMemory(const String &memoryInBase64) = 0;
+        virtual bool shouldContinue(uint64 numIterationPassed) = 0;
         
     private:
         WeakReference<Delegate>::Master masterReference;
         friend class WeakReference<Delegate>;
     };
     
-    void process();
-    String dumpMemoryAsBase64();
+    void start();
+    void setDelegate(Delegate *delegate);
     
 private:
+    
+    String dumpMemoryAsBase64();
     
     TinyRNN::HardcodedNetwork::Ptr clNetwork;
     WeakReference<Delegate> delegate;
@@ -42,7 +45,7 @@ private:
     // do we need this?
     // maybe use but limit by the size?
     // most of the ram will be consumed by the network?
-    //HashMap<String, MidiMessageSequence> loadedTracks;
+    HashMap<String, MidiMessageSequence> loadedTracks;
     
     Array<File> targetFiles;
     int currentFileIndex;
