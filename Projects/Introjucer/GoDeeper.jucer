@@ -68,7 +68,6 @@
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_events" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_data_structures" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_gui_basics" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_gui_extra" path="../../ThirdParty/JUCE/modules"/>
@@ -76,6 +75,7 @@
         <MODULEPATH id="juce_audio_formats" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_audio_basics" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_audio_devices" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../ThirdParty/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
     <VS2010 targetFolder="../../Projects/VisualStudio2010">
@@ -88,7 +88,6 @@
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_events" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_data_structures" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_gui_basics" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_gui_extra" path="../../ThirdParty/JUCE/modules"/>
@@ -96,6 +95,7 @@
         <MODULEPATH id="juce_audio_formats" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_audio_basics" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_audio_devices" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../ThirdParty/JUCE/modules"/>
       </MODULEPATHS>
     </VS2010>
     <LINUX_MAKE targetFolder="../../Projects/LinuxMakefile/GoDeeper" cppLanguageStandard="-std=c++11"
@@ -109,7 +109,6 @@
       <MODULEPATHS>
         <MODULEPATH id="juce_gui_extra" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_gui_basics" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_events" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_data_structures" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_cryptography" path="../../ThirdParty/JUCE/modules"/>
@@ -117,6 +116,7 @@
         <MODULEPATH id="juce_audio_formats" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_audio_basics" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_audio_devices" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../ThirdParty/JUCE/modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
   </EXPORTFORMATS>
@@ -128,7 +128,7 @@
     <MODULES id="juce_cryptography" showAllCode="1" useLocalCopy="0"/>
     <MODULES id="juce_data_structures" showAllCode="1" useLocalCopy="0"/>
     <MODULES id="juce_events" showAllCode="1" useLocalCopy="0"/>
-    <MODULES id="juce_graphics" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0"/>
     <MODULES id="juce_gui_basics" showAllCode="1" useLocalCopy="0"/>
     <MODULES id="juce_gui_extra" showAllCode="1" useLocalCopy="0"/>
   </MODULES>
@@ -140,5 +140,6 @@
                JUCE_ASIO="disabled" JUCE_WASAPI="disabled" JUCE_WASAPI_EXCLUSIVE="disabled"
                JUCE_DIRECTSOUND="disabled" JUCE_ALSA="disabled" JUCE_JACK="disabled"
                JUCE_USE_ANDROID_OPENSLES="disabled" JUCE_USE_CDREADER="disabled"
-               JUCE_USE_CDBURNER="disabled"/>
+               JUCE_USE_CDBURNER="disabled" JUCE_USE_COREIMAGE_LOADER="disabled"
+               JUCE_USE_DIRECTWRITE="disabled"/>
 </JUCERPROJECT>

@@ -44,6 +44,9 @@ pushd TinyRNN
     popd
 popd
 
+# JUCE modules' dependencies
+sudo apt-get install libfreetype6-dev libxrandr-dev libxinerama-dev libasound-dev
+
 # Build GoDeeper trainer
 git clone https://github.com/peterrudenko/GoDeeper.git
 pushd GoDeeper
@@ -57,10 +60,12 @@ pushd GoDeeper
     popd
 
     pushd Projects/LinuxMakefile/GoDeeper
-        make
-        # todo move executable
+        export CONFIG=Release && make clean && make
+        sudo rm -r /usr/bin/deeper
+        sudo ln -s $PWD/build/GoDeeper /usr/bin/deeper
     popd
 popd
 
 # Train!
-./GoDeeper --targets-folder=Targets --memdump-interval-seconds=600
+deeper init MyLSTM 256 128 128 128 256
+deeper train MyLSTM targets="Targets"

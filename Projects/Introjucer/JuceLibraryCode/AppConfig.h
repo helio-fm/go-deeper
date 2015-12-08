@@ -131,11 +131,11 @@
 // juce_graphics flags:
 
 #ifndef    JUCE_USE_COREIMAGE_LOADER
- //#define JUCE_USE_COREIMAGE_LOADER
+ #define   JUCE_USE_COREIMAGE_LOADER 0
 #endif
 
 #ifndef    JUCE_USE_DIRECTWRITE
- //#define JUCE_USE_DIRECTWRITE
+ #define   JUCE_USE_DIRECTWRITE 0
 #endif
 
 //==============================================================================
