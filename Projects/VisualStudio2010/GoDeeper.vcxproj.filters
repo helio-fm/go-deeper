@@ -319,6 +319,9 @@
     <ClCompile Include="..\..\Source\Playground\Models\MidiTrainIteration.cpp">
       <Filter>GoDeeper\Source\Models</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Playground\Models\TrainingPipeline.cpp">
+      <Filter>GoDeeper\Source\Models</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Playground\Models\XMLSerializer.cpp">
       <Filter>GoDeeper\Source\Models</Filter>
     </ClCompile>
@@ -1579,6 +1582,9 @@
       <Filter>GoDeeper\Source\Models</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Playground\Models\MidiTrainIteration.h">
+      <Filter>GoDeeper\Source\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Playground\Models\TrainingPipeline.h">
       <Filter>GoDeeper\Source\Models</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Playground\Models\XMLSerializer.h">

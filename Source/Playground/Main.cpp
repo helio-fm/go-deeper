@@ -9,8 +9,44 @@
 */
 
 #include "Precompiled.h"
-#include "MainComponent.h"
 #include "TinyRNN.h"
+#include "MainComponent.h"
+#include "XMLSerializer.h"
+#include "TrainingPipeline.h"
+
+class ScopedTimer final
+{
+public:
+    
+    explicit ScopedTimer(const std::string &targetName) :
+    startTime(std::chrono::high_resolution_clock::now())
+    {
+        std::cout << targetName << std::endl;
+    }
+    
+    ~ScopedTimer()
+    {
+        const auto endTime = std::chrono::high_resolution_clock::now();
+        const auto milliSeconds = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - this->startTime).count();
+        const auto seconds = std::chrono::duration_cast<std::chrono::seconds>(endTime - this->startTime).count();
+        
+        if (seconds > 1)
+        {
+            std::cout << "Done (" << std::to_string(seconds) << " sec)" << std::endl;
+        }
+        else
+        {
+            std::cout << "Done (" << std::to_string(milliSeconds) << " ms)" << std::endl;
+        }
+    }
+    
+private:
+    
+    std::chrono::high_resolution_clock::time_point startTime;
+    
+    ScopedTimer(const ScopedTimer&) = delete;
+    ScopedTimer &operator =(const ScopedTimer &) = delete;
+};
 
 class GoDeeperApplication : public JUCEApplication
 {
@@ -27,70 +63,249 @@ public:
     virtual bool moreThanOneInstanceAllowed() override
     { return true; }
     
-    virtual void initialise (const String& commandLine) override
+    virtual void initialise(const String &commandLine) override
     {
-        StringArray args = StringArray::fromTokens(commandLine, " ", "'\"");
+        static const String topologyFileName = "Topology.xml";
+        static const String contextFileName = "Context.xml";
+        static const String kernelsFileName = "Kernels.xml";
+        static const String mappingFileName = "Mapping.xml";
+        static const String latestDumpFileName = "LatestDump.xml";
         
-        // Estimated production network memory size for float:
-        //
-        // (256, {128, 64, 128}, 256) == 5.7Mb
-        // 1493058*4/1024/1024
-        //
-        // (256, {128, 128, 128}, 256) == 7.3Mb
-        // 1912450*4/1024/1024
-        //
-        // (256, {128, 256, 128}, 256) == 11Mb
-        // 2898690*4/1024/1024
-        //
-        // 256, {256, 128, 256}, 256 == 13.7Mb
-        // 3590018*4/1024/1024
+        StringArray args = StringArray::fromTokens(commandLine, " =", "'\"");
         
-        //TinyRNN::Network::Ptr network = TinyRNN::Network::Prefabs::longShortTermMemory("Arpr", 256, {128, 128, 128}, 256);
+        // usage:
+        // init "MyLSTM" 256 128 128 128 256
+        // train "MyLSTM" targets="Targets"
+        
+        if (args[0].toLowerCase() == "init")
+        {
+            const File networkDirectory(File::getCurrentWorkingDirectory().getChildFile(args[1].unquoted()));
+            
+            if (! networkDirectory.createDirectory().wasOk())
+            {
+                std::cout << "Failed to create network folder: " << networkDirectory.getFullPathName() << std::endl;
+                this->quit();
+                return;
+            }
+            
+            // Estimated production network memory size (for float):
+            //
+            // (256, {128, 64, 128}, 256) == 5.7Mb
+            // 1493058*4/1024/1024
+            //
+            // (256, {128, 128, 128}, 256) == 7.3Mb
+            // 1912450*4/1024/1024
+            //
+            // (256, {128, 256, 128}, 256) == 11Mb
+            // 2898690*4/1024/1024
+            //
+            // 256, {256, 128, 256}, 256 == 13.7Mb
+            // 3590018*4/1024/1024
+            
+            // Default network params
+            int numInputs = 256;
+            int numOutputs = 256;
+            std::vector<int> hiddenLayers = {128, 128, 128};
+            
+            std::vector<int> sizes;
+            int sizeParameterIndex = 2;
+            
+            while (args[sizeParameterIndex].getIntValue() > 0)
+            {
+                sizes.push_back(args[sizeParameterIndex].getIntValue());
+                sizeParameterIndex++;
+            }
+            
+            if (sizes.size() > 2)
+            {
+                numInputs = sizes.front();
+                numOutputs = sizes.back();
+                hiddenLayers.assign(sizes.begin() + 1, sizes.end() - 1);
+            }
+            
+            TinyRNN::Network::Ptr network;
+            TinyRNN::HardcodedNetwork::Ptr clNetwork;
+            
+            {
+                ScopedTimer timer("Creating a network");
+                network = TinyRNN::Network::Prefabs::longShortTermMemory("Arpr", numInputs, hiddenLayers, numOutputs);
+            }
+            
+            {
+                ScopedTimer timer("Creating a hardcoded version");
+                clNetwork = network->hardcode();
+            }
+            
+            {
+                ScopedTimer timer("Compiling");
+                clNetwork->compile();
+            }
+            
+            {
+                ScopedTimer timer("Saving the topology");
+                XMLSerializer serializer;
+                const String xmlString(serializer.serialize(network, TinyRNN::Keys::Core::Network));
+                const File xmlFile(networkDirectory.getChildFile(topologyFileName));
+                xmlFile.replaceWithText(xmlString);
+            }
+            
+            {
+                ScopedTimer timer("Saving the training context");
+                XMLSerializer serializer;
+                const String xmlString(serializer.serialize(network->getContext(), TinyRNN::Keys::Core::TrainingContext));
+                const File xmlFile(networkDirectory.getChildFile(contextFileName));
+                xmlFile.replaceWithText(xmlString);
+            }
+            
+            {
+                ScopedTimer timer("Saving the kernels");
+                XMLSerializer serializer;
+                const String xmlString(serializer.serialize(clNetwork, TinyRNN::Keys::Hardcoded::Network));
+                const File xmlFile(networkDirectory.getChildFile(kernelsFileName));
+                xmlFile.replaceWithText(xmlString);
+            }
+            
+            {
+                ScopedTimer timer("Saving the memory mapping");
+                XMLSerializer serializer;
+                const String xmlString(serializer.serialize(clNetwork->getContext(), TinyRNN::Keys::Hardcoded::TrainingContext));
+                const File xmlFile(networkDirectory.getChildFile(mappingFileName));
+                xmlFile.replaceWithText(xmlString);
+            }
+            
+            std::cout << "All done." << std::endl;
+            this->quit();
+            return;
+        }
+        
+        if (args[0].toLowerCase() == "train")
+        {
+            const File networkDirectory(File::getCurrentWorkingDirectory().getChildFile(args[1].unquoted()));
+            const File kernelsFile(networkDirectory.getChildFile(kernelsFileName));
+            const File mappingFile(networkDirectory.getChildFile(mappingFileName));
+            const File latestMemDumpFile(networkDirectory.getChildFile(latestDumpFileName));
+            
+            File targetsDirectory(File::getCurrentWorkingDirectory().getChildFile("Targets"));
+            
+            if (args[2].toLowerCase() == "targets")
+            {
+                if (File::isAbsolutePath(args[3].unquoted()))
+                {
+                    targetsDirectory = File(args[3].unquoted());
+                }
+                else
+                {
+                    targetsDirectory = File::getCurrentWorkingDirectory().getChildFile(args[3].unquoted());
+                }
+            }
+            
+            if (! targetsDirectory.isDirectory())
+            {
+                std::cout << "Failed to find the targets at: " << targetsDirectory.getFullPathName() << std::endl;
+                this->quit();
+                return;
+            }
+            else
+            {
+                std::cout << "Using targets directory: " << targetsDirectory.getFullPathName() << std::endl;
+            }
+            
+            if (! networkDirectory.isDirectory())
+            {
+                std::cout << "Failed to load network from: " << networkDirectory.getFullPathName() << std::endl;
+                this->quit();
+                return;
+            }
+            
+            if (! kernelsFile.existsAsFile() ||
+                ! mappingFile.existsAsFile())
+            {
+                std::cout << "Not found the network data at : " << networkDirectory.getFullPathName() << std::endl;
+                this->quit();
+                return;
+            }
+            
+            TinyRNN::HardcodedTrainingContext::Ptr mappings(new TinyRNN::HardcodedTrainingContext());
+            TinyRNN::HardcodedNetwork::Ptr clNetwork(new TinyRNN::HardcodedNetwork(mappings));
+            
+            {
+                ScopedTimer timer("Loading the kernels");
+                XMLSerializer serializer;
+                serializer.deserialize(clNetwork, kernelsFile.loadFileAsString().toStdString());
+            }
+            
+            {
+                ScopedTimer timer("Loading the mapping");
+                XMLSerializer serializer;
+                serializer.deserialize(mappings, mappingFile.loadFileAsString().toStdString());
+            }
+            
+            if (latestMemDumpFile.existsAsFile())
+            {
+                ScopedTimer timer("Loading the latest memory dump");
+                const std::string &memoryEncoded = latestMemDumpFile.loadFileAsString().toStdString();
+                const std::vector<unsigned char> &memoryDecoded = TinyRNN::SerializationContext::decodeBase64(memoryEncoded);
+                memcpy(mappings->getMemory().data(), memoryDecoded.data(), sizeof(unsigned char) * memoryDecoded.size());
+            }
+            
+            {
+                ScopedTimer timer("Compiling");
+                clNetwork->compile();
+            }
+            
+            {
+                ScopedTimer timer("Training");
+                TrainingPipeline pipeline(clNetwork, targetsDirectory, latestMemDumpFile);
+                pipeline.start();
+            }
+            
+            this->quit();
+            return;
+        }
         
         Logger::writeToLog(commandLine);
-        // todo
-        
         this->mainWindow = new MainWindow (this->getApplicationName());
     }
-
+    
     virtual void shutdown() override
     {
         this->mainWindow = nullptr;
     }
-
+    
     virtual void systemRequestedQuit() override
     {
         this->quit();
     }
-
+    
     virtual void anotherInstanceStarted(const String& commandLine) override
     {
     }
-
+    
     class MainWindow : public DocumentWindow
     {
     public:
+        
         MainWindow(String name) : DocumentWindow(name,
                                                  Colours::lightgrey,
                                                  DocumentWindow::allButtons)
         {
             this->setUsingNativeTitleBar(true);
             this->setContentOwned(new MainComponent(), true);
-
+            
             this->centreWithSize(getWidth(), getHeight());
             this->setVisible(true);
         }
-
+        
         void closeButtonPressed() override
         {
             JUCEApplication::getInstance()->systemRequestedQuit();
         }
-
+        
     private:
         
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MainWindow)
     };
-
+    
 private:
     
     ScopedPointer<MainWindow> mainWindow;

@@ -51,6 +51,7 @@ endif
 OBJECTS := \
   $(OBJDIR)/BatchMidiProcessor_ec097f42.o \
   $(OBJDIR)/MidiTrainIteration_ea6d19a1.o \
+  $(OBJDIR)/TrainingPipeline_57d00287.o \
   $(OBJDIR)/XMLSerializer_6229ec8.o \
   $(OBJDIR)/LayerConnectionComponent_2721b54f.o \
   $(OBJDIR)/LayerNodeComponent_1b40e0eb.o \
@@ -95,6 +96,11 @@ $(OBJDIR)/BatchMidiProcessor_ec097f42.o: ../../../Source/Playground/Models/Batch
 $(OBJDIR)/MidiTrainIteration_ea6d19a1.o: ../../../Source/Playground/Models/MidiTrainIteration.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling MidiTrainIteration.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/TrainingPipeline_57d00287.o: ../../../Source/Playground/Models/TrainingPipeline.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling TrainingPipeline.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/XMLSerializer_6229ec8.o: ../../../Source/Playground/Models/XMLSerializer.cpp

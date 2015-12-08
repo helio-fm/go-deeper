@@ -30,6 +30,10 @@
               file="../../Source/Playground/Models/MidiTrainIteration.cpp"/>
         <FILE id="ZUqz87" name="MidiTrainIteration.h" compile="0" resource="0"
               file="../../Source/Playground/Models/MidiTrainIteration.h"/>
+        <FILE id="Qhx4XW" name="TrainingPipeline.cpp" compile="1" resource="0"
+              file="../../Source/Playground/Models/TrainingPipeline.cpp"/>
+        <FILE id="cYXRL2" name="TrainingPipeline.h" compile="0" resource="0"
+              file="../../Source/Playground/Models/TrainingPipeline.h"/>
         <FILE id="YedEWM" name="XMLSerializer.cpp" compile="1" resource="0"
               file="../../Source/Playground/Models/XMLSerializer.cpp"/>
         <FILE id="DerBkB" name="XMLSerializer.h" compile="0" resource="0" file="../../Source/Playground/Models/XMLSerializer.h"/>
