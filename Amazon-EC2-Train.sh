@@ -49,6 +49,13 @@ git clone https://github.com/peterrudenko/GoDeeper.git
 pushd GoDeeper
     git submodule init && git submodule update && git submodule status
     git checkout develop
+
+    # Fetch OpenCL C++ binding
+    mkdir -p ./Source/Playground/OpenCL
+    pushd ./Source/Playground/OpenCL
+        wget -w 1 -r -np -nd -nv -A h,hpp https://www.khronos.org/registry/cl/api/2.1/cl.hpp
+    popd
+
     pushd Projects/LinuxMakefile/GoDeeper
         make
         # todo move executable
