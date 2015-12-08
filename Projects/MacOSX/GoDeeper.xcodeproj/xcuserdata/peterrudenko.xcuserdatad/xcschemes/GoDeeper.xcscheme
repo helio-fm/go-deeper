@@ -66,6 +66,10 @@
             argument = "train MyLSTM targets=&quot;/Users/peterrudenko/Code/nnbb/GoDeeper/Resources/Training&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
+         <CommandLineArgument
+            argument = "init MyLSTM 12 3 3 3 12"
+            isEnabled = "NO">
+         </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>

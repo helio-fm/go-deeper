@@ -108,9 +108,9 @@
                 extraLinkerFlags="-lOpenCL">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" libraryPath="/usr/X11R6/lib/" isDebug="1" optimisation="1"
-                       targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../ThirdParty/TinyRNN/Source"/>
+                       targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../../ThirdParty/TinyRNN/Source&#10;./../../../Source/Playground&#10;./../../../Source/Playground/Models&#10;./../../../Source/Playground/UI"/>
         <CONFIGURATION name="Release" libraryPath="/usr/X11R6/lib/" isDebug="0" optimisation="3"
-                       targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../ThirdParty/TinyRNN/Source"/>
+                       targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../../ThirdParty/TinyRNN/Source&#10;./../../../Source/Playground&#10;./../../../Source/Playground/Models&#10;./../../../Source/Playground/UI"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_video" path="../../ThirdParty/JUCE/modules"/>

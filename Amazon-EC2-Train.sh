@@ -44,10 +44,11 @@ pushd TinyRNN
     popd
 popd
 
-# Build NeoCortex trainer
-git clone https://github.com/peterrudenko/NeoCortex.git
-pushd NeoCortex
+# Build GoDeeper trainer
+git clone https://github.com/peterrudenko/GoDeeper.git
+pushd GoDeeper
     git submodule init && git submodule update && git submodule status
+    git checkout develop
     pushd Projects/LinuxMakefile/GoDeeper
         make
         # todo move executable
