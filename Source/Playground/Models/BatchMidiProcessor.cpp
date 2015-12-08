@@ -26,7 +26,6 @@ memDumpIntervalSeconds(10.f)
                                      "*.mid;*.midi;*.smf");
     }
     
-    
     // todo asserts for the number of input layers, etc
 }
 

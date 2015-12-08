@@ -94,12 +94,8 @@ void XMLSerializer::deserialize(TinyRNN::SerializedObject::Ptr target, const std
 {
     if (ScopedPointer<XmlElement> xml = XmlDocument::parse(data))
     {
+        std::cout << "xml tag: " <<  xml->getTagName().toStdString() << std::endl;
         XMLSerializer::Context::Ptr context(new XMLSerializer::Context(xml));
         target->deserialize(context);
     }
-}
-
-void XMLSerializer::dumpHardcodedMemory(TinyRNN::HardcodedTrainingContext::Ptr targetContext) const
-{
-    // todo
 }

@@ -16,9 +16,6 @@ clNetwork(targetNetwork)
 {
     // todo asserts for the number of neurons in input and output layers, etc
     jassert(targetNetwork->getContext()->getOutputs().size() == 256);
-    
-    
-    
 }
 
 // Process one iteration of training.

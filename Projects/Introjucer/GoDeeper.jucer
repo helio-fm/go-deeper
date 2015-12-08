@@ -30,6 +30,10 @@
               file="../../Source/Playground/Models/MidiTrainIteration.cpp"/>
         <FILE id="ZUqz87" name="MidiTrainIteration.h" compile="0" resource="0"
               file="../../Source/Playground/Models/MidiTrainIteration.h"/>
+        <FILE id="Qhx4XW" name="TrainingPipeline.cpp" compile="1" resource="0"
+              file="../../Source/Playground/Models/TrainingPipeline.cpp"/>
+        <FILE id="cYXRL2" name="TrainingPipeline.h" compile="0" resource="0"
+              file="../../Source/Playground/Models/TrainingPipeline.h"/>
         <FILE id="YedEWM" name="XMLSerializer.cpp" compile="1" resource="0"
               file="../../Source/Playground/Models/XMLSerializer.cpp"/>
         <FILE id="DerBkB" name="XMLSerializer.h" compile="0" resource="0" file="../../Source/Playground/Models/XMLSerializer.h"/>
@@ -64,17 +68,14 @@
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_events" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_data_structures" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_gui_basics" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_gui_extra" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_cryptography" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_video" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_opengl" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_audio_basics" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_audio_devices" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../ThirdParty/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
     <VS2010 targetFolder="../../Projects/VisualStudio2010">
@@ -87,58 +88,58 @@
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_events" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_data_structures" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_gui_basics" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_gui_extra" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_cryptography" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_video" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_opengl" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_audio_basics" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_audio_devices" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../ThirdParty/JUCE/modules"/>
       </MODULEPATHS>
     </VS2010>
     <LINUX_MAKE targetFolder="../../Projects/LinuxMakefile/GoDeeper" cppLanguageStandard="-std=c++11"
                 extraLinkerFlags="-lOpenCL">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" libraryPath="/usr/X11R6/lib/" isDebug="1" optimisation="1"
-                       targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../ThirdParty/TinyRNN/Source"/>
+                       targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../../ThirdParty/TinyRNN/Source&#10;./../../../Source/Playground&#10;./../../../Source/Playground/Models&#10;./../../../Source/Playground/UI"/>
         <CONFIGURATION name="Release" libraryPath="/usr/X11R6/lib/" isDebug="0" optimisation="3"
-                       targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../ThirdParty/TinyRNN/Source"/>
+                       targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../../ThirdParty/TinyRNN/Source&#10;./../../../Source/Playground&#10;./../../../Source/Playground/Models&#10;./../../../Source/Playground/UI"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_video" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_opengl" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_gui_extra" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_gui_basics" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_events" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_data_structures" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_cryptography" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_core" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_audio_formats" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_audio_basics" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../ThirdParty/JUCE/modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
   </EXPORTFORMATS>
   <MODULES>
-    <MODULES id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
-    <MODULES id="juce_audio_devices" showAllCode="1" useLocalCopy="0"/>
-    <MODULES id="juce_audio_formats" showAllCode="1" useLocalCopy="0"/>
-    <MODULES id="juce_audio_processors" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0"/>
     <MODULES id="juce_core" showAllCode="1" useLocalCopy="0"/>
     <MODULES id="juce_cryptography" showAllCode="1" useLocalCopy="0"/>
     <MODULES id="juce_data_structures" showAllCode="1" useLocalCopy="0"/>
     <MODULES id="juce_events" showAllCode="1" useLocalCopy="0"/>
-    <MODULES id="juce_graphics" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0"/>
     <MODULES id="juce_gui_basics" showAllCode="1" useLocalCopy="0"/>
     <MODULES id="juce_gui_extra" showAllCode="1" useLocalCopy="0"/>
-    <MODULES id="juce_opengl" showAllCode="1" useLocalCopy="0"/>
-    <MODULES id="juce_video" showAllCode="1" useLocalCopy="0"/>
   </MODULES>
-  <JUCEOPTIONS/>
+  <JUCEOPTIONS JUCE_WEB_BROWSER="disabled" JUCE_ENABLE_LIVE_CONSTANT_EDITOR="disabled"
+               JUCE_ENABLE_REPAINT_DEBUGGING="disabled" JUCE_USE_XSHM="disabled"
+               JUCE_USE_XRENDER="disabled" JUCE_USE_XCURSOR="disabled" JUCE_USE_FLAC="disabled"
+               JUCE_USE_OGGVORBIS="disabled" JUCE_USE_MP3AUDIOFORMAT="disabled"
+               JUCE_USE_LAME_AUDIO_FORMAT="disabled" JUCE_USE_WINDOWS_MEDIA_FORMAT="disabled"
+               JUCE_ASIO="disabled" JUCE_WASAPI="disabled" JUCE_WASAPI_EXCLUSIVE="disabled"
+               JUCE_DIRECTSOUND="disabled" JUCE_ALSA="disabled" JUCE_JACK="disabled"
+               JUCE_USE_ANDROID_OPENSLES="disabled" JUCE_USE_CDREADER="disabled"
+               JUCE_USE_CDBURNER="disabled" JUCE_USE_COREIMAGE_LOADER="disabled"
+               JUCE_USE_DIRECTWRITE="disabled"/>
 </JUCERPROJECT>

@@ -8,13 +8,13 @@
     <key>CFBundleIconFile</key>
     <string></string>
     <key>CFBundleIdentifier</key>
-    <string>com.peterrudenko.NeoCortex</string>
+    <string>com.peterrudenko.GoDeeper</string>
     <key>CFBundleName</key>
-    <string>NeoCortex</string>
+    <string>GoDeeper</string>
     <key>CFBundlePackageType</key>
-    <string>TDMw</string>
+    <string>APPL</string>
     <key>CFBundleSignature</key>
-    <string>PTul</string>
+    <string>????</string>
     <key>CFBundleShortVersionString</key>
     <string>1.0.0</string>
     <key>CFBundleVersion</key>

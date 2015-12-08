@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "5DDBD8C878BBD8E9703CE31906D7E9E931C57CB6",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "DEBAC9C6799FD4E8074B3BAF720718E3C3499FA0" : 0,
+    "5DDBD8C878BBD8E9703CE31906D7E9E931C57CB6" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "C260C644-BFD1-483A-BAB1-3B1C7D47B3D5",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "DEBAC9C6799FD4E8074B3BAF720718E3C3499FA0" : "GoDeeper\/ThirdParty\/JUCE\/",
+    "5DDBD8C878BBD8E9703CE31906D7E9E931C57CB6" : "GoDeeper\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "GoDeeper",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Projects\/MacOSX\/GoDeeper.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "\/Users\/peterrudenko\/Dropbox\/Git\/NeoCortex",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5DDBD8C878BBD8E9703CE31906D7E9E931C57CB6"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git:\/\/github.com\/julianstorer\/JUCE.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DEBAC9C6799FD4E8074B3BAF720718E3C3499FA0"
+    }
+  ]
+}
