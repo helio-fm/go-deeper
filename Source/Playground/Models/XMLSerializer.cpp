@@ -16,13 +16,13 @@ XMLSerializer::Context::Context(XmlElement *rootElement) : root(rootElement)
     jassert(this->root != nullptr);
 }
 
-void XMLSerializer::Context::setRealProperty(double value, const std::string &key)
+void XMLSerializer::Context::setRealProperty(TinyRNN::Value value, const std::string &key)
 {
     jassert(this->root != nullptr);
     this->root->setAttribute(String(key), value);
 }
 
-double XMLSerializer::Context::getRealProperty(const std::string &key) const
+TinyRNN::Value XMLSerializer::Context::getRealProperty(const std::string &key) const
 {
     jassert(this->root != nullptr);
     return this->root->getDoubleAttribute(String(key), 0.0);

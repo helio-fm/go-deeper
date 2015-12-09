@@ -12,7 +12,6 @@
 #define XMLSERIALIZER_H_INCLUDED
 
 // The JUCE-based serializer example
-
 class XMLSerializer final
 {
 private:
@@ -25,8 +24,8 @@ private:
         
         Context(XmlElement *rootElement);
         
-        virtual void setRealProperty(double value, const std::string &key) override;
-        virtual double getRealProperty(const std::string &key) const override;
+        virtual void setRealProperty(TinyRNN::Value value, const std::string &key) override;
+        virtual TinyRNN::Value getRealProperty(const std::string &key) const override;
         virtual void setNumberProperty(long long value, const std::string &key) override;
         virtual long long getNumberProperty(const std::string &key) const override;
         virtual void setStringProperty(const std::string &value, const std::string &key) override;
