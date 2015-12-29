@@ -42,7 +42,7 @@
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -64,11 +64,11 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "train MyLSTM targets=&quot;/Users/peterrudenko/Code/nnbb/GoDeeper/Resources/Training&quot;"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "init MyLSTM 12 3 3 3 12"
-            isEnabled = "NO">
+            argument = "init MyLSTM 256 128 128 128 256"
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>

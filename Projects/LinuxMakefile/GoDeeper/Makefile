@@ -49,6 +49,8 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS := \
+  $(OBJDIR)/BatchTextProcessor_541310b6.o \
+  $(OBJDIR)/TextTrainIteration_54a850ad.o \
   $(OBJDIR)/BatchMidiProcessor_ec097f42.o \
   $(OBJDIR)/MidiTrainIteration_ea6d19a1.o \
   $(OBJDIR)/TrainingPipeline_57d00287.o \
@@ -56,7 +58,7 @@ OBJECTS := \
   $(OBJDIR)/LayerConnectionComponent_2721b54f.o \
   $(OBJDIR)/LayerNodeComponent_1b40e0eb.o \
   $(OBJDIR)/MainComponent_ccb1488d.o \
-  $(OBJDIR)/Main_782f75fd.o \
+  $(OBJDIR)/GoDeeper_a72bc665.o \
   $(OBJDIR)/juce_audio_basics_6432d8fd.o \
   $(OBJDIR)/juce_audio_devices_a88be27b.o \
   $(OBJDIR)/juce_audio_formats_d70d2c1b.o \
@@ -84,6 +86,16 @@ clean:
 strip:
 	@echo Stripping GoDeeper
 	-@strip --strip-unneeded $(OUTDIR)/$(TARGET)
+
+$(OBJDIR)/BatchTextProcessor_541310b6.o: ../../../Source/Playground/Models/BatchTextProcessor.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling BatchTextProcessor.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/TextTrainIteration_54a850ad.o: ../../../Source/Playground/Models/TextTrainIteration.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling TextTrainIteration.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/BatchMidiProcessor_ec097f42.o: ../../../Source/Playground/Models/BatchMidiProcessor.cpp
 	-@mkdir -p $(OBJDIR)
@@ -120,9 +132,9 @@ $(OBJDIR)/MainComponent_ccb1488d.o: ../../../Source/Playground/UI/MainComponent.
 	@echo "Compiling MainComponent.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
-$(OBJDIR)/Main_782f75fd.o: ../../../Source/Playground/Main.cpp
+$(OBJDIR)/GoDeeper_a72bc665.o: ../../../Source/Playground/GoDeeper.cpp
 	-@mkdir -p $(OBJDIR)
-	@echo "Compiling Main.cpp"
+	@echo "Compiling GoDeeper.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/juce_audio_basics_6432d8fd.o: ../../../ThirdParty/JUCE/modules/juce_audio_basics/juce_audio_basics.cpp

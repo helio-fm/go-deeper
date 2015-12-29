@@ -123,6 +123,8 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Playground\Models\BatchTextProcessor.cpp"/>
+    <ClCompile Include="..\..\Source\Playground\Models\TextTrainIteration.cpp"/>
     <ClCompile Include="..\..\Source\Playground\Models\BatchMidiProcessor.cpp"/>
     <ClCompile Include="..\..\Source\Playground\Models\MidiTrainIteration.cpp"/>
     <ClCompile Include="..\..\Source\Playground\Models\TrainingPipeline.cpp"/>
@@ -130,7 +132,7 @@
     <ClCompile Include="..\..\Source\Playground\UI\LayerConnectionComponent.cpp"/>
     <ClCompile Include="..\..\Source\Playground\UI\LayerNodeComponent.cpp"/>
     <ClCompile Include="..\..\Source\Playground\UI\MainComponent.cpp"/>
-    <ClCompile Include="..\..\Source\Playground\Main.cpp"/>
+    <ClCompile Include="..\..\Source\Playground\GoDeeper.cpp"/>
     <ClCompile Include="..\..\ThirdParty\JUCE\modules\juce_audio_basics\buffers\juce_AudioDataConverters.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -1160,13 +1162,8 @@
     <ClCompile Include="..\..\ThirdParty\JUCE\modules\juce_gui_extra\juce_gui_extra.cpp"/>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\Playground\Models\NetworkCompileThread.h"/>
-    <ClInclude Include="..\..\Source\Playground\Models\NetworkHardcodeThread.h"/>
-    <ClInclude Include="..\..\Source\Playground\Models\NetworkInitThread.h"/>
-    <ClInclude Include="..\..\Source\Playground\Models\SerializeKernelsThread.h"/>
-    <ClInclude Include="..\..\Source\Playground\Models\SerializeMemoryThread.h"/>
-    <ClInclude Include="..\..\Source\Playground\Models\SerializeStateThread.h"/>
-    <ClInclude Include="..\..\Source\Playground\Models\SerializeTopologyThread.h"/>
+    <ClInclude Include="..\..\Source\Playground\Models\BatchTextProcessor.h"/>
+    <ClInclude Include="..\..\Source\Playground\Models\TextTrainIteration.h"/>
     <ClInclude Include="..\..\Source\Playground\Models\BatchMidiProcessor.h"/>
     <ClInclude Include="..\..\Source\Playground\Models\MidiTrainIteration.h"/>
     <ClInclude Include="..\..\Source\Playground\Models\TrainingPipeline.h"/>

@@ -13,6 +13,8 @@
 #include "MainComponent.h"
 #include "XMLSerializer.h"
 #include "TrainingPipeline.h"
+#include "BatchMidiProcessor.h"
+#include "BatchTextProcessor.h"
 
 class ScopedTimer final
 {
@@ -47,6 +49,94 @@ private:
     ScopedTimer(const ScopedTimer&) = delete;
     ScopedTimer &operator =(const ScopedTimer &) = delete;
 };
+
+inline TinyRNN::Network::Ptr deeperLSTM(int inputLayerSize,
+                                        const std::vector<int> &hiddenLayersSizes,
+                                        int outputLayerSize)
+{
+    TinyRNN::TrainingContext::Ptr context(new TinyRNN::TrainingContext("GoDeeper"));
+    
+    TinyRNN::Layer::Ptr inputLayer(new TinyRNN::Layer(context, inputLayerSize));
+    TinyRNN::Layer::Ptr outputLayer(new TinyRNN::Layer(context, outputLayerSize));
+    
+    const int numHiddenLayers = hiddenLayersSizes.size();
+    TinyRNN::Layer::Vector hiddenLayers;
+    TinyRNN::Layer::Ptr previous;
+    
+    for (int i = 0; i < numHiddenLayers; ++i)
+    {
+        const int size = hiddenLayersSizes[i];
+        
+        TinyRNN::Layer::Ptr inputGate(new TinyRNN::Layer(context, size, 1.0));
+        TinyRNN::Layer::Ptr forgetGate(new TinyRNN::Layer(context, size, 1.0));
+        TinyRNN::Layer::Ptr memoryCell(new TinyRNN::Layer(context, size));
+        TinyRNN::Layer::Ptr outputGate(new TinyRNN::Layer(context, size, 1.0));
+        
+        hiddenLayers.push_back(inputGate);
+        hiddenLayers.push_back(forgetGate);
+        hiddenLayers.push_back(memoryCell);
+        hiddenLayers.push_back(outputGate);
+        
+        const auto &input = inputLayer->connectAllToAll(memoryCell);
+        inputLayer->connectAllToAll(inputGate);
+        inputLayer->connectAllToAll(forgetGate);
+        inputLayer->connectAllToAll(outputGate);
+        
+        TinyRNN::Neuron::Connection::HashMap cell;
+        
+        if (previous != nullptr)
+        {
+            cell = previous->connectAllToAll(memoryCell);
+            previous->connectAllToAll(inputGate);
+            previous->connectAllToAll(forgetGate);
+            previous->connectAllToAll(outputGate);
+        }
+        
+        const auto &output = memoryCell->connectAllToAll(outputLayer);
+        
+        const auto &self = memoryCell->connectOneToOne(memoryCell);
+        //const auto &self = memoryCell->connectAllToAll(memoryCell);
+        
+        // optional
+        outputLayer->connectAllToAll(memoryCell);
+        
+        // optional
+        outputLayer->connectAllToAll(inputGate);
+        outputLayer->connectAllToAll(outputGate);
+        outputLayer->connectAllToAll(forgetGate);
+        
+        // optional
+        //memoryCell->connectOneToOne(inputGate);
+        memoryCell->connectAllToAll(inputGate);
+        memoryCell->connectAllToAll(forgetGate);
+        memoryCell->connectAllToAll(outputGate);
+        
+        // gates
+        inputGate->gateAllIncomingConnections(memoryCell, input);
+        forgetGate->gateOneToOne(memoryCell, memoryCell, self);
+        outputGate->gateAllOutgoingConnections(memoryCell, output);
+        
+        if (previous != nullptr)
+        {
+            inputGate->gateAllIncomingConnections(memoryCell, cell);
+        }
+        
+        previous = memoryCell;
+    }
+    
+    // optional
+    inputLayer->connectAllToAll(outputLayer);
+    
+    TinyRNN::Network::Ptr network =
+    TinyRNN::Network::Ptr(new TinyRNN::Network("GoDeeper",
+                                               context,
+                                               inputLayer,
+                                               hiddenLayers,
+                                               outputLayer));
+    return network;
+}
+
+
 
 class GoDeeperApplication : public JUCEApplication
 {
@@ -90,6 +180,28 @@ public:
             
             // Estimated production network memory size (for float):
             //
+            // (64, {128, 64, 128}, 64) == 2.5Mb
+            // 631170*4/1024/1024
+            //
+            // (64, {128, 256, 128}, 64) == 6Mb (7Mb deeper connected)
+            // 1594434*4/1024/1024
+            // 1856578*4/1024/1024
+            //
+            // (128, {128, 64, 128}, 128) == 3.4Mb
+            // 902082*4/1024/1024
+            //
+            // (128, {128, 128, 128}, 128) == 4.6Mb
+            // 1223170*4/1024/1024
+            //
+            // (128, {256, 256}, 128) == 8.4Mb
+            // 2209410*4/1024/1024
+            //
+            // (128, {512}, 128) == 9.2Mb
+            // 2406018*4/1024/1024
+            //
+            // (128, {128, 256, 128}, 128) == 7.6Mb
+            // 2012802*4/1024/1024
+            //
             // (256, {128, 64, 128}, 256) == 5.7Mb
             // 1493058*4/1024/1024
             //
@@ -102,10 +214,10 @@ public:
             // 256, {256, 128, 256}, 256 == 13.7Mb
             // 3590018*4/1024/1024
             
-            // Default network params
-            int numInputs = 256;
-            int numOutputs = 256;
-            std::vector<int> hiddenLayers = {128, 128, 128};
+            // Default network params (64 is the piano key range (88) minus lower and higher octaves (-24))
+            int numInputs = 64;
+            int numOutputs = 64;
+            std::vector<int> hiddenLayers = { 128, 256, 128 };
             
             std::vector<int> sizes;
             int sizeParameterIndex = 2;
@@ -128,7 +240,7 @@ public:
             
             {
                 ScopedTimer timer("Creating a network");
-                network = TinyRNN::Network::Prefabs::longShortTermMemory("Arpr", numInputs, hiddenLayers, numOutputs);
+                network = deeperLSTM(numInputs, hiddenLayers, numOutputs);
             }
             
             {
@@ -178,7 +290,8 @@ public:
             return;
         }
         
-        if (args[0].toLowerCase() == "train")
+        if (args[0].toLowerCase() == "midi" ||
+            args[0].toLowerCase() == "text")
         {
             const File networkDirectory(File::getCurrentWorkingDirectory().getChildFile(args[1].unquoted()));
             const File kernelsFile(networkDirectory.getChildFile(kernelsFileName));
@@ -253,9 +366,16 @@ public:
                 clNetwork->compile();
             }
             
+            if (args[0].toLowerCase() == "midi")
             {
-                ScopedTimer timer("Training");
-                TrainingPipeline pipeline(clNetwork, targetsDirectory, latestMemDumpFile);
+                ScopedTimer timer("Training with BatchMidiProcessor");
+                TrainingPipeline<BatchMidiProcessor> pipeline(clNetwork, targetsDirectory, latestMemDumpFile);
+                pipeline.start();
+            }
+            else if (args[0].toLowerCase() == "text")
+            {
+                ScopedTimer timer("Training with BatchTextProcessor");
+                TrainingPipeline<BatchTextProcessor> pipeline(clNetwork, targetsDirectory, latestMemDumpFile);
                 pipeline.start();
             }
             

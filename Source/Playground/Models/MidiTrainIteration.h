@@ -15,7 +15,7 @@ class MidiTrainIteration final
 {
 public:
     
-    MidiTrainIteration(TinyRNN::HardcodedNetwork::Ptr targetNetwork);
+    explicit MidiTrainIteration(TinyRNN::HardcodedNetwork::Ptr targetNetwork);
     
     // Process one iteration of training.
     void processWith(const MidiMessageSequence &sortedSequence);

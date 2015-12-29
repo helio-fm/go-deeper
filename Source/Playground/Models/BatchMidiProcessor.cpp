@@ -25,8 +25,6 @@ memDumpIntervalSeconds(10.f)
                                      true,
                                      "*.mid;*.midi;*.smf");
     }
-    
-    // todo asserts for the number of input layers, etc
 }
 
 MidiMessageSequence loadMidiFile(File file)

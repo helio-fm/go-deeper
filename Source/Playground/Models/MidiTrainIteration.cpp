@@ -11,11 +11,45 @@
 #include "Precompiled.h"
 #include "MidiTrainIteration.h"
 
+#define KEY_RANGE 64
+
 MidiTrainIteration::MidiTrainIteration(TinyRNN::HardcodedNetwork::Ptr targetNetwork) :
 clNetwork(targetNetwork)
 {
-    // todo asserts for the number of neurons in input and output layers, etc
-    jassert(targetNetwork->getContext()->getOutputs().size() == 256);
+    jassert(targetNetwork->getContext()->getOutputs().size() == KEY_RANGE);
+}
+
+static int midiKeyToArperRangeKey(int midiKey)
+{
+    // from 32 to (32 + 64)
+    // wrap others into that range by transponing
+    
+    int result = midiKey;
+    int lowestNote = 32;
+    int highestNote = (lowestNote + KEY_RANGE);
+    
+    if (midiKey <= lowestNote)
+    {
+        const int numOctavesToTranspose = ((lowestNote - midiKey) / 12) + 1;
+        result = midiKey + (12 * numOctavesToTranspose);
+    }
+    else if (midiKey > highestNote)
+    {
+        const int numOctavesToTranspose = ((midiKey - highestNote) / 12) + 1;
+        result = midiKey - (12 * numOctavesToTranspose);
+    }
+    
+    result = result - midiKey;
+    
+    jassert(result >= 0);
+    jassert(result < KEY_RANGE);
+    
+    return result;
+}
+
+static int arperRangeKeyToMidiKey(int arperRangeKey)
+{
+    
 }
 
 // Process one iteration of training.
@@ -24,54 +58,43 @@ void MidiTrainIteration::processWith(const MidiMessageSequence &sortedSequence)
     // 1. go through events and train the network
     
     // input:
-    // starting chords
-    // x[128]
     // holding chords
-    // x[128]
+    // x[64]
     
     // output:
     // probability of every note's on
-    // x[128]
-    // probability of every note's hold
-    // x[128]
-    
-    const int playingNotesBaseIndex = 0;
-    const int holdingNotesBaseIndex = 128;
+    // x[64]
     
     long long currentTick = (long long)sortedSequence.getStartTime();
     const long long lastTick = (long long)sortedSequence.getEndTime();
     
     int currentEventIndex = 0;
     
-    // presuming that we have the lstm like 256 -> 512 -> 512 -> 512 -> 256
-    
-    // go through every tick
-    // write to input exising holding notes
-    
-    // once we get note on, we add it to the holdingNotes
-    // if there are <= 2 note-ons this tick, dont write to input (dont seem to be chord)
-    // else write to input as note-ons
+    // presuming that we have a lstm like 128 -> ... -> 128
     
     TinyRNN::HardcodedTrainingContext::RawData inputs;
-    inputs.resize(256);
+    inputs.resize(KEY_RANGE);
     
     TinyRNN::HardcodedTrainingContext::RawData targets;
-    targets.resize(256);
+    targets.resize(KEY_RANGE);
     
     std::unordered_map<int, double> holdingNotes;
     
     while (currentTick <= lastTick)
     {
-        // сначала разбираемся с входными данными
+        // inputs and outputs are the float vectors of size 64
+        // inputs contain holding notes
+        // outputs contain note-ons
+        
         inputs.clear();
         
-        // записываем на вход все звучащие ноты
-        for (int i = 0; i < 128; ++i)
+        // fill up the inputs with current holding notes
+        for (int i = 0; i < KEY_RANGE; ++i)
         {
-            inputs[holdingNotesBaseIndex + i] = holdingNotes[i];
+            inputs[i] = holdingNotes[i];
         }
         
-        // находим все события для текущего тика
+        // find all messages for the current tick
         Array<MidiMessage> messagesOfCurrentTick;
         for (int i = currentEventIndex; i < sortedSequence.getNumEvents(); ++i)
         {
@@ -88,10 +111,12 @@ void MidiTrainIteration::processWith(const MidiMessageSequence &sortedSequence)
             }
         }
         
-        // обновляем holding notes
+        // update holding notes
+        // simply add all note-ons for the current tick (next tick they'll be holding)
+        // also handle note-offs here
         for (const auto &message : messagesOfCurrentTick)
         {
-            const int key = message.getNoteNumber();
+            const int key = midiKeyToArperRangeKey(message.getNoteNumber());
             const double velocity = (double)message.getVelocity() / 128.0;
             
             if (message.isNoteOn())
@@ -104,44 +129,22 @@ void MidiTrainIteration::processWith(const MidiMessageSequence &sortedSequence)
             }
         }
         
-        // записываем на вход все новые ноты, если это аккорд
-        const bool seemsToBeChord = (messagesOfCurrentTick.size() > 2);
-        if (seemsToBeChord)
-        {
-            for (const auto &message : messagesOfCurrentTick)
-            {
-                const int key = message.getNoteNumber();
-                const double velocity = (double)message.getVelocity() / 128.0;
-                
-                if (message.isNoteOn())
-                {
-                    inputs[playingNotesBaseIndex + key] = velocity;
-                }
-            }
-        }
-
-        // теперь разбираемся с таргетами
+        // now fix the targets
         targets.clear();
         
-        // записываем туда все звучащие ноты
-        for (int i = 0; i < 128; ++i)
-        {
-            targets[holdingNotesBaseIndex + i] = holdingNotes[i];
-        }
-        
-        // записываем на target все новые ноты
+        // copy all note-ons of the current tick
         for (const auto &message : messagesOfCurrentTick)
         {
-            const int key = message.getNoteNumber();
+            const int key = midiKeyToArperRangeKey(message.getNoteNumber());
             const double velocity = (double)message.getVelocity() / 128.0;
             
             if (message.isNoteOn())
             {
-                targets[playingNotesBaseIndex + key] = velocity;
+                targets[key] = velocity;
             }
         }
         
-        // учим
+        // train
         this->clNetwork->feed(inputs);
         this->clNetwork->train(0.5, targets);
         
@@ -151,8 +154,11 @@ void MidiTrainIteration::processWith(const MidiMessageSequence &sortedSequence)
     // 2. unroll until the silence
     inputs.clear();
     targets.clear();
+    const int unrollMaxTicks = 24 * 100; // the standard MIDI clock ticks every 24 times every quarter note
+    int unrollTicks = 0;
     bool hasOutputs = true;
-    while (hasOutputs)
+    while (hasOutputs &&
+           unrollTicks++ < unrollMaxTicks)
     {
         const auto feedResult = this->clNetwork->feed(inputs);
         this->clNetwork->train(0.5, targets);
@@ -164,5 +170,3 @@ void MidiTrainIteration::processWith(const MidiMessageSequence &sortedSequence)
         }
     }
 }
-
-

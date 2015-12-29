@@ -11,8 +11,11 @@
     <Filter Include="GoDeeper\Source\Models">
       <UniqueIdentifier>{A414FA25-AD20-5EC2-F6FC-752370071056}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GoDeeper\Source\Models\Threads">
-      <UniqueIdentifier>{1FBBC117-3363-4097-5E75-618B1D9D8A3B}</UniqueIdentifier>
+    <Filter Include="GoDeeper\Source\Models\Text">
+      <UniqueIdentifier>{AAE40394-312E-C781-F283-8B2343C56002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GoDeeper\Source\Models\Midi">
+      <UniqueIdentifier>{9DC15458-D6CE-7C6F-198E-E85247A33FC9}</UniqueIdentifier>
     </Filter>
     <Filter Include="GoDeeper\Source\UI">
       <UniqueIdentifier>{B68C6ABB-DC49-56E1-E107-94FACBE313DB}</UniqueIdentifier>
@@ -268,11 +271,17 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Playground\Models\BatchTextProcessor.cpp">
+      <Filter>GoDeeper\Source\Models\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Playground\Models\TextTrainIteration.cpp">
+      <Filter>GoDeeper\Source\Models\Text</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Playground\Models\BatchMidiProcessor.cpp">
-      <Filter>GoDeeper\Source\Models</Filter>
+      <Filter>GoDeeper\Source\Models\Midi</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Playground\Models\MidiTrainIteration.cpp">
-      <Filter>GoDeeper\Source\Models</Filter>
+      <Filter>GoDeeper\Source\Models\Midi</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Playground\Models\TrainingPipeline.cpp">
       <Filter>GoDeeper\Source\Models</Filter>
@@ -289,7 +298,7 @@
     <ClCompile Include="..\..\Source\Playground\UI\MainComponent.cpp">
       <Filter>GoDeeper\Source\UI</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Playground\Main.cpp">
+    <ClCompile Include="..\..\Source\Playground\GoDeeper.cpp">
       <Filter>GoDeeper\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\ThirdParty\JUCE\modules\juce_audio_basics\buffers\juce_AudioDataConverters.cpp">
@@ -1407,32 +1416,17 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\Playground\Models\NetworkCompileThread.h">
-      <Filter>GoDeeper\Source\Models\Threads</Filter>
+    <ClInclude Include="..\..\Source\Playground\Models\BatchTextProcessor.h">
+      <Filter>GoDeeper\Source\Models\Text</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Playground\Models\NetworkHardcodeThread.h">
-      <Filter>GoDeeper\Source\Models\Threads</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Playground\Models\NetworkInitThread.h">
-      <Filter>GoDeeper\Source\Models\Threads</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Playground\Models\SerializeKernelsThread.h">
-      <Filter>GoDeeper\Source\Models\Threads</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Playground\Models\SerializeMemoryThread.h">
-      <Filter>GoDeeper\Source\Models\Threads</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Playground\Models\SerializeStateThread.h">
-      <Filter>GoDeeper\Source\Models\Threads</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Playground\Models\SerializeTopologyThread.h">
-      <Filter>GoDeeper\Source\Models\Threads</Filter>
+    <ClInclude Include="..\..\Source\Playground\Models\TextTrainIteration.h">
+      <Filter>GoDeeper\Source\Models\Text</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Playground\Models\BatchMidiProcessor.h">
-      <Filter>GoDeeper\Source\Models</Filter>
+      <Filter>GoDeeper\Source\Models\Midi</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Playground\Models\MidiTrainIteration.h">
-      <Filter>GoDeeper\Source\Models</Filter>
+      <Filter>GoDeeper\Source\Models\Midi</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Playground\Models\TrainingPipeline.h">
       <Filter>GoDeeper\Source\Models</Filter>

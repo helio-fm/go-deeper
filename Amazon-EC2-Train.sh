@@ -2,7 +2,20 @@
 
 # Connect
 chmod 400 ./TestInstance2.pem
-ssh -i ./TestInstance2.pem ubuntu@ec2-52-24-120-173.us-west-2.compute.amazonaws.com
+ssh -i ./TestInstance2.pem ubuntu@ec2-52-32-93-91.us-west-2.compute.amazonaws.com
+
+
+# Add paging:
+# https://stackoverflow.com/questions/17173972/how-do-you-add-swap-to-an-ec2-instance
+
+# To add this extra space to your instance you type:
+#sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=6144
+#sudo /sbin/mkswap /var/swap.1
+#sudo /sbin/swapon /var/swap.1
+
+# To enable it by default after reboot, add this line to /etc/fstab:
+#/var/swap.1 swap swap defaults 0 0
+
 
 # Prepare the environment
 sudo apt-get update -qq -y
