@@ -9,13 +9,12 @@ ssh -i ./TestInstance2.pem ubuntu@ec2-52-32-93-91.us-west-2.compute.amazonaws.co
 # https://stackoverflow.com/questions/17173972/how-do-you-add-swap-to-an-ec2-instance
 
 # To add this extra space to your instance you type:
-#sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=6144
-#sudo /sbin/mkswap /var/swap.1
-#sudo /sbin/swapon /var/swap.1
+sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=12288
+sudo /sbin/mkswap /var/swap.1
+sudo /sbin/swapon /var/swap.1
 
 # To enable it by default after reboot, add this line to /etc/fstab:
 #/var/swap.1 swap swap defaults 0 0
-
 
 # Prepare the environment
 sudo apt-get update -qq -y
@@ -33,7 +32,7 @@ pushd catalyst-14.6beta1.0jul11
     # Create and install .deb packages
     pushd fglrx-14.20
         sudo ./amd-driver-installer-14.20-x86.x86_64.run --buildpkg Ubuntu/trusty
-        sudo apt-get -f install
+        sudo apt-get -f install -y
         sudo dpkg -i fglrx*.deb
     popd
 popd
@@ -58,7 +57,7 @@ pushd TinyRNN
 popd
 
 # JUCE modules' dependencies
-sudo apt-get install libfreetype6-dev libxrandr-dev libxinerama-dev libasound-dev
+sudo apt-get install -y libfreetype6-dev libxrandr-dev libxinerama-dev libasound-dev
 
 # Build GoDeeper trainer
 git clone https://github.com/peterrudenko/GoDeeper.git
@@ -80,5 +79,5 @@ pushd GoDeeper
 popd
 
 # Train!
-deeper init MyLSTM 256 128 128 128 256
-deeper train MyLSTM targets="Targets"
+deeper init Arper 64 128 256 128 64
+deeper train Arper targets="Targets"

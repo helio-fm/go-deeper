@@ -151,7 +151,7 @@ void MidiTrainIteration::processWith(const MidiMessageSequence &sortedSequence)
         currentTick++;
     }
     
-    // 2. unroll until the silence
+    // 2. unroll until the silence (or timeout)
     inputs.clear();
     targets.clear();
     const int unrollMaxTicks = 24 * 100; // the standard MIDI clock ticks every 24 times every quarter note

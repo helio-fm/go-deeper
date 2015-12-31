@@ -50,94 +50,6 @@ private:
     ScopedTimer &operator =(const ScopedTimer &) = delete;
 };
 
-inline TinyRNN::Network::Ptr deeperLSTM(int inputLayerSize,
-                                        const std::vector<int> &hiddenLayersSizes,
-                                        int outputLayerSize)
-{
-    TinyRNN::TrainingContext::Ptr context(new TinyRNN::TrainingContext("GoDeeper"));
-    
-    TinyRNN::Layer::Ptr inputLayer(new TinyRNN::Layer(context, inputLayerSize));
-    TinyRNN::Layer::Ptr outputLayer(new TinyRNN::Layer(context, outputLayerSize));
-    
-    const int numHiddenLayers = hiddenLayersSizes.size();
-    TinyRNN::Layer::Vector hiddenLayers;
-    TinyRNN::Layer::Ptr previous;
-    
-    for (int i = 0; i < numHiddenLayers; ++i)
-    {
-        const int size = hiddenLayersSizes[i];
-        
-        TinyRNN::Layer::Ptr inputGate(new TinyRNN::Layer(context, size, 1.0));
-        TinyRNN::Layer::Ptr forgetGate(new TinyRNN::Layer(context, size, 1.0));
-        TinyRNN::Layer::Ptr memoryCell(new TinyRNN::Layer(context, size));
-        TinyRNN::Layer::Ptr outputGate(new TinyRNN::Layer(context, size, 1.0));
-        
-        hiddenLayers.push_back(inputGate);
-        hiddenLayers.push_back(forgetGate);
-        hiddenLayers.push_back(memoryCell);
-        hiddenLayers.push_back(outputGate);
-        
-        const auto &input = inputLayer->connectAllToAll(memoryCell);
-        inputLayer->connectAllToAll(inputGate);
-        inputLayer->connectAllToAll(forgetGate);
-        inputLayer->connectAllToAll(outputGate);
-        
-        TinyRNN::Neuron::Connection::HashMap cell;
-        
-        if (previous != nullptr)
-        {
-            cell = previous->connectAllToAll(memoryCell);
-            previous->connectAllToAll(inputGate);
-            previous->connectAllToAll(forgetGate);
-            previous->connectAllToAll(outputGate);
-        }
-        
-        const auto &output = memoryCell->connectAllToAll(outputLayer);
-        
-        const auto &self = memoryCell->connectOneToOne(memoryCell);
-        //const auto &self = memoryCell->connectAllToAll(memoryCell);
-        
-        // optional
-        outputLayer->connectAllToAll(memoryCell);
-        
-        // optional
-        outputLayer->connectAllToAll(inputGate);
-        outputLayer->connectAllToAll(outputGate);
-        outputLayer->connectAllToAll(forgetGate);
-        
-        // optional
-        //memoryCell->connectOneToOne(inputGate);
-        memoryCell->connectAllToAll(inputGate);
-        memoryCell->connectAllToAll(forgetGate);
-        memoryCell->connectAllToAll(outputGate);
-        
-        // gates
-        inputGate->gateAllIncomingConnections(memoryCell, input);
-        forgetGate->gateOneToOne(memoryCell, memoryCell, self);
-        outputGate->gateAllOutgoingConnections(memoryCell, output);
-        
-        if (previous != nullptr)
-        {
-            inputGate->gateAllIncomingConnections(memoryCell, cell);
-        }
-        
-        previous = memoryCell;
-    }
-    
-    // optional
-    inputLayer->connectAllToAll(outputLayer);
-    
-    TinyRNN::Network::Ptr network =
-    TinyRNN::Network::Ptr(new TinyRNN::Network("GoDeeper",
-                                               context,
-                                               inputLayer,
-                                               hiddenLayers,
-                                               outputLayer));
-    return network;
-}
-
-
-
 class GoDeeperApplication : public JUCEApplication
 {
 public:
@@ -183,9 +95,14 @@ public:
             // (64, {128, 64, 128}, 64) == 2.5Mb
             // 631170*4/1024/1024
             //
+            // (64, {128, 128, 128}, 64) == 4.2Mb (deeper connected)
+            // 1099714*4/1024/1024
+            // 594241*4/1024/1024 (actual)
+            //
             // (64, {128, 256, 128}, 64) == 6Mb (7Mb deeper connected)
             // 1594434*4/1024/1024
             // 1856578*4/1024/1024
+            // 998337*4/1024/1024 (3.8mb actual)
             //
             // (128, {128, 64, 128}, 128) == 3.4Mb
             // 902082*4/1024/1024
@@ -240,7 +157,7 @@ public:
             
             {
                 ScopedTimer timer("Creating a network");
-                network = deeperLSTM(numInputs, hiddenLayers, numOutputs);
+                network = TinyRNN::Network::Prefabs::longShortTermMemory("GoDeeper", numInputs, hiddenLayers, numOutputs);
             }
             
             {
