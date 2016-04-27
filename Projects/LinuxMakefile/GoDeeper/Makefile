@@ -1,5 +1,5 @@
-# Automatically generated makefile, created by the Introjucer
-# Don't edit this file! Your changes will be overwritten when you re-save the Introjucer project!
+# Automatically generated makefile, created by the Projucer
+# Don't edit this file! Your changes will be overwritten when you re-save the Projucer project!
 
 # (this disables dependency generation if multiple architectures are set)
 DEPFLAGS := $(if $(word 2, $(TARGET_ARCH)), , -MMD)
@@ -53,22 +53,23 @@ OBJECTS := \
   $(OBJDIR)/TextTrainIteration_54a850ad.o \
   $(OBJDIR)/BatchMidiProcessor_ec097f42.o \
   $(OBJDIR)/MidiTrainIteration_ea6d19a1.o \
+  $(OBJDIR)/UnrolledNetwork_87b791f8.o \
   $(OBJDIR)/TrainingPipeline_57d00287.o \
   $(OBJDIR)/XMLSerializer_6229ec8.o \
   $(OBJDIR)/LayerConnectionComponent_2721b54f.o \
   $(OBJDIR)/LayerNodeComponent_1b40e0eb.o \
   $(OBJDIR)/MainComponent_ccb1488d.o \
   $(OBJDIR)/GoDeeper_a72bc665.o \
-  $(OBJDIR)/juce_audio_basics_6432d8fd.o \
-  $(OBJDIR)/juce_audio_devices_a88be27b.o \
-  $(OBJDIR)/juce_audio_formats_d70d2c1b.o \
-  $(OBJDIR)/juce_core_f7efbdf.o \
-  $(OBJDIR)/juce_cryptography_65b7dc39.o \
-  $(OBJDIR)/juce_data_structures_6c162e5b.o \
-  $(OBJDIR)/juce_events_1b6260d3.o \
-  $(OBJDIR)/juce_graphics_be749eb7.o \
-  $(OBJDIR)/juce_gui_basics_1e8bd2b3.o \
-  $(OBJDIR)/juce_gui_extra_171914fb.o \
+  $(OBJDIR)/juce_audio_basics_35a2deab.o \
+  $(OBJDIR)/juce_audio_devices_2245a2c1.o \
+  $(OBJDIR)/juce_audio_formats_d52ca5c0.o \
+  $(OBJDIR)/juce_core_98fa4f3c.o \
+  $(OBJDIR)/juce_cryptography_380c4e09.o \
+  $(OBJDIR)/juce_data_structures_389bc3e2.o \
+  $(OBJDIR)/juce_events_47f4b9b6.o \
+  $(OBJDIR)/juce_graphics_9c888028.o \
+  $(OBJDIR)/juce_gui_basics_2ebc0226.o \
+  $(OBJDIR)/juce_gui_extra_57915959.o \
 
 .PHONY: clean
 
@@ -107,6 +108,11 @@ $(OBJDIR)/MidiTrainIteration_ea6d19a1.o: ../../../Source/Playground/Models/MidiT
 	@echo "Compiling MidiTrainIteration.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
+$(OBJDIR)/UnrolledNetwork_87b791f8.o: ../../../Source/Playground/Models/UnrolledNetwork.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling UnrolledNetwork.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
 $(OBJDIR)/TrainingPipeline_57d00287.o: ../../../Source/Playground/Models/TrainingPipeline.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling TrainingPipeline.cpp"
@@ -137,52 +143,52 @@ $(OBJDIR)/GoDeeper_a72bc665.o: ../../../Source/Playground/GoDeeper.cpp
 	@echo "Compiling GoDeeper.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
-$(OBJDIR)/juce_audio_basics_6432d8fd.o: ../../../ThirdParty/JUCE/modules/juce_audio_basics/juce_audio_basics.cpp
+$(OBJDIR)/juce_audio_basics_35a2deab.o: ../../Introjucer/JuceLibraryCode/juce_audio_basics.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling juce_audio_basics.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
-$(OBJDIR)/juce_audio_devices_a88be27b.o: ../../../ThirdParty/JUCE/modules/juce_audio_devices/juce_audio_devices.cpp
+$(OBJDIR)/juce_audio_devices_2245a2c1.o: ../../Introjucer/JuceLibraryCode/juce_audio_devices.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling juce_audio_devices.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
-$(OBJDIR)/juce_audio_formats_d70d2c1b.o: ../../../ThirdParty/JUCE/modules/juce_audio_formats/juce_audio_formats.cpp
+$(OBJDIR)/juce_audio_formats_d52ca5c0.o: ../../Introjucer/JuceLibraryCode/juce_audio_formats.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling juce_audio_formats.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
-$(OBJDIR)/juce_core_f7efbdf.o: ../../../ThirdParty/JUCE/modules/juce_core/juce_core.cpp
+$(OBJDIR)/juce_core_98fa4f3c.o: ../../Introjucer/JuceLibraryCode/juce_core.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling juce_core.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
-$(OBJDIR)/juce_cryptography_65b7dc39.o: ../../../ThirdParty/JUCE/modules/juce_cryptography/juce_cryptography.cpp
+$(OBJDIR)/juce_cryptography_380c4e09.o: ../../Introjucer/JuceLibraryCode/juce_cryptography.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling juce_cryptography.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
-$(OBJDIR)/juce_data_structures_6c162e5b.o: ../../../ThirdParty/JUCE/modules/juce_data_structures/juce_data_structures.cpp
+$(OBJDIR)/juce_data_structures_389bc3e2.o: ../../Introjucer/JuceLibraryCode/juce_data_structures.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling juce_data_structures.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
-$(OBJDIR)/juce_events_1b6260d3.o: ../../../ThirdParty/JUCE/modules/juce_events/juce_events.cpp
+$(OBJDIR)/juce_events_47f4b9b6.o: ../../Introjucer/JuceLibraryCode/juce_events.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling juce_events.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
-$(OBJDIR)/juce_graphics_be749eb7.o: ../../../ThirdParty/JUCE/modules/juce_graphics/juce_graphics.cpp
+$(OBJDIR)/juce_graphics_9c888028.o: ../../Introjucer/JuceLibraryCode/juce_graphics.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling juce_graphics.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
-$(OBJDIR)/juce_gui_basics_1e8bd2b3.o: ../../../ThirdParty/JUCE/modules/juce_gui_basics/juce_gui_basics.cpp
+$(OBJDIR)/juce_gui_basics_2ebc0226.o: ../../Introjucer/JuceLibraryCode/juce_gui_basics.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling juce_gui_basics.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
-$(OBJDIR)/juce_gui_extra_171914fb.o: ../../../ThirdParty/JUCE/modules/juce_gui_extra/juce_gui_extra.cpp
+$(OBJDIR)/juce_gui_extra_57915959.o: ../../Introjucer/JuceLibraryCode/juce_gui_extra.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling juce_gui_extra.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"

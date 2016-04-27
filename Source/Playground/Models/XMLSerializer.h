@@ -33,7 +33,8 @@ private:
         virtual size_t getNumChildrenContexts() const override;
         virtual TinyRNN::SerializationContext::Ptr getChildContext(int index) const override;
         virtual TinyRNN::SerializationContext::Ptr getChildContext(const std::string &key) const override;
-        virtual TinyRNN::SerializationContext::Ptr createChildContext(const std::string &key) override;
+        virtual TinyRNN::SerializationContext::Ptr addChildContext(const std::string &key) override;
+        virtual TinyRNN::SerializationContext::Ptr addChildContextUnordered(const std::string &key) override;
         
     private:
         

@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>GoDeeper.xcscheme</key>
+		<key>GoDeeper (App).xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,7 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>7B6951E3502D1BD2B4FCE38A</key>
+		<key>EC6D5D80736BA4CE4C399ACD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

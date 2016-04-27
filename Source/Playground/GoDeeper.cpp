@@ -16,6 +16,11 @@
 #include "BatchMidiProcessor.h"
 #include "BatchTextProcessor.h"
 
+#if defined TRAINING_MODE
+#include "GoDeeper.h"
+#endif
+
+
 class ScopedTimer final
 {
 public:
@@ -90,6 +95,22 @@ public:
                 return;
             }
             
+            // Estimated text generators:
+            //
+            // (35, {512, 256, 512}, 35) == 13Mb
+            // 3422143*4/1024/1024
+            
+            
+            // text pipeline:
+            // 1. create a network (dont need to save it)
+            // 2. hardcode and save hardcoded network
+            // 3. make trainable sources out of hardcodednetwork
+            // 4. train them, and dump the memory
+            // 5. load hardcodednetwork
+            // 6. restore its hardcodedcontext memory state with a dump
+            // 7. make production sources with that hardcoded context
+            
+            
             // Estimated production network memory size (for float):
             //
             // (64, {128, 64, 128}, 64) == 2.5Mb
@@ -154,6 +175,7 @@ public:
             
             TinyRNN::Network::Ptr network;
             TinyRNN::HardcodedNetwork::Ptr clNetwork;
+            TinyRNN::HardcodedNetwork::StandaloneSources sources;
             
             {
                 ScopedTimer timer("Creating a network");
@@ -167,7 +189,8 @@ public:
             
             {
                 ScopedTimer timer("Compiling");
-                clNetwork->compile();
+                //clNetwork->compile();
+                sources = clNetwork->asStandalone("GoDeeper", false);
             }
             
             {
@@ -177,6 +200,8 @@ public:
                 const File xmlFile(networkDirectory.getChildFile(topologyFileName));
                 xmlFile.replaceWithText(xmlString);
             }
+            
+#if not defined TRAINING_MODE
             
             {
                 ScopedTimer timer("Saving the training context");
@@ -194,10 +219,22 @@ public:
                 xmlFile.replaceWithText(xmlString);
             }
             
+#endif
+            
             {
                 ScopedTimer timer("Saving the memory mapping");
                 XMLSerializer serializer;
-                const String xmlString(serializer.serialize(clNetwork->getContext(), TinyRNN::Keys::Hardcoded::TrainingContext));
+                const String xmlString(serializer.serialize(clNetwork->getContext(),
+                                                            TinyRNN::Keys::Hardcoded::TrainingContext));
+                const File xmlFile(networkDirectory.getChildFile(mappingFileName));
+                xmlFile.replaceWithText(xmlString);
+            }
+            
+            {
+                ScopedTimer timer("Saving the sources");
+                XMLSerializer serializer;
+                const String xmlString(serializer.serialize(clNetwork->getContext(),
+                                                            TinyRNN::Keys::Hardcoded::TrainingContext));
                 const File xmlFile(networkDirectory.getChildFile(mappingFileName));
                 xmlFile.replaceWithText(xmlString);
             }
@@ -216,6 +253,7 @@ public:
             const File latestMemDumpFile(networkDirectory.getChildFile(latestDumpFileName));
             
             File targetsDirectory(File::getCurrentWorkingDirectory().getChildFile("Targets"));
+            File samplesDirectory(File::getCurrentWorkingDirectory().getChildFile("Samples"));
             
             if (args[2].toLowerCase() == "targets")
             {
@@ -247,6 +285,31 @@ public:
                 return;
             }
             
+#if defined TRAINING_MODE
+
+            if (latestMemDumpFile.existsAsFile())
+            {
+                ScopedTimer timer("Loading the latest memory dump");
+                const std::string &memoryEncoded = latestMemDumpFile.loadFileAsString().toStdString();
+                const std::vector<unsigned char> &memoryDecoded = TinyRNN::SerializationContext::decodeBase64(memoryEncoded);
+                memcpy(kMemory, memoryDecoded.data(), sizeof(unsigned char) * memoryDecoded.size());
+            }
+            
+            if (args[0].toLowerCase() == "midi")
+            {
+                ScopedTimer timer("Training with BatchMidiProcessor");
+                TrainingPipeline<BatchMidiProcessor> pipeline(nullptr, targetsDirectory, samplesDirectory, latestMemDumpFile);
+                pipeline.start();
+            }
+            else if (args[0].toLowerCase() == "text")
+            {
+                ScopedTimer timer("Training with BatchTextProcessor");
+                TrainingPipeline<BatchTextProcessor> pipeline(nullptr, targetsDirectory, samplesDirectory, latestMemDumpFile);
+                pipeline.start();
+            }
+            
+#else
+           
             if (! kernelsFile.existsAsFile() ||
                 ! mappingFile.existsAsFile())
             {
@@ -286,15 +349,16 @@ public:
             if (args[0].toLowerCase() == "midi")
             {
                 ScopedTimer timer("Training with BatchMidiProcessor");
-                TrainingPipeline<BatchMidiProcessor> pipeline(clNetwork, targetsDirectory, latestMemDumpFile);
+                TrainingPipeline<BatchMidiProcessor> pipeline(clNetwork, targetsDirectory, samplesDirectory, latestMemDumpFile);
                 pipeline.start();
             }
             else if (args[0].toLowerCase() == "text")
             {
                 ScopedTimer timer("Training with BatchTextProcessor");
-                TrainingPipeline<BatchTextProcessor> pipeline(clNetwork, targetsDirectory, latestMemDumpFile);
+                TrainingPipeline<BatchTextProcessor> pipeline(clNetwork, targetsDirectory, samplesDirectory, latestMemDumpFile);
                 pipeline.start();
             }
+#endif
             
             this->quit();
             return;

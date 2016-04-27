@@ -25,6 +25,7 @@ public:
         { this->masterReference.clear(); }
         
         virtual void onDumpMemory(const String &memoryInBase64) = 0;
+        virtual void onDumpSample(uint64 iteration, const String &sample) = 0;
         virtual bool shouldContinue(uint64 numIterationPassed) = 0;
         
     private:

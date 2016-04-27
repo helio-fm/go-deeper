@@ -27,7 +27,7 @@ memDumpIntervalSeconds(10.f)
     }
 }
 
-MidiMessageSequence loadMidiFile(File file)
+static MidiMessageSequence loadMidiFile(File file)
 {
     MidiFile midiFile;
     {
@@ -109,9 +109,14 @@ void BatchMidiProcessor::start()
 
 String BatchMidiProcessor::dumpMemoryAsBase64()
 {
-    auto context = this->clNetwork->getContext();
-    const std::string memoryEncoded =
-    TinyRNN::SerializationContext::encodeBase64((const unsigned char *)context->getMemory().data(),
-                                                sizeof(double) * context->getMemory().size());
-    return String(memoryEncoded);
+    if (this->clNetwork != nullptr)
+    {
+        auto context = this->clNetwork->getContext();
+        const std::string memoryEncoded =
+        TinyRNN::SerializationContext::encodeBase64((const unsigned char *)context->getMemory().data(),
+                                                    sizeof(double) * context->getMemory().size());
+        return String(std::move(memoryEncoded));
+    }
+    
+    return String::empty;
 }

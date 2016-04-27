@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="NtTT2W" name="GoDeeper" projectType="guiapp" version="1.0.0"
               bundleIdentifier="com.peterrudenko.GoDeeper" includeBinaryInAppConfig="1"
-              jucerVersion="4.0.1">
+              jucerVersion="4.2.0">
   <MAINGROUP id="yXzcEv" name="GoDeeper">
     <GROUP id="{79CDBC84-AA00-53E0-AF14-46C0DDAFF2E1}" name="Source">
       <GROUP id="{5FF0CFD8-384F-D0A6-B315-9618BA55DBCB}" name="Models">
@@ -26,6 +26,8 @@
           <FILE id="ZUqz87" name="MidiTrainIteration.h" compile="0" resource="0"
                 file="../../Source/Playground/Models/MidiTrainIteration.h"/>
         </GROUP>
+        <FILE id="r2AR4u" name="UnrolledNetwork.cpp" compile="1" resource="0"
+              file="../../Source/Playground/Models/UnrolledNetwork.cpp"/>
         <FILE id="Qhx4XW" name="TrainingPipeline.cpp" compile="1" resource="0"
               file="../../Source/Playground/Models/TrainingPipeline.cpp"/>
         <FILE id="cYXRL2" name="TrainingPipeline.h" compile="0" resource="0"

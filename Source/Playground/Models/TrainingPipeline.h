@@ -18,11 +18,13 @@ public:
     
     TrainingPipeline(TinyRNN::HardcodedNetwork::Ptr targetNetwork,
                      File targetsFolder,
+                     File samplesDumpFolder,
                      File memDumpFile);
     
     virtual ~TrainingPipeline() override;
     
     virtual void onDumpMemory(const String &memoryInBase64) override;
+    virtual void onDumpSample(uint64 iteration, const String &sample) override;
     virtual bool shouldContinue(uint64 numIterationPassed) override;
     
     void start();
@@ -30,16 +32,21 @@ public:
 private:
     
     ScopedPointer<T> processor;
+    File samplesDumpFolder;
     File memoryDumpFile;
+    
 };
 
 template <typename T>
 inline TrainingPipeline<T>::TrainingPipeline(TinyRNN::HardcodedNetwork::Ptr targetNetwork,
-                                      File targetsFolder,
-                                      File memDumpFile) :
-memoryDumpFile(memDumpFile)
+                                             File targetsFolder,
+                                             File samplesDumpFolder,
+                                             File memoryDumpFile) :
+samplesDumpFolder(samplesDumpFolder),
+memoryDumpFile(memoryDumpFile)
 {
     this->processor = new T(targetsFolder, targetNetwork);
+    this->samplesDumpFolder.createDirectory();
 }
 
 template <typename T>
@@ -54,6 +61,17 @@ inline void TrainingPipeline<T>::onDumpMemory(const String &memoryInBase64)
 {
     std::cout << "Dumping the memory to " << this->memoryDumpFile.getFullPathName() << std::endl;
     this->memoryDumpFile.replaceWithText(memoryInBase64);
+}
+
+template <typename T>
+inline void TrainingPipeline<T>::onDumpSample(uint64 iteration, const String &sample)
+{
+    std::cout << "Dumping the sample of iteration " << iteration << std::endl << std::endl;
+    
+    File sampleDumpFile = this->samplesDumpFolder.getChildFile("sample_iteration_" + String(iteration));
+    sampleDumpFile.replaceWithText(sample);
+    
+    std::cout << sample << std::endl << std::endl;
 }
 
 template <typename T>

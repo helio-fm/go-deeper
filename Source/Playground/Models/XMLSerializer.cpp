@@ -72,15 +72,22 @@ TinyRNN::SerializationContext::Ptr XMLSerializer::Context::getChildContext(const
     return child;
 }
 
-TinyRNN::SerializationContext::Ptr XMLSerializer::Context::createChildContext(const std::string &key)
+TinyRNN::SerializationContext::Ptr XMLSerializer::Context::addChildContext(const std::string &key)
 {
     jassert(this->root != nullptr);
-    // todo prepend child?
     XmlElement *newChild = this->root->createNewChildElement(String(key));
     SerializationContext::Ptr newChildContext(new XMLSerializer::Context(newChild));
     return newChildContext;
 }
 
+TinyRNN::SerializationContext::Ptr XMLSerializer::Context::addChildContextUnordered(const std::string &key)
+{
+    jassert(this->root != nullptr);
+    XmlElement *newChild = new XmlElement(String(key));
+    this->root->prependChildElement(newChild);
+    SerializationContext::Ptr newChildContext(new XMLSerializer::Context(newChild));
+    return newChildContext;
+}
 
 String XMLSerializer::serialize(TinyRNN::SerializedObject::Ptr target, const std::string &rootNodeName) const
 {
