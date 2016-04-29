@@ -26,15 +26,22 @@
           <FILE id="ZUqz87" name="MidiTrainIteration.h" compile="0" resource="0"
                 file="../../Source/Playground/Models/MidiTrainIteration.h"/>
         </GROUP>
+        <GROUP id="{38A31145-ADD2-E592-22FD-5105CDC28C71}" name="Serializers">
+          <FILE id="YedEWM" name="JuceXMLSerializer.cpp" compile="1" resource="0"
+                file="../../Source/Playground/Models/JuceXMLSerializer.cpp"/>
+          <FILE id="DerBkB" name="JuceXMLSerializer.h" compile="0" resource="0"
+                file="../../Source/Playground/Models/JuceXMLSerializer.h"/>
+          <FILE id="jKpxkT" name="PugiXMLSerializer.cpp" compile="1" resource="0"
+                file="../../Source/Playground/Models/PugiXMLSerializer.cpp"/>
+          <FILE id="Bz8Ucp" name="PugiXMLSerializer.h" compile="0" resource="0"
+                file="../../Source/Playground/Models/PugiXMLSerializer.h"/>
+        </GROUP>
         <FILE id="r2AR4u" name="UnrolledNetwork.cpp" compile="1" resource="0"
               file="../../Source/Playground/Models/UnrolledNetwork.cpp"/>
         <FILE id="Qhx4XW" name="TrainingPipeline.cpp" compile="1" resource="0"
               file="../../Source/Playground/Models/TrainingPipeline.cpp"/>
         <FILE id="cYXRL2" name="TrainingPipeline.h" compile="0" resource="0"
               file="../../Source/Playground/Models/TrainingPipeline.h"/>
-        <FILE id="YedEWM" name="XMLSerializer.cpp" compile="1" resource="0"
-              file="../../Source/Playground/Models/XMLSerializer.cpp"/>
-        <FILE id="DerBkB" name="XMLSerializer.h" compile="0" resource="0" file="../../Source/Playground/Models/XMLSerializer.h"/>
       </GROUP>
       <GROUP id="{8FF8AF99-A6EC-399C-179E-8395333009DA}" name="UI">
         <FILE id="ynqnrF" name="LayerConnectionComponent.cpp" compile="1" resource="0"
@@ -51,6 +58,11 @@
       </GROUP>
       <FILE id="zxBf9L" name="GoDeeper.cpp" compile="1" resource="0" file="../../Source/Playground/GoDeeper.cpp"/>
       <FILE id="XsLpFC" name="Precompiled.h" compile="0" resource="0" file="../../Source/Playground/Precompiled.h"/>
+    </GROUP>
+    <GROUP id="{35173B8F-CF85-343C-35FD-52010860E18E}" name="ThirdParty">
+      <FILE id="Vvp6R9" name="pugiconfig.hpp" compile="0" resource="0" file="../../ThirdParty/pugixml/src/pugiconfig.hpp"/>
+      <FILE id="d4DQf6" name="pugixml.cpp" compile="1" resource="0" file="../../ThirdParty/pugixml/src/pugixml.cpp"/>
+      <FILE id="ivsfSC" name="pugixml.hpp" compile="0" resource="0" file="../../ThirdParty/pugixml/src/pugixml.hpp"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>

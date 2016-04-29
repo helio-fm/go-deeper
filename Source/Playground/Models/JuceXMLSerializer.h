@@ -12,7 +12,8 @@
 #define XMLSERIALIZER_H_INCLUDED
 
 // The JUCE-based serializer example
-class XMLSerializer final
+
+class JuceXMLSerializer final
 {
 private:
     
@@ -43,7 +44,7 @@ private:
     
 public:
     
-    XMLSerializer() {}
+    JuceXMLSerializer() {}
     
     String serialize(TinyRNN::SerializedObject::Ptr target, const std::string &rootNodeName) const;
     void deserialize(TinyRNN::SerializedObject::Ptr target, const std::string &data);
@@ -63,7 +64,7 @@ public:
     
 private:
     
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(XMLSerializer)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(JuceXMLSerializer)
     
 };
 

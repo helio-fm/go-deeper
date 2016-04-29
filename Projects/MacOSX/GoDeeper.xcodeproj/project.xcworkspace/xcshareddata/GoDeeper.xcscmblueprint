@@ -5,17 +5,24 @@
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "DEBAC9C6799FD4E8074B3BAF720718E3C3499FA0" : 0,
+    "13F07027D54F08459BE53661891C73ADCEDB5A7F" : 0,
     "5DDBD8C878BBD8E9703CE31906D7E9E931C57CB6" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "3C837C32-5094-43E5-B0FD-57355403489E",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "DEBAC9C6799FD4E8074B3BAF720718E3C3499FA0" : "GoDeeper\/ThirdParty\/JUCE\/",
+    "13F07027D54F08459BE53661891C73ADCEDB5A7F" : "GoDeeper\/ThirdParty\/pugixml\/",
     "5DDBD8C878BBD8E9703CE31906D7E9E931C57CB6" : "GoDeeper\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "GoDeeper",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Projects\/MacOSX\/GoDeeper.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git:\/\/github.com\/zeux\/pugixml.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "13F07027D54F08459BE53661891C73ADCEDB5A7F"
+    },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/peterrudenko\/GoDeeper.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
