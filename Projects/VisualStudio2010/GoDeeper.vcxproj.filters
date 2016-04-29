@@ -17,8 +17,14 @@
     <Filter Include="GoDeeper\Source\Models\Midi">
       <UniqueIdentifier>{9DC15458-D6CE-7C6F-198E-E85247A33FC9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GoDeeper\Source\Models\Serializers">
+      <UniqueIdentifier>{2431F20F-6AF4-3533-0021-6B6E5E34FA9B}</UniqueIdentifier>
+    </Filter>
     <Filter Include="GoDeeper\Source\UI">
       <UniqueIdentifier>{B68C6ABB-DC49-56E1-E107-94FACBE313DB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GoDeeper\ThirdParty">
+      <UniqueIdentifier>{41F7B992-1AE1-CBF8-142B-A1FC56F6456A}</UniqueIdentifier>
     </Filter>
     <Filter Include="Juce Modules">
       <UniqueIdentifier>{422C46B7-0467-2DB0-BF3C-16DFCAFD69AC}</UniqueIdentifier>
@@ -286,13 +292,16 @@
     <ClCompile Include="..\..\Source\Playground\Models\MidiTrainIteration.cpp">
       <Filter>GoDeeper\Source\Models\Midi</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Playground\Models\JuceXMLSerializer.cpp">
+      <Filter>GoDeeper\Source\Models\Serializers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Playground\Models\PugiXMLSerializer.cpp">
+      <Filter>GoDeeper\Source\Models\Serializers</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Playground\Models\UnrolledNetwork.cpp">
       <Filter>GoDeeper\Source\Models</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Playground\Models\TrainingPipeline.cpp">
-      <Filter>GoDeeper\Source\Models</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Playground\Models\XMLSerializer.cpp">
       <Filter>GoDeeper\Source\Models</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Playground\UI\LayerConnectionComponent.cpp">
@@ -306,6 +315,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Playground\GoDeeper.cpp">
       <Filter>GoDeeper\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ThirdParty\pugixml\src\pugixml.cpp">
+      <Filter>GoDeeper\ThirdParty</Filter>
     </ClCompile>
     <ClCompile Include="..\..\ThirdParty\JUCE\modules\juce_audio_basics\buffers\juce_AudioDataConverters.cpp">
       <Filter>Juce Modules\juce_audio_basics\buffers</Filter>
@@ -1476,10 +1488,13 @@
     <ClInclude Include="..\..\Source\Playground\Models\MidiTrainIteration.h">
       <Filter>GoDeeper\Source\Models\Midi</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Playground\Models\TrainingPipeline.h">
-      <Filter>GoDeeper\Source\Models</Filter>
+    <ClInclude Include="..\..\Source\Playground\Models\JuceXMLSerializer.h">
+      <Filter>GoDeeper\Source\Models\Serializers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Playground\Models\XMLSerializer.h">
+    <ClInclude Include="..\..\Source\Playground\Models\PugiXMLSerializer.h">
+      <Filter>GoDeeper\Source\Models\Serializers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Playground\Models\TrainingPipeline.h">
       <Filter>GoDeeper\Source\Models</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Playground\UI\LayerConnectionComponent.h">
@@ -1493,6 +1508,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Playground\Precompiled.h">
       <Filter>GoDeeper\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ThirdParty\pugixml\src\pugiconfig.hpp">
+      <Filter>GoDeeper\ThirdParty</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ThirdParty\pugixml\src\pugixml.hpp">
+      <Filter>GoDeeper\ThirdParty</Filter>
     </ClInclude>
     <ClInclude Include="..\..\ThirdParty\JUCE\modules\juce_audio_basics\buffers\juce_AudioDataConverters.h">
       <Filter>Juce Modules\juce_audio_basics\buffers</Filter>

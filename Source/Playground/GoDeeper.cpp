@@ -11,7 +11,7 @@
 #include "Precompiled.h"
 #include "TinyRNN.h"
 #include "MainComponent.h"
-#include "XMLSerializer.h"
+#include "PugiXMLSerializer.h"
 #include "TrainingPipeline.h"
 #include "BatchMidiProcessor.h"
 #include "BatchTextProcessor.h"
@@ -78,7 +78,13 @@ public:
         static const String mappingFileName = "Mapping.xml";
         static const String latestDumpFileName = "LatestDump.xml";
         
-        StringArray args = StringArray::fromTokens(commandLine, " =", "'\"");
+        const String defaultCommandline = "init GoDeeper 192 512 192";
+        // need to filter out the xcode's shit:
+        const bool needsDefaultCommandline =
+        (commandLine.isEmpty() || commandLine == "-NSDocumentRevisionsDebugMode YES");
+        
+        StringArray args =
+        StringArray::fromTokens(needsDefaultCommandline ? defaultCommandline : commandLine, " =", "'\"");
         
         // usage:
         // init "MyLSTM" 256 128 128 128 256
@@ -182,62 +188,56 @@ public:
                 network = TinyRNN::Network::Prefabs::longShortTermMemory("GoDeeper", numInputs, hiddenLayers, numOutputs);
             }
             
+                {
+                    ScopedTimer timer("Saving the topology");
+                    PugiXMLSerializer serializer;
+                    const std::string xmlString(std::move(serializer.serialize(network, TinyRNN::Keys::Core::Network)));
+                    const File xmlFile(networkDirectory.getChildFile(topologyFileName));
+                    xmlFile.replaceWithText(xmlString);
+                }
+            
             {
                 ScopedTimer timer("Creating a hardcoded version");
                 clNetwork = network->hardcode();
+                network = nullptr;
             }
-            
+                
+#if not defined TRAINING_MODE
+
+                {
+                    ScopedTimer timer("Saving the kernels");
+                    PugiXMLSerializer serializer;
+                    const std::string xmlString(std::move(serializer.serialize(clNetwork, TinyRNN::Keys::Hardcoded::Network)));
+                    const File xmlFile(networkDirectory.getChildFile(kernelsFileName));
+                    xmlFile.replaceWithText(xmlString);
+                }
+                
+#endif
+                
+                {
+                    ScopedTimer timer("Saving the memory mapping");
+                    PugiXMLSerializer serializer;
+                    const std::string xmlString(std::move(serializer.serialize(clNetwork->getContext(),
+                                                                               TinyRNN::Keys::Hardcoded::TrainingContext)));
+                    const File xmlFile(networkDirectory.getChildFile(mappingFileName));
+                    xmlFile.replaceWithText(xmlString);
+                }
+
             {
                 ScopedTimer timer("Compiling");
                 //clNetwork->compile();
                 sources = clNetwork->asStandalone("GoDeeper", false);
+                clNetwork = nullptr;
             }
             
-            {
-                ScopedTimer timer("Saving the topology");
-                XMLSerializer serializer;
-                const String xmlString(serializer.serialize(network, TinyRNN::Keys::Core::Network));
-                const File xmlFile(networkDirectory.getChildFile(topologyFileName));
-                xmlFile.replaceWithText(xmlString);
-            }
-            
-#if not defined TRAINING_MODE
-            
-            {
-                ScopedTimer timer("Saving the training context");
-                XMLSerializer serializer;
-                const String xmlString(serializer.serialize(network->getContext(), TinyRNN::Keys::Core::TrainingContext));
-                const File xmlFile(networkDirectory.getChildFile(contextFileName));
-                xmlFile.replaceWithText(xmlString);
-            }
-            
-            {
-                ScopedTimer timer("Saving the kernels");
-                XMLSerializer serializer;
-                const String xmlString(serializer.serialize(clNetwork, TinyRNN::Keys::Hardcoded::Network));
-                const File xmlFile(networkDirectory.getChildFile(kernelsFileName));
-                xmlFile.replaceWithText(xmlString);
-            }
-            
-#endif
-            
-            {
-                ScopedTimer timer("Saving the memory mapping");
-                XMLSerializer serializer;
-                const String xmlString(serializer.serialize(clNetwork->getContext(),
-                                                            TinyRNN::Keys::Hardcoded::TrainingContext));
-                const File xmlFile(networkDirectory.getChildFile(mappingFileName));
-                xmlFile.replaceWithText(xmlString);
-            }
-            
-            {
-                ScopedTimer timer("Saving the sources");
-                XMLSerializer serializer;
-                const String xmlString(serializer.serialize(clNetwork->getContext(),
-                                                            TinyRNN::Keys::Hardcoded::TrainingContext));
-                const File xmlFile(networkDirectory.getChildFile(mappingFileName));
-                xmlFile.replaceWithText(xmlString);
-            }
+                {
+                    ScopedTimer timer("Saving the sources");
+                    PugiXMLSerializer serializer;
+                    const std::string xmlString(std::move(serializer.serialize(clNetwork->getContext(),
+                                                                               TinyRNN::Keys::Hardcoded::TrainingContext)));
+                    const File xmlFile(networkDirectory.getChildFile(mappingFileName));
+                    xmlFile.replaceWithText(xmlString);
+                }
             
             std::cout << "All done." << std::endl;
             this->quit();
@@ -323,13 +323,13 @@ public:
             
             {
                 ScopedTimer timer("Loading the kernels");
-                XMLSerializer serializer;
+                PugiXMLSerializer serializer;
                 serializer.deserialize(clNetwork, kernelsFile.loadFileAsString().toStdString());
             }
             
             {
                 ScopedTimer timer("Loading the mapping");
-                XMLSerializer serializer;
+                PugiXMLSerializer serializer;
                 serializer.deserialize(mappings, mappingFile.loadFileAsString().toStdString());
             }
             

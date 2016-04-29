@@ -53,13 +53,15 @@ OBJECTS := \
   $(OBJDIR)/TextTrainIteration_54a850ad.o \
   $(OBJDIR)/BatchMidiProcessor_ec097f42.o \
   $(OBJDIR)/MidiTrainIteration_ea6d19a1.o \
+  $(OBJDIR)/JuceXMLSerializer_a62cae5b.o \
+  $(OBJDIR)/PugiXMLSerializer_3ab37ee1.o \
   $(OBJDIR)/UnrolledNetwork_87b791f8.o \
   $(OBJDIR)/TrainingPipeline_57d00287.o \
-  $(OBJDIR)/XMLSerializer_6229ec8.o \
   $(OBJDIR)/LayerConnectionComponent_2721b54f.o \
   $(OBJDIR)/LayerNodeComponent_1b40e0eb.o \
   $(OBJDIR)/MainComponent_ccb1488d.o \
   $(OBJDIR)/GoDeeper_a72bc665.o \
+  $(OBJDIR)/pugixml_e97279fa.o \
   $(OBJDIR)/juce_audio_basics_35a2deab.o \
   $(OBJDIR)/juce_audio_devices_2245a2c1.o \
   $(OBJDIR)/juce_audio_formats_d52ca5c0.o \
@@ -108,6 +110,16 @@ $(OBJDIR)/MidiTrainIteration_ea6d19a1.o: ../../../Source/Playground/Models/MidiT
 	@echo "Compiling MidiTrainIteration.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
+$(OBJDIR)/JuceXMLSerializer_a62cae5b.o: ../../../Source/Playground/Models/JuceXMLSerializer.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling JuceXMLSerializer.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/PugiXMLSerializer_3ab37ee1.o: ../../../Source/Playground/Models/PugiXMLSerializer.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling PugiXMLSerializer.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
 $(OBJDIR)/UnrolledNetwork_87b791f8.o: ../../../Source/Playground/Models/UnrolledNetwork.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling UnrolledNetwork.cpp"
@@ -116,11 +128,6 @@ $(OBJDIR)/UnrolledNetwork_87b791f8.o: ../../../Source/Playground/Models/Unrolled
 $(OBJDIR)/TrainingPipeline_57d00287.o: ../../../Source/Playground/Models/TrainingPipeline.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling TrainingPipeline.cpp"
-	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-
-$(OBJDIR)/XMLSerializer_6229ec8.o: ../../../Source/Playground/Models/XMLSerializer.cpp
-	-@mkdir -p $(OBJDIR)
-	@echo "Compiling XMLSerializer.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/LayerConnectionComponent_2721b54f.o: ../../../Source/Playground/UI/LayerConnectionComponent.cpp
@@ -141,6 +148,11 @@ $(OBJDIR)/MainComponent_ccb1488d.o: ../../../Source/Playground/UI/MainComponent.
 $(OBJDIR)/GoDeeper_a72bc665.o: ../../../Source/Playground/GoDeeper.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling GoDeeper.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/pugixml_e97279fa.o: ../../../ThirdParty/pugixml/src/pugixml.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling pugixml.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/juce_audio_basics_35a2deab.o: ../../Introjucer/JuceLibraryCode/juce_audio_basics.cpp

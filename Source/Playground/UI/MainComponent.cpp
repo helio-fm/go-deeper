@@ -7,7 +7,7 @@
 
 
 //[MiscUserDefs]
-#include "XMLSerializer.h"
+#include "JuceXMLSerializer.h"
 //[/MiscUserDefs]
 
 MainComponent::MainComponent()
@@ -277,7 +277,7 @@ void MainComponent::buttonClicked (Button* buttonThatWasClicked)
         if (this->network != nullptr)
         {
             TinyRNN::ScopedTimer timer("Serializing a network topology");
-            XMLSerializer serializer;
+            JuceXMLSerializer serializer;
             File topoXml = File::getSpecialLocation(File::currentExecutableFile).getSiblingFile("topo.xml");
             topoXml.replaceWithText(serializer.serialize(this->network,
                                                          TinyRNN::Keys::Core::Network));
@@ -290,7 +290,7 @@ void MainComponent::buttonClicked (Button* buttonThatWasClicked)
         if (this->network != nullptr)
         {
             TinyRNN::ScopedTimer timer("Serializing a network state");
-            XMLSerializer serializer;
+            JuceXMLSerializer serializer;
             File stateXml = File::getSpecialLocation(File::currentExecutableFile).getSiblingFile("state.xml");
             stateXml.replaceWithText(serializer.serialize(this->network->getContext(),
                                                           TinyRNN::Keys::Core::TrainingContext));
@@ -303,7 +303,7 @@ void MainComponent::buttonClicked (Button* buttonThatWasClicked)
         if (this->clNetwork != nullptr)
         {
             TinyRNN::ScopedTimer timer("Serializing a hardcoded network kernels");
-            XMLSerializer serializer;
+            JuceXMLSerializer serializer;
             File kernelsXml = File::getSpecialLocation(File::currentExecutableFile).getSiblingFile("kernels.xml");
             kernelsXml.replaceWithText(serializer.serialize(this->clNetwork,
                                                             TinyRNN::Keys::Hardcoded::Network));
@@ -316,7 +316,7 @@ void MainComponent::buttonClicked (Button* buttonThatWasClicked)
         if (this->clNetwork != nullptr)
         {
             TinyRNN::ScopedTimer timer("Serializing a hardcoded network memory");
-            XMLSerializer serializer;
+            JuceXMLSerializer serializer;
             File memoryXml = File::getSpecialLocation(File::currentExecutableFile).getSiblingFile("memory.xml");
             memoryXml.replaceWithText(serializer.serialize(this->clNetwork->getContext(),
                                                            TinyRNN::Keys::Hardcoded::TrainingContext));

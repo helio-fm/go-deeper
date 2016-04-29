@@ -127,13 +127,15 @@
     <ClCompile Include="..\..\Source\Playground\Models\TextTrainIteration.cpp"/>
     <ClCompile Include="..\..\Source\Playground\Models\BatchMidiProcessor.cpp"/>
     <ClCompile Include="..\..\Source\Playground\Models\MidiTrainIteration.cpp"/>
+    <ClCompile Include="..\..\Source\Playground\Models\JuceXMLSerializer.cpp"/>
+    <ClCompile Include="..\..\Source\Playground\Models\PugiXMLSerializer.cpp"/>
     <ClCompile Include="..\..\Source\Playground\Models\UnrolledNetwork.cpp"/>
     <ClCompile Include="..\..\Source\Playground\Models\TrainingPipeline.cpp"/>
-    <ClCompile Include="..\..\Source\Playground\Models\XMLSerializer.cpp"/>
     <ClCompile Include="..\..\Source\Playground\UI\LayerConnectionComponent.cpp"/>
     <ClCompile Include="..\..\Source\Playground\UI\LayerNodeComponent.cpp"/>
     <ClCompile Include="..\..\Source\Playground\UI\MainComponent.cpp"/>
     <ClCompile Include="..\..\Source\Playground\GoDeeper.cpp"/>
+    <ClCompile Include="..\..\ThirdParty\pugixml\src\pugixml.cpp"/>
     <ClCompile Include="..\..\ThirdParty\JUCE\modules\juce_audio_basics\buffers\juce_AudioDataConverters.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -1209,12 +1211,15 @@
     <ClInclude Include="..\..\Source\Playground\Models\TextTrainIteration.h"/>
     <ClInclude Include="..\..\Source\Playground\Models\BatchMidiProcessor.h"/>
     <ClInclude Include="..\..\Source\Playground\Models\MidiTrainIteration.h"/>
+    <ClInclude Include="..\..\Source\Playground\Models\JuceXMLSerializer.h"/>
+    <ClInclude Include="..\..\Source\Playground\Models\PugiXMLSerializer.h"/>
     <ClInclude Include="..\..\Source\Playground\Models\TrainingPipeline.h"/>
-    <ClInclude Include="..\..\Source\Playground\Models\XMLSerializer.h"/>
     <ClInclude Include="..\..\Source\Playground\UI\LayerConnectionComponent.h"/>
     <ClInclude Include="..\..\Source\Playground\UI\LayerNodeComponent.h"/>
     <ClInclude Include="..\..\Source\Playground\UI\MainComponent.h"/>
     <ClInclude Include="..\..\Source\Playground\Precompiled.h"/>
+    <ClInclude Include="..\..\ThirdParty\pugixml\src\pugiconfig.hpp"/>
+    <ClInclude Include="..\..\ThirdParty\pugixml\src\pugixml.hpp"/>
     <ClInclude Include="..\..\ThirdParty\JUCE\modules\juce_audio_basics\buffers\juce_AudioDataConverters.h"/>
     <ClInclude Include="..\..\ThirdParty\JUCE\modules\juce_audio_basics\buffers\juce_AudioSampleBuffer.h"/>
     <ClInclude Include="..\..\ThirdParty\JUCE\modules\juce_audio_basics\buffers\juce_FloatVectorOperations.h"/>

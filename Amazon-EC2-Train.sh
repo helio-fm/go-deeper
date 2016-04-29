@@ -2,14 +2,14 @@
 
 # Connect
 chmod 400 ./TestInstance2.pem
-ssh -i ./TestInstance2.pem ubuntu@ec2-52-32-93-91.us-west-2.compute.amazonaws.com
+ssh -i ./TestInstance2.pem ubuntu@ec2-52-38-189-143.us-west-2.compute.amazonaws.com
 
 
 # Add paging:
 # https://stackoverflow.com/questions/17173972/how-do-you-add-swap-to-an-ec2-instance
 
 # To add this extra space to your instance you type:
-sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=12288
+sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=8192
 sudo /sbin/mkswap /var/swap.1
 sudo /sbin/swapon /var/swap.1
 
@@ -21,7 +21,7 @@ sudo apt-get update -qq -y
 sudo apt-get install -qq git cmake opencl-headers build-essential unzip
 
 # Install Catalyst dependencies
-sudo apt-get install -qq -y cdbs dh-make dkms execstack dh-modaliases linux-headers-generic libqtgui4 xserver-xorg-dev-lts-trusty lib32gcc1 libxrandr2 libxcursor1 libgl1-mesa-glx libxinerama1
+sudo apt-get install -y cdbs dh-make dkms execstack dh-modaliases linux-headers-generic libqtgui4 xserver-xorg-dev-lts-trusty lib32gcc1 libxrandr2 libxcursor1 libgl1-mesa-glx libxinerama1
 
 # From the http://wiki.cchtml.com/index.php/Ubuntu_Trusty_Installation_Guide#Installing_Proprietary_Drivers_a.k.a._Catalyst.2Ffglrx
 # Download the latest Catalyst package
@@ -57,6 +57,7 @@ pushd TinyRNN
 popd
 
 # JUCE modules' dependencies
+sudo apt-get -f install
 sudo apt-get install -y libfreetype6-dev libxrandr-dev libxinerama-dev libasound-dev
 
 # Build GoDeeper trainer
@@ -80,4 +81,7 @@ popd
 
 # Train!
 deeper init Arper 64 128 256 128 64
+# copy the generated source and rebuild GoDeeper
+
+
 deeper train Arper targets="Targets"
