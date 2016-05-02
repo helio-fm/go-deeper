@@ -50,7 +50,7 @@
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <AdditionalIncludeDirectories>..\Introjucer\JuceLibraryCode;..\..\ThirdParty\JUCE\modules;./../../ThirdParty/TinyRNN/Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;JUCER_VS2010_B56B0668=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;TRAINING_MODE=1;JUCER_VS2010_B56B0668=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader/>
@@ -91,7 +91,7 @@
     <ClCompile>
       <Optimization>Full</Optimization>
       <AdditionalIncludeDirectories>..\Introjucer\JuceLibraryCode;..\..\ThirdParty\JUCE\modules;./../../ThirdParty/TinyRNN/Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;JUCER_VS2010_B56B0668=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;TRAINING_MODE=1;JUCER_VS2010_B56B0668=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader/>
@@ -136,6 +136,148 @@
     <ClCompile Include="..\..\Source\Playground\UI\MainComponent.cpp"/>
     <ClCompile Include="..\..\Source\Playground\GoDeeper.cpp"/>
     <ClCompile Include="..\..\ThirdParty\pugixml\src\pugixml.cpp"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\GoDeeper.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_0.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_1.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_2.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_3.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_4.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_5.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_6.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_7.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_8.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_9.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_10.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_11.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_12.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_13.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_14.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_15.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_16.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_17.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_18.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_19.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_20.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_21.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_22.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_23.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_24.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_25.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_26.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_27.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_28.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_29.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_30.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_31.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_32.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_33.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_34.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_35.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_36.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_37.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_38.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_39.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_40.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_41.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_42.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_43.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_44.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_45.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_46.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_47.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_48.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_49.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_50.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_51.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_52.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_53.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_54.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_55.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_56.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_57.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_58.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_59.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_60.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_61.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_62.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_63.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_64.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_65.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_66.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_67.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_68.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_69.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_0.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_1.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_2.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_3.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_4.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_5.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_6.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_7.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_8.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_9.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_10.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_11.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_12.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_13.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_14.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_15.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_16.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_17.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_18.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_19.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_20.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_21.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_22.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_23.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_24.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_25.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_26.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_27.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_28.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_29.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_30.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_31.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_32.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_33.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_34.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_35.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_36.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_37.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_38.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_39.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_40.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_41.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_42.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_43.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_44.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_45.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_46.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_47.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_48.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_49.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_50.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_51.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_52.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_53.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_54.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_55.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_56.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_57.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_58.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_59.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_60.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_61.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_62.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_63.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_64.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_65.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_66.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_67.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_68.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_69.c"/>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_70.c"/>
     <ClCompile Include="..\..\ThirdParty\JUCE\modules\juce_audio_basics\buffers\juce_AudioDataConverters.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -1220,6 +1362,7 @@
     <ClInclude Include="..\..\Source\Playground\Precompiled.h"/>
     <ClInclude Include="..\..\ThirdParty\pugixml\src\pugiconfig.hpp"/>
     <ClInclude Include="..\..\ThirdParty\pugixml\src\pugixml.hpp"/>
+    <ClInclude Include="..\..\Resources\Hardcoded\GoDeeper.h"/>
     <ClInclude Include="..\..\ThirdParty\JUCE\modules\juce_audio_basics\buffers\juce_AudioDataConverters.h"/>
     <ClInclude Include="..\..\ThirdParty\JUCE\modules\juce_audio_basics\buffers\juce_AudioSampleBuffer.h"/>
     <ClInclude Include="..\..\ThirdParty\JUCE\modules\juce_audio_basics\buffers\juce_FloatVectorOperations.h"/>

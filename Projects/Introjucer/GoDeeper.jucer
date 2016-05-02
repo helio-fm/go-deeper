@@ -64,9 +64,155 @@
       <FILE id="d4DQf6" name="pugixml.cpp" compile="1" resource="0" file="../../ThirdParty/pugixml/src/pugixml.cpp"/>
       <FILE id="ivsfSC" name="pugixml.hpp" compile="0" resource="0" file="../../ThirdParty/pugixml/src/pugixml.hpp"/>
     </GROUP>
+    <GROUP id="{04B5510F-5B4A-D92F-7361-F99867410244}" name="Network">
+      <FILE id="Zh83CH" name="GoDeeper.c" compile="1" resource="0" file="../../Resources/Hardcoded/GoDeeper.c"/>
+      <FILE id="qlvvul" name="GoDeeper.h" compile="0" resource="0" file="../../Resources/Hardcoded/GoDeeper.h"/>
+      <FILE id="voqmYg" name="feed_0.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_0.c"/>
+      <FILE id="pWHq0e" name="feed_1.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_1.c"/>
+      <FILE id="wq6cCk" name="feed_2.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_2.c"/>
+      <FILE id="q6xUey" name="feed_3.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_3.c"/>
+      <FILE id="aRRxRr" name="feed_4.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_4.c"/>
+      <FILE id="QXBRe9" name="feed_5.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_5.c"/>
+      <FILE id="tGPZb2" name="feed_6.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_6.c"/>
+      <FILE id="HH4m0V" name="feed_7.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_7.c"/>
+      <FILE id="laZnq6" name="feed_8.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_8.c"/>
+      <FILE id="x6JXXN" name="feed_9.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_9.c"/>
+      <FILE id="lGpo5J" name="feed_10.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_10.c"/>
+      <FILE id="bwT1Ga" name="feed_11.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_11.c"/>
+      <FILE id="LDP4Nv" name="feed_12.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_12.c"/>
+      <FILE id="azVIrJ" name="feed_13.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_13.c"/>
+      <FILE id="o0Sbbg" name="feed_14.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_14.c"/>
+      <FILE id="bJdGZ8" name="feed_15.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_15.c"/>
+      <FILE id="hpBbaO" name="feed_16.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_16.c"/>
+      <FILE id="HgDBzh" name="feed_17.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_17.c"/>
+      <FILE id="PTl99F" name="feed_18.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_18.c"/>
+      <FILE id="RkKhYl" name="feed_19.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_19.c"/>
+      <FILE id="l3i7Wa" name="feed_20.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_20.c"/>
+      <FILE id="aMJEJ7" name="feed_21.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_21.c"/>
+      <FILE id="kWeXdK" name="feed_22.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_22.c"/>
+      <FILE id="HiSMvj" name="feed_23.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_23.c"/>
+      <FILE id="MpvavV" name="feed_24.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_24.c"/>
+      <FILE id="EEbw9G" name="feed_25.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_25.c"/>
+      <FILE id="u4SOVG" name="feed_26.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_26.c"/>
+      <FILE id="B9FBHb" name="feed_27.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_27.c"/>
+      <FILE id="iQqiBg" name="feed_28.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_28.c"/>
+      <FILE id="bPGdZV" name="feed_29.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_29.c"/>
+      <FILE id="ZQhw0o" name="feed_30.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_30.c"/>
+      <FILE id="UUFmf0" name="feed_31.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_31.c"/>
+      <FILE id="FgOOp7" name="feed_32.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_32.c"/>
+      <FILE id="cO3ovA" name="feed_33.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_33.c"/>
+      <FILE id="rH4vLL" name="feed_34.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_34.c"/>
+      <FILE id="NDma4t" name="feed_35.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_35.c"/>
+      <FILE id="VS6gU1" name="feed_36.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_36.c"/>
+      <FILE id="zJMuyn" name="feed_37.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_37.c"/>
+      <FILE id="cXP9Yi" name="feed_38.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_38.c"/>
+      <FILE id="zHWiqc" name="feed_39.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_39.c"/>
+      <FILE id="Cr9ahc" name="feed_40.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_40.c"/>
+      <FILE id="aXvD7w" name="feed_41.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_41.c"/>
+      <FILE id="GT38h4" name="feed_42.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_42.c"/>
+      <FILE id="sS0nm4" name="feed_43.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_43.c"/>
+      <FILE id="TTgDS0" name="feed_44.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_44.c"/>
+      <FILE id="T6YG3t" name="feed_45.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_45.c"/>
+      <FILE id="kWOMse" name="feed_46.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_46.c"/>
+      <FILE id="TsbCun" name="feed_47.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_47.c"/>
+      <FILE id="wP2TQA" name="feed_48.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_48.c"/>
+      <FILE id="vCgr2u" name="feed_49.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_49.c"/>
+      <FILE id="LHsp2Y" name="feed_50.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_50.c"/>
+      <FILE id="DtGhA1" name="feed_51.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_51.c"/>
+      <FILE id="JVvPl0" name="feed_52.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_52.c"/>
+      <FILE id="mhkfLC" name="feed_53.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_53.c"/>
+      <FILE id="gKcmsk" name="feed_54.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_54.c"/>
+      <FILE id="bpkv6B" name="feed_55.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_55.c"/>
+      <FILE id="MHPZhc" name="feed_56.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_56.c"/>
+      <FILE id="VsKYgX" name="feed_57.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_57.c"/>
+      <FILE id="gw0ncc" name="feed_58.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_58.c"/>
+      <FILE id="lPOzif" name="feed_59.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_59.c"/>
+      <FILE id="qg3awa" name="feed_60.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_60.c"/>
+      <FILE id="cvyBTy" name="feed_61.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_61.c"/>
+      <FILE id="e1wg2e" name="feed_62.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_62.c"/>
+      <FILE id="H2zJEe" name="feed_63.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_63.c"/>
+      <FILE id="GvXV4z" name="feed_64.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_64.c"/>
+      <FILE id="vgmKQe" name="feed_65.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_65.c"/>
+      <FILE id="MzCTEm" name="feed_66.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_66.c"/>
+      <FILE id="DVFcK1" name="feed_67.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_67.c"/>
+      <FILE id="s62Gmh" name="feed_68.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_68.c"/>
+      <FILE id="uTvY7P" name="feed_69.c" compile="1" resource="0" file="../../Resources/Hardcoded/feed_69.c"/>
+      <FILE id="PLjBqp" name="train_0.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_0.c"/>
+      <FILE id="iVLXs2" name="train_1.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_1.c"/>
+      <FILE id="zvrHdU" name="train_2.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_2.c"/>
+      <FILE id="ZVE6OA" name="train_3.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_3.c"/>
+      <FILE id="wkySXL" name="train_4.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_4.c"/>
+      <FILE id="aJyETa" name="train_5.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_5.c"/>
+      <FILE id="onWaXl" name="train_6.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_6.c"/>
+      <FILE id="LUUzoQ" name="train_7.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_7.c"/>
+      <FILE id="zALrHD" name="train_8.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_8.c"/>
+      <FILE id="Xmbl6j" name="train_9.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_9.c"/>
+      <FILE id="O1gunB" name="train_10.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_10.c"/>
+      <FILE id="yRAffb" name="train_11.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_11.c"/>
+      <FILE id="py0DLI" name="train_12.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_12.c"/>
+      <FILE id="JsaFoH" name="train_13.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_13.c"/>
+      <FILE id="gRtpzu" name="train_14.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_14.c"/>
+      <FILE id="OXtGhb" name="train_15.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_15.c"/>
+      <FILE id="riLrcY" name="train_16.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_16.c"/>
+      <FILE id="p3mjXs" name="train_17.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_17.c"/>
+      <FILE id="TKZt4Y" name="train_18.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_18.c"/>
+      <FILE id="P1wjaP" name="train_19.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_19.c"/>
+      <FILE id="UyzcCc" name="train_20.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_20.c"/>
+      <FILE id="NsVsn9" name="train_21.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_21.c"/>
+      <FILE id="Yel3Nj" name="train_22.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_22.c"/>
+      <FILE id="aR8eyp" name="train_23.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_23.c"/>
+      <FILE id="YH70CC" name="train_24.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_24.c"/>
+      <FILE id="X1x2oB" name="train_25.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_25.c"/>
+      <FILE id="EHdsWq" name="train_26.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_26.c"/>
+      <FILE id="yojARj" name="train_27.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_27.c"/>
+      <FILE id="e8Kpai" name="train_28.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_28.c"/>
+      <FILE id="wA8q13" name="train_29.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_29.c"/>
+      <FILE id="k3jg8H" name="train_30.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_30.c"/>
+      <FILE id="LEhhve" name="train_31.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_31.c"/>
+      <FILE id="FYkAsl" name="train_32.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_32.c"/>
+      <FILE id="M85WS2" name="train_33.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_33.c"/>
+      <FILE id="iYI8N3" name="train_34.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_34.c"/>
+      <FILE id="etU0pF" name="train_35.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_35.c"/>
+      <FILE id="eehLHf" name="train_36.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_36.c"/>
+      <FILE id="AJN470" name="train_37.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_37.c"/>
+      <FILE id="UwO8FT" name="train_38.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_38.c"/>
+      <FILE id="HcgXfW" name="train_39.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_39.c"/>
+      <FILE id="hs8kcA" name="train_40.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_40.c"/>
+      <FILE id="WfoxEP" name="train_41.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_41.c"/>
+      <FILE id="Gaa8sg" name="train_42.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_42.c"/>
+      <FILE id="QUNy63" name="train_43.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_43.c"/>
+      <FILE id="q8szes" name="train_44.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_44.c"/>
+      <FILE id="Jl8hY4" name="train_45.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_45.c"/>
+      <FILE id="lQMb47" name="train_46.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_46.c"/>
+      <FILE id="DlotCE" name="train_47.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_47.c"/>
+      <FILE id="HwOwDQ" name="train_48.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_48.c"/>
+      <FILE id="SZ0Rzg" name="train_49.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_49.c"/>
+      <FILE id="s9vRD4" name="train_50.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_50.c"/>
+      <FILE id="xRAL1j" name="train_51.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_51.c"/>
+      <FILE id="afinY8" name="train_52.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_52.c"/>
+      <FILE id="EnTDhj" name="train_53.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_53.c"/>
+      <FILE id="EMK2v3" name="train_54.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_54.c"/>
+      <FILE id="uk2pf1" name="train_55.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_55.c"/>
+      <FILE id="bhLKAJ" name="train_56.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_56.c"/>
+      <FILE id="LlxsJl" name="train_57.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_57.c"/>
+      <FILE id="CqEEhM" name="train_58.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_58.c"/>
+      <FILE id="dLad1s" name="train_59.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_59.c"/>
+      <FILE id="dkQPkq" name="train_60.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_60.c"/>
+      <FILE id="nU4Zde" name="train_61.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_61.c"/>
+      <FILE id="jIZDU7" name="train_62.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_62.c"/>
+      <FILE id="f7CtJJ" name="train_63.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_63.c"/>
+      <FILE id="QQ30n9" name="train_64.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_64.c"/>
+      <FILE id="xjS3tN" name="train_65.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_65.c"/>
+      <FILE id="uC2WoD" name="train_66.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_66.c"/>
+      <FILE id="xa9317" name="train_67.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_67.c"/>
+      <FILE id="LNCVMV" name="train_68.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_68.c"/>
+      <FILE id="OB31bb" name="train_69.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_69.c"/>
+      <FILE id="WVulmK" name="train_70.c" compile="1" resource="0" file="../../Resources/Hardcoded/train_70.c"/>
+    </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="../../Projects/MacOSX" extraFrameworks="OpenCL">
+    <XCODE_MAC targetFolder="../../Projects/MacOSX" extraFrameworks="OpenCL"
+               extraDefs="TRAINING_MODE=1">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" osxSDK="default" osxCompatibility="10.7 SDK" osxArchitecture="64BitUniversal"
                        isDebug="1" optimisation="1" targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../ThirdParty/TinyRNN/Source"
@@ -88,7 +234,7 @@
         <MODULEPATH id="juce_graphics" path="../../ThirdParty/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
-    <VS2010 targetFolder="../../Projects/VisualStudio2010">
+    <VS2010 targetFolder="../../Projects/VisualStudio2010" extraDefs="TRAINING_MODE=1">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
                        isDebug="1" optimisation="1" targetName="GoDeeper" headerPath="./../../ThirdParty/TinyRNN/Source"/>
@@ -109,7 +255,7 @@
       </MODULEPATHS>
     </VS2010>
     <LINUX_MAKE targetFolder="../../Projects/LinuxMakefile/GoDeeper" cppLanguageStandard="-std=c++11"
-                extraLinkerFlags="-lOpenCL">
+                extraLinkerFlags="-lOpenCL" extraDefs="TRAINING_MODE=1">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" libraryPath="/usr/X11R6/lib/" isDebug="1" optimisation="1"
                        targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../../ThirdParty/TinyRNN/Source&#10;./../../../Source/Playground&#10;./../../../Source/Playground/Models&#10;./../../../Source/Playground/UI"/>

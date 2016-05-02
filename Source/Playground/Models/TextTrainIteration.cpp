@@ -28,6 +28,9 @@ clNetwork(targetNetwork)
 
 int inputNodeIndexByChar(juce_wchar character)
 {
+    // TODO(peterrudenko) minimize inputs and outputs at any cost?
+    
+    
     int result = character;
     
     if (character >= 1040 &&
@@ -51,9 +54,6 @@ juce_wchar charByOutputNodeIndex(int nodeIndex)
     }
     
     return result;
-    
-    // а б в г д е ё ж з и й к л м н о п р с т у ф х ц ч ш щ ъ ь э ю я
-    // CharPointer_UTF8 ("\xd0\xb0 \xd0\xb1 \xd0\xb2 \xd0\xb3 \xd0\xb4 \xd0\xb5 \xd1\x91 \xd0\xb6 \xd0\xb7 \xd0\xb8 \xd0\xb9 \xd0\xba \xd0\xbb \xd0\xbc \xd0\xbd \xd0\xbe \xd0\xbf \xd1\x80 \xd1\x81 \xd1\x82 \xd1\x83 \xd1\x84 \xd1\x85 \xd1\x86 \xd1\x87 \xd1\x88 \xd1\x89 \xd1\x8a \xd1\x8c \xd1\x8d \xd1\x8e \xd1\x8f")
 }
 
 #define ALPHABET_RANGE 160

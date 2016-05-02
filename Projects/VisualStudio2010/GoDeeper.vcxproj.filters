@@ -26,6 +26,9 @@
     <Filter Include="GoDeeper\ThirdParty">
       <UniqueIdentifier>{41F7B992-1AE1-CBF8-142B-A1FC56F6456A}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GoDeeper\Network">
+      <UniqueIdentifier>{95F035B0-6ED5-F1AD-85E3-46F3D330C7C4}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Juce Modules">
       <UniqueIdentifier>{422C46B7-0467-2DB0-BF3C-16DFCAFD69AC}</UniqueIdentifier>
     </Filter>
@@ -318,6 +321,432 @@
     </ClCompile>
     <ClCompile Include="..\..\ThirdParty\pugixml\src\pugixml.cpp">
       <Filter>GoDeeper\ThirdParty</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\GoDeeper.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_0.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_1.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_2.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_3.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_4.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_5.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_6.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_7.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_8.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_9.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_10.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_11.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_12.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_13.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_14.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_15.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_16.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_17.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_18.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_19.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_20.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_21.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_22.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_23.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_24.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_25.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_26.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_27.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_28.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_29.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_30.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_31.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_32.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_33.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_34.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_35.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_36.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_37.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_38.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_39.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_40.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_41.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_42.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_43.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_44.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_45.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_46.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_47.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_48.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_49.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_50.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_51.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_52.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_53.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_54.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_55.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_56.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_57.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_58.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_59.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_60.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_61.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_62.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_63.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_64.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_65.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_66.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_67.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_68.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\feed_69.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_0.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_1.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_2.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_3.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_4.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_5.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_6.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_7.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_8.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_9.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_10.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_11.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_12.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_13.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_14.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_15.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_16.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_17.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_18.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_19.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_20.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_21.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_22.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_23.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_24.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_25.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_26.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_27.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_28.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_29.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_30.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_31.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_32.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_33.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_34.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_35.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_36.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_37.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_38.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_39.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_40.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_41.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_42.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_43.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_44.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_45.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_46.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_47.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_48.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_49.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_50.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_51.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_52.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_53.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_54.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_55.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_56.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_57.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_58.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_59.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_60.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_61.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_62.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_63.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_64.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_65.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_66.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_67.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_68.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_69.c">
+      <Filter>GoDeeper\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Resources\Hardcoded\train_70.c">
+      <Filter>GoDeeper\Network</Filter>
     </ClCompile>
     <ClCompile Include="..\..\ThirdParty\JUCE\modules\juce_audio_basics\buffers\juce_AudioDataConverters.cpp">
       <Filter>Juce Modules\juce_audio_basics\buffers</Filter>
@@ -1514,6 +1943,9 @@
     </ClInclude>
     <ClInclude Include="..\..\ThirdParty\pugixml\src\pugixml.hpp">
       <Filter>GoDeeper\ThirdParty</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Resources\Hardcoded\GoDeeper.h">
+      <Filter>GoDeeper\Network</Filter>
     </ClInclude>
     <ClInclude Include="..\..\ThirdParty\JUCE\modules\juce_audio_basics\buffers\juce_AudioDataConverters.h">
       <Filter>Juce Modules\juce_audio_basics\buffers</Filter>
