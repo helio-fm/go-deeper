@@ -8,7 +8,4 @@
   ==============================================================================
 */
 
-#if defined TRAINING_MODE
-#include <cmath>
-#include "GoDeeper.c"
-#endif
+// todo remove?
