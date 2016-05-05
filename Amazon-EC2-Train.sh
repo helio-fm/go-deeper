@@ -2,7 +2,7 @@
 
 # Connect
 chmod 400 ./TestInstance2.pem
-ssh -i ./TestInstance2.pem ubuntu@ec2-52-38-189-143.us-west-2.compute.amazonaws.com
+ssh -i ./TestInstance2.pem ubuntu@ec2-52-27-207-134.us-west-2.compute.amazonaws.com
 
 
 # Add paging:
@@ -18,7 +18,7 @@ sudo /sbin/swapon /var/swap.1
 
 # Prepare the environment
 sudo apt-get update -qq -y
-sudo apt-get install -qq git cmake opencl-headers build-essential unzip
+sudo apt-get install git cmake opencl-headers build-essential unzip
 
 # Install Catalyst dependencies
 sudo apt-get install -y cdbs dh-make dkms execstack dh-modaliases linux-headers-generic libqtgui4 xserver-xorg-dev-lts-trusty lib32gcc1 libxrandr2 libxcursor1 libgl1-mesa-glx libxinerama1
@@ -64,7 +64,7 @@ sudo apt-get install -y libfreetype6-dev libxrandr-dev libxinerama-dev libasound
 git clone https://github.com/peterrudenko/GoDeeper.git
 pushd GoDeeper
     git submodule init && git submodule update && git submodule status
-    git checkout develop
+    git checkout feature/hardcoded_workflow
 
     # Fetch OpenCL C++ binding
     mkdir -p ./Source/Playground/OpenCL
