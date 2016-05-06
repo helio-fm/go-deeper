@@ -13,6 +13,7 @@
 
 #if defined TRAINING_MODE
 #include "GoDeeper.h"
+#include <algorithm>
 #endif
 
 #define ALPHABET_RANGE 64
@@ -172,24 +173,45 @@ void TextTrainIteration::processWith(const String &text)
 String TextTrainIteration::generateSample() const
 {
 #if defined TRAINING_MODE
+    const int seedLength = 50;
+    TinyRNN::HardcodedTrainingContext::RawData inputs;
+    inputs.resize(ALPHABET_RANGE);
+
+    for (int i = 0; i < seedLength; ++i)
+    {
+        std::fill(inputs.begin(), inputs.end(), 0.f);
+        const int randomChar = (rand() % ALPHABET_RANGE);
+        inputs[randomChar] = 1.f;
+        GoDeeperFeed(inputs.data());
+    }
+    
     String result;
     const int sampleLength = 2000;
+    
     for (int i = 0; i < sampleLength; ++i)
     {
-        GoDeeperFeed(kOutputs);
+        GoDeeperFeed(inputs.data());
         
         int charIndex = 0;
+        int charIndex2 = 0;
         float maxProbability = -FLT_MAX;
         for (int j = 0; j < kOutputsSize; ++j)
         {
             if (maxProbability < kOutputs[j])
             {
                 maxProbability = kOutputs[j];
+                charIndex2 = charIndex;
                 charIndex = j;
             }
         }
         
-        result += charByOutputNodeIndex64(charIndex);
+        const int random = (rand() % 10);
+        const int finalIndex = (random > 5) ? charIndex2 : charIndex;
+        result += charByOutputNodeIndex64(finalIndex);
+        
+        std::fill(inputs.begin(), inputs.end(), 0.f);
+        inputs[finalIndex] = 1.f;
+        //memcpy(inputs.data(), kOutputs, sizeof(TinyRNN::Value) * kOutputsSize);
     }
     
     return result;
