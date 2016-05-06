@@ -13,7 +13,6 @@
 
 #if defined TRAINING_MODE
 #include "GoDeeper.h"
-#include <algorithm>
 #endif
 
 #define ALPHABET_RANGE 64
