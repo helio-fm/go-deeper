@@ -215,10 +215,10 @@
                extraDefs="TRAINING_MODE=1">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" osxSDK="default" osxCompatibility="10.7 SDK" osxArchitecture="64BitUniversal"
-                       isDebug="1" optimisation="1" targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../ThirdParty/TinyRNN/Source&#10;./../../Resources/Hardcoded"
+                       isDebug="1" optimisation="1" targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../ThirdParty/pugixml/src&#10;./../../ThirdParty/TinyRNN/Source&#10;./../../Resources/Hardcoded"
                        cppLibType="libc++" cppLanguageStandard="c++11"/>
         <CONFIGURATION name="Release" osxSDK="default" osxCompatibility="10.7 SDK" osxArchitecture="64BitUniversal"
-                       isDebug="0" optimisation="3" targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../ThirdParty/TinyRNN/Source&#10;./../../Resources/Hardcoded"
+                       isDebug="0" optimisation="3" targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../ThirdParty/pugixml/src&#10;./../../ThirdParty/TinyRNN/Source&#10;./../../Resources/Hardcoded"
                        cppLibType="libc++" cppLanguageStandard="c++11"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
@@ -237,9 +237,9 @@
     <VS2010 targetFolder="../../Projects/VisualStudio2010" extraDefs="TRAINING_MODE=1">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="1" optimisation="1" targetName="GoDeeper" headerPath="./../../ThirdParty/TinyRNN/Source&#10;./../../Resources/Hardcoded"/>
+                       isDebug="1" optimisation="1" targetName="GoDeeper" headerPath="./../../ThirdParty/pugixml/src&#10;./../../ThirdParty/TinyRNN/Source&#10;./../../Resources/Hardcoded"/>
         <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="0" optimisation="3" targetName="GoDeeper" headerPath="./../../ThirdParty/TinyRNN/Source&#10;./../../Resources/Hardcoded"/>
+                       isDebug="0" optimisation="3" targetName="GoDeeper" headerPath="./../../ThirdParty/pugixml/src&#10;./../../ThirdParty/TinyRNN/Source&#10;./../../Resources/Hardcoded"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../ThirdParty/JUCE/modules"/>
@@ -258,9 +258,9 @@
                 extraLinkerFlags="-lOpenCL" extraDefs="TRAINING_MODE=1">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" libraryPath="/usr/X11R6/lib/" isDebug="1" optimisation="1"
-                       targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../../ThirdParty/TinyRNN/Source&#10;./../../../Resources/Hardcoded&#10;./../../../Source/Playground&#10;./../../../Source/Playground/Models&#10;./../../../Source/Playground/UI"/>
+                       targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../../ThirdParty/pugixml/src&#10;./../../../ThirdParty/TinyRNN/Source&#10;./../../../Resources/Hardcoded&#10;./../../../Source/Playground&#10;./../../../Source/Playground/Models&#10;./../../../Source/Playground/UI"/>
         <CONFIGURATION name="Release" libraryPath="/usr/X11R6/lib/" isDebug="0" optimisation="3"
-                       targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../../ThirdParty/TinyRNN/Source&#10;./../../../Resources/Hardcoded&#10;./../../../Source/Playground&#10;./../../../Source/Playground/Models&#10;./../../../Source/Playground/UI"/>
+                       targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../../ThirdParty/pugixml/src&#10;./../../../ThirdParty/TinyRNN/Source&#10;./../../../Resources/Hardcoded&#10;./../../../Source/Playground&#10;./../../../Source/Playground/Models&#10;./../../../Source/Playground/UI"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_gui_extra" path="../../ThirdParty/JUCE/modules"/>
