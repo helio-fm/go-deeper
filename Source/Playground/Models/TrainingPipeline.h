@@ -46,14 +46,15 @@ samplesDumpFolder(samplesDumpFolder),
 memoryDumpFile(memoryDumpFile)
 {
     this->processor = new T(targetsFolder, targetNetwork);
+    this->processor->setDelegate(this);
     this->samplesDumpFolder.createDirectory();
 }
 
 template <typename T>
 inline TrainingPipeline<T>::~TrainingPipeline()
 {
+    this->processor->setDelegate(nullptr);
     this->processor = nullptr;
-    
 }
 
 template <typename T>

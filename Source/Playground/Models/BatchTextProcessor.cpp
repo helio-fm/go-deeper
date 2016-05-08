@@ -43,7 +43,7 @@ void BatchTextProcessor::start()
     bool shouldContinue = true;
     uint64 numIterations = 0;
     const uint64 memoryDumpTimeout = (1000 * 60 * 10);
-    const uint64 samplesDumpMaxIterations = 100;
+    const uint64 samplesDumpMaxIterations = 5;
     
     do
     {

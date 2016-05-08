@@ -154,7 +154,7 @@ void TextTrainIteration::processWith(const String &text)
     }
     
     // train with some empty passes
-    static const size_t emptyTrainIterations = 50;
+    static const size_t emptyTrainIterations = 20;
     std::fill(inputs.begin(), inputs.end(), 0.f);
     std::fill(targets.begin(), targets.end(), 0.f);
     
@@ -179,13 +179,13 @@ String TextTrainIteration::generateSample() const
     for (int i = 0; i < seedLength; ++i)
     {
         std::fill(inputs.begin(), inputs.end(), 0.f);
-        const int randomChar = (rand() % ALPHABET_RANGE);
-        inputs[randomChar] = 1.f;
+        const int randomChar = (rand() % 32);
+        inputs[kCyrillicAnchor + randomChar] = 1.f;
         GoDeeperFeed(inputs.data());
     }
     
     String result;
-    const int sampleLength = 2000;
+    const int sampleLength = 1000;
     
     for (int i = 0; i < sampleLength; ++i)
     {
@@ -211,6 +211,12 @@ String TextTrainIteration::generateSample() const
         std::fill(inputs.begin(), inputs.end(), 0.f);
         inputs[finalIndex] = 1.f;
         //memcpy(inputs.data(), kOutputs, sizeof(TinyRNN::Value) * kOutputsSize);
+    }
+    
+    static const size_t emptyFeedIterations = 10;
+    std::fill(inputs.begin(), inputs.end(), 0.f);
+    for (size_t i = 0; i < emptyFeedIterations; ++i) {
+        GoDeeperFeed(inputs.data());
     }
     
     return result;
