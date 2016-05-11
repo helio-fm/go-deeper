@@ -138,7 +138,7 @@ void TextTrainIteration::processWith(const String &text)
         // now fix the targets
         targets.clear();
         const bool isLastChar = (currentCharIndex == (text.length() - 1));
-        int nextCharNodeIndex = isLastChar ? inputNodeIndexByChar64('\n') : inputNodeIndexByChar64(currentCharIndex + 1);
+        int nextCharNodeIndex = isLastChar ? inputNodeIndexByChar64('\n') : inputNodeIndexByChar64(text[currentCharIndex + 1]);
         for (int i = 0; i < ALPHABET_RANGE; ++i)
         {
             targets[i] = (i == nextCharNodeIndex) ? 1.f : 0.f;
@@ -147,10 +147,10 @@ void TextTrainIteration::processWith(const String &text)
         // train
 #if defined TRAINING_MODE
         GoDeeperFeed(inputs.data());
-        GoDeeperTrain(0.2f, targets.data());
+        GoDeeperTrain(0.25f, targets.data());
 #else
         this->clNetwork->feed(inputs);
-        this->clNetwork->train(0.2f, targets);
+        this->clNetwork->train(0.25f, targets);
 #endif
         
         currentCharIndex++;
@@ -164,10 +164,10 @@ void TextTrainIteration::processWith(const String &text)
     for (size_t i = 0; i < emptyTrainIterations; ++i) {
 #if defined TRAINING_MODE
         GoDeeperFeed(inputs.data());
-        GoDeeperTrain(0.2f, targets.data());
+        GoDeeperTrain(0.25f, targets.data());
 #else
         this->clNetwork->feed(inputs);
-        this->clNetwork->train(0.2f, targets);
+        this->clNetwork->train(0.25f, targets);
 #endif
     }
 }
