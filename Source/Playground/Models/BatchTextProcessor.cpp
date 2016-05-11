@@ -42,8 +42,8 @@ void BatchTextProcessor::start()
     uint32 lastDumpTimestamp = Time::getMillisecondCounter();
     bool shouldContinue = true;
     uint64 numIterations = 0;
-    const uint64 memoryDumpTimeout = (1000 * 60 * 10);
-    const uint64 samplesDumpMaxIterations = 5;
+    const uint64 memoryDumpTimeout = (1000 * 60 * 30);
+    const uint64 samplesDumpMaxIterations = 50;
     
     do
     {
