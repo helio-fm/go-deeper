@@ -147,10 +147,10 @@ void TextTrainIteration::processWith(const String &text)
         // train
 #if defined TRAINING_MODE
         GoDeeperFeed(inputs.data());
-        GoDeeperTrain(0.5f, targets.data());
+        GoDeeperTrain(0.2f, targets.data());
 #else
         this->clNetwork->feed(inputs);
-        this->clNetwork->train(0.5, targets);
+        this->clNetwork->train(0.2f, targets);
 #endif
         
         currentCharIndex++;
@@ -164,10 +164,10 @@ void TextTrainIteration::processWith(const String &text)
     for (size_t i = 0; i < emptyTrainIterations; ++i) {
 #if defined TRAINING_MODE
         GoDeeperFeed(inputs.data());
-        GoDeeperTrain(0.5f, targets.data());
+        GoDeeperTrain(0.2f, targets.data());
 #else
         this->clNetwork->feed(inputs);
-        this->clNetwork->train(0.5, targets);
+        this->clNetwork->train(0.2f, targets);
 #endif
     }
 }
