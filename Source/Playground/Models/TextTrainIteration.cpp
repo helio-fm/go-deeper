@@ -13,6 +13,9 @@
 
 #if defined TRAINING_MODE
 #include "GoDeeper.h"
+
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
 #endif
 
 #define ALPHABET_RANGE 64
@@ -172,10 +175,12 @@ void TextTrainIteration::processWith(const String &text)
 String TextTrainIteration::generateSample() const
 {
 #if defined TRAINING_MODE
-    const int seedLength = 50;
+    srand(time(NULL));
+    
+    const int seedLength = 20;
     TinyRNN::HardcodedTrainingContext::RawData inputs;
     inputs.resize(ALPHABET_RANGE);
-
+    
     for (int i = 0; i < seedLength; ++i)
     {
         std::fill(inputs.begin(), inputs.end(), 0.f);
@@ -205,7 +210,7 @@ String TextTrainIteration::generateSample() const
         }
         
         const int random = (rand() % 10);
-        const int finalIndex = (random > 5) ? charIndex2 : charIndex;
+        const int finalIndex = ((random > 5) && (charIndex2 > 0)) ? charIndex2 : charIndex;
         result += charByOutputNodeIndex64(finalIndex);
         
         std::fill(inputs.begin(), inputs.end(), 0.f);
