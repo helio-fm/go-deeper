@@ -13,9 +13,11 @@
 #include "MidiTrainIteration.h"
 
 BatchMidiProcessor::BatchMidiProcessor(File targetsFolder,
-                                       TinyRNN::HardcodedNetwork::Ptr targetNetwork) :
+                                       TinyRNN::HardcodedNetwork::Ptr targetNetwork,
+                                       uint64 iterationsCounter) :
 clNetwork(targetNetwork),
 currentFileIndex(0),
+numIterations(iterationsCounter),
 memDumpIntervalSeconds(10.f)
 {
     if (targetsFolder.isDirectory())
@@ -24,6 +26,8 @@ memDumpIntervalSeconds(10.f)
                                      File::findFiles,
                                      true,
                                      "*.mid;*.midi;*.smf");
+        
+        this->currentFileIndex = iterationsCounter % this->targetFiles.size();
     }
 }
 
@@ -59,7 +63,6 @@ void BatchMidiProcessor::start()
 {
     uint32 lastDumpTimestamp = Time::getMillisecondCounter();
     bool shouldContinue = true;
-    uint64 numIterations = 0;
     
     do
     {
@@ -97,11 +100,11 @@ void BatchMidiProcessor::start()
         }
         
         currentFileIndex = ((this->targetFiles.size() - 1) == currentFileIndex) ? 0 : (currentFileIndex + 1);
-        numIterations++;
+        this->numIterations++;
         
         if (this->delegate != nullptr)
         {
-            shouldContinue = shouldContinue && this->delegate->shouldContinue(numIterations);
+            shouldContinue = shouldContinue && this->delegate->shouldContinue(this->numIterations);
         }
         
     } while (shouldContinue);

@@ -17,9 +17,11 @@
 #endif
 
 BatchTextProcessor::BatchTextProcessor(File targetsFolder,
-                                       TinyRNN::HardcodedNetwork::Ptr targetNetwork) :
+                                       TinyRNN::HardcodedNetwork::Ptr targetNetwork,
+                                       uint64 iterationsCounter) :
 clNetwork(targetNetwork),
 currentFileIndex(0),
+numIterations(iterationsCounter),
 memDumpIntervalSeconds(10.f)
 {
     if (targetsFolder.isDirectory())
@@ -28,6 +30,8 @@ memDumpIntervalSeconds(10.f)
                                      File::findFiles,
                                      true,
                                      "*.txt;*.xml");
+        
+        this->currentFileIndex = iterationsCounter % this->targetFiles.size();
     }
 }
 
@@ -41,7 +45,6 @@ void BatchTextProcessor::start()
 {
     uint32 lastDumpTimestamp = Time::getMillisecondCounter();
     bool shouldContinue = true;
-    uint64 numIterations = 0;
     const uint64 memoryDumpTimeout = (1000 * 60 * 30);
     const uint64 samplesDumpMaxIterations = 50;
     
@@ -61,10 +64,10 @@ void BatchTextProcessor::start()
         {
             // 2. process them with MidiTrainer
             TinyRNN::ScopedTimer timer("Training with " + currentFile.getFileName().toStdString());
-            textTrainIteration.processWith(textSequence);
+            textTrainIteration.processWith(textSequence, this->numIterations);
         }
         
-        numIterations++;
+        this->numIterations++;
         
         // 3. once X time passed, dump memory
         const uint32 millisecondsPassed = (Time::getMillisecondCounter() - lastDumpTimestamp);
@@ -79,11 +82,11 @@ void BatchTextProcessor::start()
             }
         }
         
-        if ((numIterations % samplesDumpMaxIterations) == 0)
+        if ((this->numIterations % samplesDumpMaxIterations) == 0)
         {
             if (this->delegate != nullptr)
             {
-                this->delegate->onDumpSample(numIterations, textTrainIteration.generateSample());
+                this->delegate->onDumpSample(this->numIterations, textTrainIteration.generateSample());
             }
         }
         
@@ -91,7 +94,7 @@ void BatchTextProcessor::start()
         
         if (this->delegate != nullptr)
         {
-            shouldContinue = shouldContinue && this->delegate->shouldContinue(numIterations);
+            shouldContinue = shouldContinue && this->delegate->shouldContinue(this->numIterations);
         }
         
     } while (shouldContinue);

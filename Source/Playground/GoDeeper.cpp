@@ -297,13 +297,11 @@ public:
             
             if (args[0].toLowerCase() == "midi")
             {
-                ScopedTimer timer("Training with BatchMidiProcessor");
                 TrainingPipeline<BatchMidiProcessor> pipeline(nullptr, targetsDirectory, samplesDirectory, latestMemDumpFile);
                 pipeline.start();
             }
             else if (args[0].toLowerCase() == "text")
             {
-                ScopedTimer timer("Training with BatchTextProcessor");
                 TrainingPipeline<BatchTextProcessor> pipeline(nullptr, targetsDirectory, samplesDirectory, latestMemDumpFile);
                 pipeline.start();
             }

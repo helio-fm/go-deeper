@@ -22,7 +22,7 @@ public:
 #endif
     
     // Process one iteration of training.
-    void processWith(const String &text);
+    void processWith(const String &text, uint64 iterationNumber);
     String generateSample() const;
     
 private:

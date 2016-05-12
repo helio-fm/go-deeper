@@ -45,9 +45,29 @@ inline TrainingPipeline<T>::TrainingPipeline(TinyRNN::HardcodedNetwork::Ptr targ
 samplesDumpFolder(samplesDumpFolder),
 memoryDumpFile(memoryDumpFile)
 {
-    this->processor = new T(targetsFolder, targetNetwork);
-    this->processor->setDelegate(this);
     this->samplesDumpFolder.createDirectory();
+    
+    uint64 startingNumIterations = 0;
+    
+    // Attempt to determine the latest training iteration 
+    Array<File> sampleFiles;
+    this->samplesDumpFolder.findChildFiles(sampleFiles,
+                                           File::findFiles,
+                                           true,
+                                           "*.*");
+    for (const auto &file : sampleFiles)
+    {
+        StringArray fileNameParts =
+        StringArray::fromTokens(file.getFileName(), " _.", "");
+        for (const auto &fileNamePart : fileNameParts)
+        {
+            startingNumIterations = jmax(startingNumIterations, uint64(fileNamePart.getLargeIntValue()));
+        }
+    }
+    
+    std::cout << "Training from " << std::to_string(startingNumIterations) << " iteration." << std::endl;
+    this->processor = new T(targetsFolder, targetNetwork, startingNumIterations);
+    this->processor->setDelegate(this);
 }
 
 template <typename T>

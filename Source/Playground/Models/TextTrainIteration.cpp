@@ -106,12 +106,30 @@ juce_wchar charByOutputNodeIndex64(int nodeIndex)
 
 #pragma mark - Processing
 
+float rateForIteration(uint64 iterationNumber)
+{
+    if (iterationNumber < 100) {
+        return 1.f;
+    }
+    
+    if (iterationNumber < 250) {
+        return 0.75f;
+    }
+    
+    if (iterationNumber < 500) {
+        return 0.5f;
+    }
+    
+    return 0.2f;
+}
+
 // Process one iteration of training.
-void TextTrainIteration::processWith(const String &text)
+void TextTrainIteration::processWith(const String &text, uint64 iterationNumber)
 {
     // 1. go through events and train the network
     
     int currentCharIndex = 0;
+    const float rate = rateForIteration(iterationNumber);
     
     // presuming that we have a lstm like
     // ALPHABET_RANGE -> ... -> ALPHABET_RANGE
@@ -147,10 +165,10 @@ void TextTrainIteration::processWith(const String &text)
         // train
 #if defined TRAINING_MODE
         GoDeeperFeed(inputs.data());
-        GoDeeperTrain(0.25f, targets.data());
+        GoDeeperTrain(rate, targets.data());
 #else
         this->clNetwork->feed(inputs);
-        this->clNetwork->train(0.25f, targets);
+        this->clNetwork->train(rate, targets);
 #endif
         
         currentCharIndex++;
@@ -164,10 +182,10 @@ void TextTrainIteration::processWith(const String &text)
     for (size_t i = 0; i < emptyTrainIterations; ++i) {
 #if defined TRAINING_MODE
         GoDeeperFeed(inputs.data());
-        GoDeeperTrain(0.25f, targets.data());
+        GoDeeperTrain(rate, targets.data());
 #else
         this->clNetwork->feed(inputs);
-        this->clNetwork->train(0.25f, targets);
+        this->clNetwork->train(rate, targets);
 #endif
     }
 }
