@@ -128,7 +128,7 @@ void TextTrainIteration::processWith(const String &text)
         // inputs define the current character
         // outputs define the one to come next
         
-        inputs.clear();
+        std::fill(inputs.begin(), inputs.end(), 0.f);
         int currentCharNodeIndex = inputNodeIndexByChar64(text[currentCharIndex]);
         for (int i = 0; i < ALPHABET_RANGE; ++i)
         {
@@ -136,7 +136,7 @@ void TextTrainIteration::processWith(const String &text)
         }
         
         // now fix the targets
-        targets.clear();
+        std::fill(targets.begin(), targets.end(), 0.f);
         const bool isLastChar = (currentCharIndex == (text.length() - 1));
         int nextCharNodeIndex = isLastChar ? inputNodeIndexByChar64('\n') : inputNodeIndexByChar64(text[currentCharIndex + 1]);
         for (int i = 0; i < ALPHABET_RANGE; ++i)
@@ -177,7 +177,7 @@ String TextTrainIteration::generateSample() const
 #if defined TRAINING_MODE
     srand(time(NULL));
     
-    const int seedLength = 20;
+    const int seedLength = 30;
     TinyRNN::HardcodedTrainingContext::RawData inputs;
     inputs.resize(ALPHABET_RANGE);
     
@@ -220,7 +220,8 @@ String TextTrainIteration::generateSample() const
     
     static const size_t emptyFeedIterations = 10;
     std::fill(inputs.begin(), inputs.end(), 0.f);
-    for (size_t i = 0; i < emptyFeedIterations; ++i) {
+    for (size_t i = 0; i < emptyFeedIterations; ++i)
+    {
         GoDeeperFeed(inputs.data());
     }
     
