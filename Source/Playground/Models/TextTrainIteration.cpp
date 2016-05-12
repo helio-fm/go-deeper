@@ -98,11 +98,45 @@ juce_wchar charByOutputNodeIndex64(int nodeIndex)
     
     // handle cr lf
     if (result == kCRReplacement) {
-        result = 13;
+        result = 10;
     }
     
     return result;
 }
+
+#pragma mark - Test
+
+void TextTrainIteration::test()
+{
+    std::cout << "Encoding test" << std::endl;
+    
+    for (juce_wchar i = 0; i < 128; ++i) {
+        std::cout << std::to_string(inputNodeIndexByChar64(i)) << " ";
+    }
+
+    std::cout << std::endl << "Encoding test" << std::endl;;
+    
+    for (juce_wchar i = 1072; i < 1104; ++i) {
+        std::cout << std::to_string(inputNodeIndexByChar64(i)) << " ";
+    }
+
+    std::cout << std::endl << "Decoding test" << std::endl;;
+    
+    for (size_t i = 0; i < ALPHABET_RANGE; ++i) {
+        std::cout << charByOutputNodeIndex64(i) << " ";
+    }
+    
+    std::cout << std::endl << "Decoding test 2" << std::endl;;
+    String result;
+    
+    for (size_t i = 0; i < ALPHABET_RANGE; ++i) {
+        result += charByOutputNodeIndex64(i);
+        result += " ";
+    }
+    
+    std::cout << result.toStdString() << std::endl;;
+}
+
 
 #pragma mark - Processing
 

@@ -24,6 +24,7 @@ public:
     // Process one iteration of training.
     void processWith(const String &text, uint64 iterationNumber);
     String generateSample() const;
+    void test();
     
 private:
     

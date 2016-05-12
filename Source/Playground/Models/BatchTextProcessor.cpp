@@ -45,8 +45,8 @@ void BatchTextProcessor::start()
 {
     uint32 lastDumpTimestamp = Time::getMillisecondCounter();
     bool shouldContinue = true;
-    const uint64 memoryDumpTimeout = (1000 * 60 * 30);
-    const uint64 samplesDumpMaxIterations = 50;
+    const uint64 memoryDumpTimeout = (1000 * 60 * 15);
+    const uint64 samplesDumpMaxIterations = 20;
     
     do
     {
@@ -60,6 +60,14 @@ void BatchTextProcessor::start()
 #else
         TextTrainIteration textTrainIteration(this->clNetwork);
 #endif
+        
+        //textTrainIteration.test();
+
+        if (this->delegate != nullptr)
+        {
+            this->delegate->onDumpSample(0, textTrainIteration.generateSample());
+        }
+        
         
         {
             // 2. process them with MidiTrainer

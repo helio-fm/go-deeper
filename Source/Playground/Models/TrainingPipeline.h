@@ -61,11 +61,12 @@ memoryDumpFile(memoryDumpFile)
         StringArray::fromTokens(file.getFileName(), " _.", "");
         for (const auto &fileNamePart : fileNameParts)
         {
+            //std::cout << fileNamePart.toStdString() << ", ";
             startingNumIterations = jmax(startingNumIterations, uint64(fileNamePart.getLargeIntValue()));
         }
     }
     
-    std::cout << "Training from " << std::to_string(startingNumIterations) << " iteration." << std::endl;
+    std::cout << "Training started from iteration #" << std::to_string(startingNumIterations) << std::endl;
     this->processor = new T(targetsFolder, targetNetwork, startingNumIterations);
     this->processor->setDelegate(this);
 }
@@ -89,7 +90,7 @@ inline void TrainingPipeline<T>::onDumpSample(uint64 iteration, const String &sa
 {
     std::cout << "Dumping the sample of iteration " << iteration << std::endl << std::endl;
     
-    File sampleDumpFile = this->samplesDumpFolder.getChildFile("sample_iteration_" + String(iteration));
+    File sampleDumpFile = this->samplesDumpFolder.getChildFile("sample_iteration_" + String(iteration) + ".txt");
     sampleDumpFile.replaceWithText(sample);
     
     std::cout << sample << std::endl << std::endl;
