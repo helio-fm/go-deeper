@@ -61,14 +61,6 @@ void BatchTextProcessor::start()
         TextTrainIteration textTrainIteration(this->clNetwork);
 #endif
         
-        //textTrainIteration.test();
-
-        if (this->delegate != nullptr)
-        {
-            this->delegate->onDumpSample(0, textTrainIteration.generateSample());
-        }
-        
-        
         {
             // 2. process them with MidiTrainer
             TinyRNN::ScopedTimer timer("Training with " + currentFile.getFileName().toStdString());
