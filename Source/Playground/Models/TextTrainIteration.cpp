@@ -14,7 +14,7 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 
-#define ALPHABET_RANGE 64
+#define ALPHABET_RANGE 40
 
 TextTrainIteration::TextTrainIteration(TinyRNN::VMNetwork::Ptr targetNetwork) :
 clNetwork(targetNetwork)
@@ -123,7 +123,7 @@ int inputNodeIndexByChar40(juce_wchar character)
             return 39;
     }
     
-    return 0;
+    return 34;
 }
 
 juce_wchar charByOutputNodeIndex40(int nodeIndex)
@@ -151,7 +151,7 @@ juce_wchar charByOutputNodeIndex40(int nodeIndex)
             return 63;
     }
 
-    return 0;
+    return 32;
 }
 
 //#pragma mark - Test
@@ -193,15 +193,15 @@ juce_wchar charByOutputNodeIndex40(int nodeIndex)
 float rateForIteration(uint64 iterationNumber)
 {
     if (iterationNumber < 100) {
-        return 1.f;
-    }
-    
-    if (iterationNumber < 250) {
         return 0.75f;
     }
     
-    if (iterationNumber < 500) {
+    if (iterationNumber < 250) {
         return 0.5f;
+    }
+    
+    if (iterationNumber < 500) {
+        return 0.35f;
     }
     
     return 0.2f;
@@ -212,8 +212,10 @@ void TextTrainIteration::processWith(const String &text, uint64 iterationNumber)
 {
     // 1. go through events and train the network
     
+    const int backpropTruncate = 20;
+    int backpropCounter = 0;
     int currentCharIndex = 0;
-    const float rate = rateForIteration(iterationNumber);
+    const float rate = 0.5f; //rateForIteration(iterationNumber);
     
     // presuming that we have a lstm like
     // ALPHABET_RANGE -> ... -> ALPHABET_RANGE
@@ -227,8 +229,6 @@ void TextTrainIteration::processWith(const String &text, uint64 iterationNumber)
     while (currentCharIndex < text.length())
     {
         // inputs and outputs are the float vectors of size ALPHABET_RANGE
-        // inputs define the current character
-        // outputs define the one to come next
         
         std::fill(inputs.begin(), inputs.end(), 0.f);
         int currentCharNodeIndex = inputNodeIndexByChar40(text[currentCharIndex]);
@@ -237,24 +237,27 @@ void TextTrainIteration::processWith(const String &text, uint64 iterationNumber)
             inputs[i] = (i == currentCharNodeIndex) ? 1.f : 0.f;
         }
         
-        // now fix the targets
-        std::fill(targets.begin(), targets.end(), 0.f);
-        const bool isLastChar = (currentCharIndex == (text.length() - 1));
-        int nextCharNodeIndex = isLastChar ? inputNodeIndexByChar40('\n') : inputNodeIndexByChar40(text[currentCharIndex + 1]);
-        for (int i = 0; i < ALPHABET_RANGE; ++i)
-        {
-            targets[i] = (i == nextCharNodeIndex) ? 1.f : 0.f;
-        }
-        
-        // train
         this->clNetwork->feed(inputs);
-        this->clNetwork->train(rate, targets);
+        
+        
+        if (++backpropCounter % backpropTruncate == 0)
+        {
+            std::fill(targets.begin(), targets.end(), 0.f);
+            const bool isLastChar = (currentCharIndex == (text.length() - 1));
+            int nextCharNodeIndex = isLastChar ? inputNodeIndexByChar40('\n') : inputNodeIndexByChar40(text[currentCharIndex + 1]);
+            for (int i = 0; i < ALPHABET_RANGE; ++i)
+            {
+                targets[i] = (i == nextCharNodeIndex) ? 1.f : 0.f;
+            }
+            
+            this->clNetwork->train(rate, targets);
+        }
         
         currentCharIndex++;
     }
     
     // train with some empty passes
-    static const size_t emptyTrainIterations = 20;
+    static const size_t emptyTrainIterations = 2;
     std::fill(inputs.begin(), inputs.end(), 0.f);
     std::fill(targets.begin(), targets.end(), 0.f);
     
@@ -265,11 +268,28 @@ void TextTrainIteration::processWith(const String &text, uint64 iterationNumber)
     }
 }
 
+template<typename A, typename B>
+std::pair<B,A> flip_pair(const std::pair<A,B> &p)
+{
+    return std::pair<B,A>(p.second, p.first);
+}
+
+// flips an associative container of A,B pairs to B,A pairs
+template<typename A, typename B, template<class,class,class...> class M, class... Args>
+std::multimap<B,A> flip_map(const M<A,B,Args...> &src)
+{
+    std::multimap<B,A> dst;
+    std::transform(src.begin(), src.end(),
+                   std::inserter(dst, dst.begin()),
+                   flip_pair<A,B>);
+    return dst;
+}
+
 String TextTrainIteration::generateSample() const
 {
     srand(time(NULL));
     
-    const int seedLength = 30;
+    const int seedLength = 10;
     TinyRNN::HardcodedTrainingContext::RawData inputs;
     inputs.resize(ALPHABET_RANGE);
     
@@ -282,31 +302,30 @@ String TextTrainIteration::generateSample() const
     }
     
     String result;
-    const int sampleLength = 1000;
+    const int sampleLength = 500;
     
     for (int i = 0; i < sampleLength; ++i)
     {
         const auto &outputs = this->clNetwork->feed(inputs);
-        
-        int charIndex = 0;
-        int charIndex2 = 0;
-        float maxProbability = -FLT_MAX;
-        for (int j = 0; j < outputs.size(); ++j)
+        std::multimap<float, int, std::greater<float>> outputsMapSortedByValue;
+        for (size_t i = 0; i < outputs.size(); ++i)
         {
-            if (maxProbability < outputs[j])
-            {
-                maxProbability = outputs[j];
-                charIndex2 = charIndex;
-                charIndex = j;
+            outputsMapSortedByValue.insert(std::pair<float, int>(outputs[i], i));
+        }
+        
+        int chance = 4;
+        for (auto j = outputsMapSortedByValue.begin(); j != outputsMapSortedByValue.end(); ++j)
+        {
+            const int r = (rand() % 10);
+            if (r < chance++) {
+                const int finalIndex = j->second;
+                result += charByOutputNodeIndex40(finalIndex);
+                std::fill(inputs.begin(), inputs.end(), 0.f);
+                inputs[finalIndex] = 1.f;
+                break;
             }
         }
         
-        const int random = (rand() % 10);
-        const int finalIndex = ((random > 5) && (charIndex2 > 0)) ? charIndex2 : charIndex;
-        result += charByOutputNodeIndex40(finalIndex);
-        
-        std::fill(inputs.begin(), inputs.end(), 0.f);
-        inputs[finalIndex] = 1.f;
         //memcpy(inputs.data(), outputs.data(), sizeof(TinyRNN::Value) * outputs.size());
     }
     

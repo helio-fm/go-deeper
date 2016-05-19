@@ -73,7 +73,9 @@ public:
         static const String mappingFileName = "Mapping.xml";
         static const String latestDumpFileName = "LatestDump.xml";
         
-        const String defaultCommandline = "init GoDeeper 4 24 24 24 4";
+        const String defaultCommandline = "init GoDeeper 40 120 120 40";
+        //const String defaultCommandline = "text Deeper targets=Training";
+        
         // need to filter out the xcode's garbage:
         const bool needsDefaultCommandline =
         (commandLine.isEmpty() || commandLine == "-NSDocumentRevisionsDebugMode YES");
@@ -314,12 +316,6 @@ public:
             TinyRNN::HardcodedTrainingContext::Ptr mappings(new TinyRNN::HardcodedTrainingContext());
             TinyRNN::VMNetwork::Ptr vmNetwork(new TinyRNN::VMNetwork(mappings));
             
-            {
-                ScopedTimer timer("Loading the kernels");
-                PugiXMLSerializer serializer;
-                serializer.deserialize(vmNetwork, kernelsFile.loadFileAsString().toStdString());
-            }
-            
             { // Here we do not need the mappings actually, only the rest stuff
                 ScopedTimer timer("Loading the mapping");
                 PugiXMLSerializer serializer;
@@ -337,6 +333,12 @@ public:
                 //mappings->getMemory().resize(memoryVectorSize);
                 
                 memcpy(mappings->getMemory().data(), memoryDecoded.data(), memoryDecoded.size());
+            }
+            
+            {
+                ScopedTimer timer("Loading the kernels");
+                PugiXMLSerializer serializer;
+                serializer.deserialize(vmNetwork, kernelsFile.loadFileAsString().toStdString());
             }
             
             if (args[0].toLowerCase() == "midi")
