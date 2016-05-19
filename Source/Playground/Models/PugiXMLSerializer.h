@@ -12,7 +12,7 @@
 #define XMLSERIALIZER_H_INCLUDED
 
 // The PugiXML-based serializer
-#include "../../../ThirdParty/pugixml/src/pugixml.hpp"
+#include "pugixml.hpp"
 
 class PugiXMLSerializer final : public TinyRNN::Serializer
 {

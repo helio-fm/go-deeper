@@ -66,13 +66,14 @@
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="../../Projects/MacOSX" extraFrameworks="OpenCL">
+    <XCODE_MAC targetFolder="../../Projects/MacOSX" extraFrameworks="OpenCL"
+               extraDefs="TRAINING_MODE=1">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" osxSDK="default" osxCompatibility="10.7 SDK" osxArchitecture="64BitUniversal"
-                       isDebug="1" optimisation="1" targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../ThirdParty/TinyRNN/Source"
+                       isDebug="1" optimisation="1" targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../ThirdParty/pugixml/src&#10;./../../ThirdParty/TinyRNN/Source&#10;./../../Resources/Hardcoded"
                        cppLibType="libc++" cppLanguageStandard="c++11"/>
         <CONFIGURATION name="Release" osxSDK="default" osxCompatibility="10.7 SDK" osxArchitecture="64BitUniversal"
-                       isDebug="0" optimisation="3" targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../ThirdParty/TinyRNN/Source"
+                       isDebug="0" optimisation="3" targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../ThirdParty/pugixml/src&#10;./../../ThirdParty/TinyRNN/Source&#10;./../../Resources/Hardcoded"
                        cppLibType="libc++" cppLanguageStandard="c++11"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
@@ -88,12 +89,12 @@
         <MODULEPATH id="juce_graphics" path="../../ThirdParty/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
-    <VS2010 targetFolder="../../Projects/VisualStudio2010">
+    <VS2010 targetFolder="../../Projects/VisualStudio2010" extraDefs="TRAINING_MODE=1">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="1" optimisation="1" targetName="GoDeeper" headerPath="./../../ThirdParty/TinyRNN/Source"/>
+                       isDebug="1" optimisation="1" targetName="GoDeeper" headerPath="./../../ThirdParty/pugixml/src&#10;./../../ThirdParty/TinyRNN/Source&#10;./../../Resources/Hardcoded"/>
         <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="0" optimisation="3" targetName="GoDeeper" headerPath="./../../ThirdParty/TinyRNN/Source"/>
+                       isDebug="0" optimisation="3" targetName="GoDeeper" headerPath="./../../ThirdParty/pugixml/src&#10;./../../ThirdParty/TinyRNN/Source&#10;./../../Resources/Hardcoded"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../ThirdParty/JUCE/modules"/>
@@ -109,12 +110,12 @@
       </MODULEPATHS>
     </VS2010>
     <LINUX_MAKE targetFolder="../../Projects/LinuxMakefile/GoDeeper" cppLanguageStandard="-std=c++11"
-                extraLinkerFlags="-lOpenCL">
+                extraLinkerFlags="-lOpenCL" extraDefs="TRAINING_MODE=1">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" libraryPath="/usr/X11R6/lib/" isDebug="1" optimisation="1"
-                       targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../../ThirdParty/TinyRNN/Source&#10;./../../../Source/Playground&#10;./../../../Source/Playground/Models&#10;./../../../Source/Playground/UI"/>
+                       targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../../ThirdParty/pugixml/src&#10;./../../../ThirdParty/TinyRNN/Source&#10;./../../../Resources/Hardcoded&#10;./../../../Source/Playground&#10;./../../../Source/Playground/Models&#10;./../../../Source/Playground/UI"/>
         <CONFIGURATION name="Release" libraryPath="/usr/X11R6/lib/" isDebug="0" optimisation="3"
-                       targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../../ThirdParty/TinyRNN/Source&#10;./../../../Source/Playground&#10;./../../../Source/Playground/Models&#10;./../../../Source/Playground/UI"/>
+                       targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../../ThirdParty/pugixml/src&#10;./../../../ThirdParty/TinyRNN/Source&#10;./../../../Resources/Hardcoded&#10;./../../../Source/Playground&#10;./../../../Source/Playground/Models&#10;./../../../Source/Playground/UI"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_gui_extra" path="../../ThirdParty/JUCE/modules"/>

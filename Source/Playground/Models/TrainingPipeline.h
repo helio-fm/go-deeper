@@ -45,15 +45,37 @@ inline TrainingPipeline<T>::TrainingPipeline(TinyRNN::HardcodedNetwork::Ptr targ
 samplesDumpFolder(samplesDumpFolder),
 memoryDumpFile(memoryDumpFile)
 {
-    this->processor = new T(targetsFolder, targetNetwork);
     this->samplesDumpFolder.createDirectory();
+    
+    uint64 startingNumIterations = 0;
+    
+    // Attempt to determine the latest training iteration 
+    Array<File> sampleFiles;
+    this->samplesDumpFolder.findChildFiles(sampleFiles,
+                                           File::findFiles,
+                                           true,
+                                           "*.*");
+    for (const auto &file : sampleFiles)
+    {
+        StringArray fileNameParts =
+        StringArray::fromTokens(file.getFileName(), " _.", "");
+        for (const auto &fileNamePart : fileNameParts)
+        {
+            //std::cout << fileNamePart.toStdString() << ", ";
+            startingNumIterations = jmax(startingNumIterations, uint64(fileNamePart.getLargeIntValue()));
+        }
+    }
+    
+    std::cout << "Training started from iteration #" << std::to_string(startingNumIterations) << std::endl;
+    this->processor = new T(targetsFolder, targetNetwork, startingNumIterations);
+    this->processor->setDelegate(this);
 }
 
 template <typename T>
 inline TrainingPipeline<T>::~TrainingPipeline()
 {
+    this->processor->setDelegate(nullptr);
     this->processor = nullptr;
-    
 }
 
 template <typename T>
@@ -68,7 +90,7 @@ inline void TrainingPipeline<T>::onDumpSample(uint64 iteration, const String &sa
 {
     std::cout << "Dumping the sample of iteration " << iteration << std::endl << std::endl;
     
-    File sampleDumpFile = this->samplesDumpFolder.getChildFile("sample_iteration_" + String(iteration));
+    File sampleDumpFile = this->samplesDumpFolder.getChildFile("sample_iteration_" + String(iteration) + ".txt");
     sampleDumpFile.replaceWithText(sample);
     
     std::cout << sample << std::endl << std::endl;

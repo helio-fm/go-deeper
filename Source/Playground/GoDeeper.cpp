@@ -78,8 +78,8 @@ public:
         static const String mappingFileName = "Mapping.xml";
         static const String latestDumpFileName = "LatestDump.xml";
         
-        const String defaultCommandline = "init GoDeeper 192 512 192";
-        // need to filter out the xcode's shit:
+        const String defaultCommandline = "init GoDeeper 64 320 64";
+        // need to filter out the xcode's garbage:
         const bool needsDefaultCommandline =
         (commandLine.isEmpty() || commandLine == "-NSDocumentRevisionsDebugMode YES");
         
@@ -202,17 +202,17 @@ public:
                 network = nullptr;
             }
                 
-#if not defined TRAINING_MODE
-
-                {
-                    ScopedTimer timer("Saving the kernels");
-                    PugiXMLSerializer serializer;
-                    const std::string xmlString(std::move(serializer.serialize(clNetwork, TinyRNN::Keys::Hardcoded::Network)));
-                    const File xmlFile(networkDirectory.getChildFile(kernelsFileName));
-                    xmlFile.replaceWithText(xmlString);
-                }
-                
-#endif
+//#if not defined TRAINING_MODE
+//
+//                {
+//                    ScopedTimer timer("Saving the kernels");
+//                    PugiXMLSerializer serializer;
+//                    const std::string xmlString(std::move(serializer.serialize(clNetwork, TinyRNN::Keys::Hardcoded::Network)));
+//                    const File xmlFile(networkDirectory.getChildFile(kernelsFileName));
+//                    xmlFile.replaceWithText(xmlString);
+//                }
+//                
+//#endif
                 
                 {
                     ScopedTimer timer("Saving the memory mapping");
@@ -222,7 +222,7 @@ public:
                     const File xmlFile(networkDirectory.getChildFile(mappingFileName));
                     xmlFile.replaceWithText(xmlString);
                 }
-
+            
             {
                 ScopedTimer timer("Compiling");
                 //clNetwork->compile();
@@ -232,11 +232,11 @@ public:
             
                 {
                     ScopedTimer timer("Saving the sources");
-                    PugiXMLSerializer serializer;
-                    const std::string xmlString(std::move(serializer.serialize(clNetwork->getContext(),
-                                                                               TinyRNN::Keys::Hardcoded::TrainingContext)));
-                    const File xmlFile(networkDirectory.getChildFile(mappingFileName));
-                    xmlFile.replaceWithText(xmlString);
+                    for (const auto &source : sources)
+                    {
+                        const File xmlFile(networkDirectory.getChildFile(String(source.first)));
+                        xmlFile.replaceWithText(source.second);
+                    }
                 }
             
             std::cout << "All done." << std::endl;
@@ -297,13 +297,11 @@ public:
             
             if (args[0].toLowerCase() == "midi")
             {
-                ScopedTimer timer("Training with BatchMidiProcessor");
                 TrainingPipeline<BatchMidiProcessor> pipeline(nullptr, targetsDirectory, samplesDirectory, latestMemDumpFile);
                 pipeline.start();
             }
             else if (args[0].toLowerCase() == "text")
             {
-                ScopedTimer timer("Training with BatchTextProcessor");
                 TrainingPipeline<BatchTextProcessor> pipeline(nullptr, targetsDirectory, samplesDirectory, latestMemDumpFile);
                 pipeline.start();
             }

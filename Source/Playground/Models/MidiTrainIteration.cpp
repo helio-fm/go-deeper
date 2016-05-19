@@ -86,7 +86,7 @@ void MidiTrainIteration::processWith(const MidiMessageSequence &sortedSequence)
         // inputs contain holding notes
         // outputs contain note-ons
         
-        inputs.clear();
+        std::fill(inputs.begin(), inputs.end(), 0.f);
         
         // fill up the inputs with current holding notes
         for (int i = 0; i < KEY_RANGE; ++i)
@@ -130,7 +130,7 @@ void MidiTrainIteration::processWith(const MidiMessageSequence &sortedSequence)
         }
         
         // now fix the targets
-        targets.clear();
+        std::fill(targets.begin(), targets.end(), 0.f);
         
         // copy all note-ons of the current tick
         for (const auto &message : messagesOfCurrentTick)
@@ -152,8 +152,8 @@ void MidiTrainIteration::processWith(const MidiMessageSequence &sortedSequence)
     }
     
     // 2. unroll until the silence (or timeout)
-    inputs.clear();
-    targets.clear();
+    std::fill(inputs.begin(), inputs.end(), 0.f);
+    std::fill(targets.begin(), targets.end(), 0.f);
     const int unrollMaxTicks = 24 * 100; // the standard MIDI clock ticks every 24 times every quarter note
     int unrollTicks = 0;
     bool hasOutputs = true;

@@ -16,7 +16,8 @@ class BatchMidiProcessor final
 public:
     
     BatchMidiProcessor(File targetsFolder,
-                       TinyRNN::HardcodedNetwork::Ptr targetNetwork);
+                       TinyRNN::HardcodedNetwork::Ptr targetNetwork,
+                       uint64 iterationsCounter);
     
     class Delegate
     {
@@ -51,6 +52,7 @@ private:
     Array<File> targetFiles;
     int currentFileIndex;
     
+    uint64 numIterations;
     float memDumpIntervalSeconds;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(BatchMidiProcessor)
