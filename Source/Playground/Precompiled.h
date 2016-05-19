@@ -16,10 +16,8 @@
 #define TINYRNN_OPENCL_ACCELERATION 1
 #include "TinyRNN.h"
 
-#if defined TRAINING_MODE
 #include <algorithm>
 #include <math.h>
 #include <float.h>
-#endif
 
 #endif  // PRECOMPILED_H_INCLUDED

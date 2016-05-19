@@ -15,14 +15,14 @@ class MidiTrainIteration final
 {
 public:
     
-    explicit MidiTrainIteration(TinyRNN::HardcodedNetwork::Ptr targetNetwork);
+    explicit MidiTrainIteration(TinyRNN::VMNetwork::Ptr targetNetwork);
     
     // Process one iteration of training.
     void processWith(const MidiMessageSequence &sortedSequence);
     
 private:
     
-    TinyRNN::HardcodedNetwork::Ptr clNetwork;
+    TinyRNN::VMNetwork::Ptr clNetwork;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MidiTrainIteration)
 };

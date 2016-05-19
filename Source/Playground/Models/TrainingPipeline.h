@@ -16,7 +16,7 @@ class TrainingPipeline final : public T::Delegate
 {
 public:
     
-    TrainingPipeline(TinyRNN::HardcodedNetwork::Ptr targetNetwork,
+    TrainingPipeline(TinyRNN::VMNetwork::Ptr targetNetwork,
                      File targetsFolder,
                      File samplesDumpFolder,
                      File memDumpFile);
@@ -38,7 +38,7 @@ private:
 };
 
 template <typename T>
-inline TrainingPipeline<T>::TrainingPipeline(TinyRNN::HardcodedNetwork::Ptr targetNetwork,
+inline TrainingPipeline<T>::TrainingPipeline(TinyRNN::VMNetwork::Ptr targetNetwork,
                                              File targetsFolder,
                                              File samplesDumpFolder,
                                              File memoryDumpFile) :

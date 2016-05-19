@@ -16,7 +16,7 @@ class BatchMidiProcessor final
 public:
     
     BatchMidiProcessor(File targetsFolder,
-                       TinyRNN::HardcodedNetwork::Ptr targetNetwork,
+                       TinyRNN::VMNetwork::Ptr targetNetwork,
                        uint64 iterationsCounter);
     
     class Delegate
@@ -41,7 +41,7 @@ private:
     
     String dumpMemoryAsBase64();
     
-    TinyRNN::HardcodedNetwork::Ptr clNetwork;
+    TinyRNN::VMNetwork::Ptr clNetwork;
     WeakReference<Delegate> delegate;
     
     // do we need this?

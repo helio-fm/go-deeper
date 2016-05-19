@@ -15,11 +15,7 @@ class TextTrainIteration final
 {
 public:
     
-#if defined TRAINING_MODE
-    explicit TextTrainIteration();
-#else
-    explicit TextTrainIteration(TinyRNN::HardcodedNetwork::Ptr targetNetwork);
-#endif
+    explicit TextTrainIteration(TinyRNN::VMNetwork::Ptr targetNetwork);
     
     // Process one iteration of training.
     void processWith(const String &text, uint64 iterationNumber);
@@ -28,9 +24,7 @@ public:
     
 private:
     
-#if not defined TRAINING_MODE
-    TinyRNN::HardcodedNetwork::Ptr clNetwork;
-#endif
+    TinyRNN::VMNetwork::Ptr clNetwork;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(TextTrainIteration)
 };

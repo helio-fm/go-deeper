@@ -12,12 +12,8 @@
 #include "BatchTextProcessor.h"
 #include "TextTrainIteration.h"
 
-#if defined TRAINING_MODE
-#include "GoDeeper.h"
-#endif
-
 BatchTextProcessor::BatchTextProcessor(File targetsFolder,
-                                       TinyRNN::HardcodedNetwork::Ptr targetNetwork,
+                                       TinyRNN::VMNetwork::Ptr targetNetwork,
                                        uint64 iterationsCounter) :
 clNetwork(targetNetwork),
 currentFileIndex(0),
@@ -54,12 +50,7 @@ void BatchTextProcessor::start()
         
         // 1. get all the events
         const String textSequence = loadTextSequence(currentFile);
-        
-#if defined TRAINING_MODE
-        TextTrainIteration textTrainIteration;
-#else
         TextTrainIteration textTrainIteration(this->clNetwork);
-#endif
         
         {
             // 2. process them with MidiTrainer
@@ -107,10 +98,6 @@ void BatchTextProcessor::setDelegate(Delegate *targetDelegate)
 
 String BatchTextProcessor::dumpMemoryAsBase64()
 {
-#if defined TRAINING_MODE
-    return
-    String(std::move(TinyRNN::SerializationContext::encodeBase64((const unsigned char *)kMemory, sizeof(float) * kMemorySize)));
-#else
     if (this->clNetwork != nullptr)
     {
         auto context = this->clNetwork->getContext();
@@ -119,5 +106,4 @@ String BatchTextProcessor::dumpMemoryAsBase64()
                                                     sizeof(double) * context->getMemory().size());
         return String(std::move(memoryEncoded));
     }
-#endif
 }

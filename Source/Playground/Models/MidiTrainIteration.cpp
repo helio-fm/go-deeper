@@ -13,7 +13,7 @@
 
 #define KEY_RANGE 64
 
-MidiTrainIteration::MidiTrainIteration(TinyRNN::HardcodedNetwork::Ptr targetNetwork) :
+MidiTrainIteration::MidiTrainIteration(TinyRNN::VMNetwork::Ptr targetNetwork) :
 clNetwork(targetNetwork)
 {
     jassert(targetNetwork->getContext()->getOutputs().size() == KEY_RANGE);

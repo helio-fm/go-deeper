@@ -16,11 +16,6 @@
 #include "BatchMidiProcessor.h"
 #include "BatchTextProcessor.h"
 
-#if defined TRAINING_MODE
-#include "GoDeeper.h"
-#endif
-
-
 class ScopedTimer final
 {
 public:
@@ -78,7 +73,7 @@ public:
         static const String mappingFileName = "Mapping.xml";
         static const String latestDumpFileName = "LatestDump.xml";
         
-        const String defaultCommandline = "init GoDeeper 64 320 64";
+        const String defaultCommandline = "init GoDeeper 4 24 24 24 4";
         // need to filter out the xcode's garbage:
         const bool needsDefaultCommandline =
         (commandLine.isEmpty() || commandLine == "-NSDocumentRevisionsDebugMode YES");
@@ -180,8 +175,7 @@ public:
             }
             
             TinyRNN::Network::Ptr network;
-            TinyRNN::HardcodedNetwork::Ptr clNetwork;
-            TinyRNN::HardcodedNetwork::StandaloneSources sources;
+            TinyRNN::VMNetwork::Ptr vmNetwork;
             
             {
                 ScopedTimer timer("Creating a network");
@@ -197,48 +191,72 @@ public:
                 }
             
             {
-                ScopedTimer timer("Creating a hardcoded version");
-                clNetwork = network->hardcode();
+                ScopedTimer timer("Creating a vm-driven version");
+                vmNetwork = network->toVM();
+            }
+            
+                {
+                    ScopedTimer timer("Saving the kernels");
+                    PugiXMLSerializer serializer;
+                    const std::string xmlString(std::move(serializer.serialize(vmNetwork, TinyRNN::Keys::VM::Network)));
+                    const File xmlFile(networkDirectory.getChildFile(kernelsFileName));
+                    xmlFile.replaceWithText(xmlString);
+                }
+            
+                {
+                    ScopedTimer timer("Saving the memory mapping");
+                    PugiXMLSerializer serializer;
+                    const std::string xmlString(std::move(serializer.serialize(vmNetwork->getContext(),
+                                                                               TinyRNN::Keys::Hardcoded::TrainingContext)));
+                    const File xmlFile(networkDirectory.getChildFile(mappingFileName + ".Full.xml"));
+                    xmlFile.replaceWithText(xmlString);
+                }
+            
+                {
+                    ScopedTimer timer("Saving the lite memory mapping");
+                    vmNetwork->getContext()->clearMappings();
+                    PugiXMLSerializer serializer;
+                    const std::string xmlString(std::move(serializer.serialize(vmNetwork->getContext(),
+                                                                               TinyRNN::Keys::Hardcoded::TrainingContext)));
+                    const File xmlFile(networkDirectory.getChildFile(mappingFileName));
+                    xmlFile.replaceWithText(xmlString);
+                    vmNetwork = nullptr;
+                }
+                
+            {
+                ScopedTimer timer("Creating a feed-only vm-driven version");
+                vmNetwork = network->toFeedOnlyVM();
                 network = nullptr;
             }
                 
-//#if not defined TRAINING_MODE
-//
-//                {
-//                    ScopedTimer timer("Saving the kernels");
-//                    PugiXMLSerializer serializer;
-//                    const std::string xmlString(std::move(serializer.serialize(clNetwork, TinyRNN::Keys::Hardcoded::Network)));
-//                    const File xmlFile(networkDirectory.getChildFile(kernelsFileName));
-//                    xmlFile.replaceWithText(xmlString);
-//                }
-//                
-//#endif
+                {
+                    ScopedTimer timer("Saving the kernels");
+                    PugiXMLSerializer serializer;
+                    const std::string xmlString(std::move(serializer.serialize(vmNetwork, TinyRNN::Keys::VM::Network)));
+                    const File xmlFile(networkDirectory.getChildFile(kernelsFileName + "FeedOnly.xml"));
+                    xmlFile.replaceWithText(xmlString);
+                }
                 
                 {
                     ScopedTimer timer("Saving the memory mapping");
                     PugiXMLSerializer serializer;
-                    const std::string xmlString(std::move(serializer.serialize(clNetwork->getContext(),
+                    const std::string xmlString(std::move(serializer.serialize(vmNetwork->getContext(),
                                                                                TinyRNN::Keys::Hardcoded::TrainingContext)));
-                    const File xmlFile(networkDirectory.getChildFile(mappingFileName));
+                    const File xmlFile(networkDirectory.getChildFile(mappingFileName + ".FeedOnly.Full.xml"));
                     xmlFile.replaceWithText(xmlString);
                 }
-            
-            {
-                ScopedTimer timer("Compiling");
-                //clNetwork->compile();
-                sources = clNetwork->asStandalone("GoDeeper", false);
-                clNetwork = nullptr;
-            }
-            
+                
                 {
-                    ScopedTimer timer("Saving the sources");
-                    for (const auto &source : sources)
-                    {
-                        const File xmlFile(networkDirectory.getChildFile(String(source.first)));
-                        xmlFile.replaceWithText(source.second);
-                    }
+                    ScopedTimer timer("Saving the lite memory mapping");
+                    vmNetwork->getContext()->clearMappings();
+                    PugiXMLSerializer serializer;
+                    const std::string xmlString(std::move(serializer.serialize(vmNetwork->getContext(),
+                                                                               TinyRNN::Keys::Hardcoded::TrainingContext)));
+                    const File xmlFile(networkDirectory.getChildFile(mappingFileName + "FeedOnly.xml"));
+                    xmlFile.replaceWithText(xmlString);
+                    vmNetwork = nullptr;
                 }
-            
+                
             std::cout << "All done." << std::endl;
             this->quit();
             return;
@@ -284,29 +302,6 @@ public:
                 this->quit();
                 return;
             }
-            
-#if defined TRAINING_MODE
-
-            if (latestMemDumpFile.existsAsFile())
-            {
-                ScopedTimer timer("Loading the latest memory dump");
-                const std::string &memoryEncoded = latestMemDumpFile.loadFileAsString().toStdString();
-                const std::vector<unsigned char> &memoryDecoded = TinyRNN::SerializationContext::decodeBase64(memoryEncoded);
-                memcpy(kMemory, memoryDecoded.data(), sizeof(unsigned char) * memoryDecoded.size());
-            }
-            
-            if (args[0].toLowerCase() == "midi")
-            {
-                TrainingPipeline<BatchMidiProcessor> pipeline(nullptr, targetsDirectory, samplesDirectory, latestMemDumpFile);
-                pipeline.start();
-            }
-            else if (args[0].toLowerCase() == "text")
-            {
-                TrainingPipeline<BatchTextProcessor> pipeline(nullptr, targetsDirectory, samplesDirectory, latestMemDumpFile);
-                pipeline.start();
-            }
-            
-#else
            
             if (! kernelsFile.existsAsFile() ||
                 ! mappingFile.existsAsFile())
@@ -317,15 +312,15 @@ public:
             }
             
             TinyRNN::HardcodedTrainingContext::Ptr mappings(new TinyRNN::HardcodedTrainingContext());
-            TinyRNN::HardcodedNetwork::Ptr clNetwork(new TinyRNN::HardcodedNetwork(mappings));
+            TinyRNN::VMNetwork::Ptr vmNetwork(new TinyRNN::VMNetwork(mappings));
             
             {
                 ScopedTimer timer("Loading the kernels");
                 PugiXMLSerializer serializer;
-                serializer.deserialize(clNetwork, kernelsFile.loadFileAsString().toStdString());
+                serializer.deserialize(vmNetwork, kernelsFile.loadFileAsString().toStdString());
             }
             
-            {
+            { // Here we do not need the mappings actually, only the rest stuff
                 ScopedTimer timer("Loading the mapping");
                 PugiXMLSerializer serializer;
                 serializer.deserialize(mappings, mappingFile.loadFileAsString().toStdString());
@@ -336,27 +331,26 @@ public:
                 ScopedTimer timer("Loading the latest memory dump");
                 const std::string &memoryEncoded = latestMemDumpFile.loadFileAsString().toStdString();
                 const std::vector<unsigned char> &memoryDecoded = TinyRNN::SerializationContext::decodeBase64(memoryEncoded);
-                memcpy(mappings->getMemory().data(), memoryDecoded.data(), sizeof(unsigned char) * memoryDecoded.size());
-            }
-            
-            {
-                ScopedTimer timer("Compiling");
-                clNetwork->compile();
+                
+                // What a hack
+                //const size_t memoryVectorSize = (memoryDecoded.size() / sizeof(TinyRNN::Value));
+                //mappings->getMemory().resize(memoryVectorSize);
+                
+                memcpy(mappings->getMemory().data(), memoryDecoded.data(), memoryDecoded.size());
             }
             
             if (args[0].toLowerCase() == "midi")
             {
                 ScopedTimer timer("Training with BatchMidiProcessor");
-                TrainingPipeline<BatchMidiProcessor> pipeline(clNetwork, targetsDirectory, samplesDirectory, latestMemDumpFile);
+                TrainingPipeline<BatchMidiProcessor> pipeline(vmNetwork, targetsDirectory, samplesDirectory, latestMemDumpFile);
                 pipeline.start();
             }
             else if (args[0].toLowerCase() == "text")
             {
                 ScopedTimer timer("Training with BatchTextProcessor");
-                TrainingPipeline<BatchTextProcessor> pipeline(clNetwork, targetsDirectory, samplesDirectory, latestMemDumpFile);
+                TrainingPipeline<BatchTextProcessor> pipeline(vmNetwork, targetsDirectory, samplesDirectory, latestMemDumpFile);
                 pipeline.start();
             }
-#endif
             
             this->quit();
             return;
