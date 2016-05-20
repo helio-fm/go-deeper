@@ -212,10 +212,10 @@ void TextTrainIteration::processWith(const String &text, uint64 iterationNumber)
 {
     // 1. go through events and train the network
     
-    const int backpropTruncate = 20;
+    const int backpropTruncate = 10;
     int backpropCounter = 0;
     int currentCharIndex = 0;
-    const float rate = 0.5f; //rateForIteration(iterationNumber);
+    const float rate = rateForIteration(iterationNumber);
     
     // presuming that we have a lstm like
     // ALPHABET_RANGE -> ... -> ALPHABET_RANGE
@@ -245,6 +245,7 @@ void TextTrainIteration::processWith(const String &text, uint64 iterationNumber)
             std::fill(targets.begin(), targets.end(), 0.f);
             const bool isLastChar = (currentCharIndex == (text.length() - 1));
             int nextCharNodeIndex = isLastChar ? inputNodeIndexByChar40('\n') : inputNodeIndexByChar40(text[currentCharIndex + 1]);
+            
             for (int i = 0; i < ALPHABET_RANGE; ++i)
             {
                 targets[i] = (i == nextCharNodeIndex) ? 1.f : 0.f;
@@ -313,7 +314,7 @@ String TextTrainIteration::generateSample() const
             outputsMapSortedByValue.insert(std::pair<float, int>(outputs[i], i));
         }
         
-        int chance = 4;
+        int chance = 3;
         for (auto j = outputsMapSortedByValue.begin(); j != outputsMapSortedByValue.end(); ++j)
         {
             const int r = (rand() % 10);
