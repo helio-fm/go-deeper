@@ -193,18 +193,14 @@ juce_wchar charByOutputNodeIndex40(int nodeIndex)
 float rateForIteration(uint64 iterationNumber)
 {
     if (iterationNumber < 100) {
-        return 0.75f;
+        return 0.15f;
     }
     
     if (iterationNumber < 250) {
-        return 0.5f;
+        return 0.1f;
     }
     
-    if (iterationNumber < 500) {
-        return 0.35f;
-    }
-    
-    return 0.2f;
+    return 0.05f;
 }
 
 // Process one iteration of training.
@@ -212,7 +208,7 @@ void TextTrainIteration::processWith(const String &text, uint64 iterationNumber)
 {
     // 1. go through events and train the network
     
-    const int backpropTruncate = 10;
+    //const int backpropTruncate = 10;
     int backpropCounter = 0;
     int currentCharIndex = 0;
     const float rate = rateForIteration(iterationNumber);
@@ -240,7 +236,7 @@ void TextTrainIteration::processWith(const String &text, uint64 iterationNumber)
         this->clNetwork->feed(inputs);
         
         
-        if (++backpropCounter % backpropTruncate == 0)
+        //if (++backpropCounter % backpropTruncate == 0)
         {
             std::fill(targets.begin(), targets.end(), 0.f);
             const bool isLastChar = (currentCharIndex == (text.length() - 1));
@@ -290,7 +286,7 @@ String TextTrainIteration::generateSample() const
 {
     srand(time(NULL));
     
-    const int seedLength = 10;
+    const int seedLength = 5;
     TinyRNN::HardcodedTrainingContext::RawData inputs;
     inputs.resize(ALPHABET_RANGE);
     
