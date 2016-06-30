@@ -117,7 +117,7 @@ String BatchMidiProcessor::dumpMemoryAsBase64()
         auto context = this->clNetwork->getContext();
         const std::string memoryEncoded =
         TinyRNN::SerializationContext::encodeBase64((const unsigned char *)context->getMemory().data(),
-                                                    sizeof(double) * context->getMemory().size());
+                                                    sizeof(TinyRNN::Value) * context->getMemory().size());
         return String(std::move(memoryEncoded));
     }
     
