@@ -13,7 +13,7 @@
 
 #include "JuceHeader.h"
 
-#define TINYRNN_OPENCL_ACCELERATION 1
+#define TINYRNN_OPENCL_ACCELERATION 0
 #include "TinyRNN.h"
 
 #include <algorithm>

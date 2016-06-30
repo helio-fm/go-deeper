@@ -2,7 +2,9 @@
 
 # Connect
 chmod 400 ./TestInstance2.pem
-ssh -i ./TestInstance2.pem ubuntu@ec2-52-38-189-143.us-west-2.compute.amazonaws.com
+ssh -i ./TestInstance2.pem ubuntu@ec2-52-42-13-8.us-west-2.compute.amazonaws.com
+
+scp -rp -i ./TestInstance2.pem ./* ubuntu@ec2-52-42-13-8.us-west-2.compute.amazonaws.com:~/Deeper/
 
 
 # Add paging:
@@ -61,10 +63,10 @@ sudo apt-get -f install
 sudo apt-get install -y libfreetype6-dev libxrandr-dev libxinerama-dev libasound-dev
 
 # Build GoDeeper trainer
-git clone https://github.com/peterrudenko/GoDeeper.git
+git clone -b develop https://github.com/peterrudenko/GoDeeper.git
 pushd GoDeeper
-    git submodule init && git submodule update && git submodule status
     git checkout develop
+    git submodule init && git submodule update && git submodule status
 
     # Fetch OpenCL C++ binding
     mkdir -p ./Source/Playground/OpenCL
