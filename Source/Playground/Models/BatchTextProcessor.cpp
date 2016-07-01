@@ -37,12 +37,26 @@ static String loadTextSequence(File file)
     return file.loadFileAsString();
 }
 
+static float rateForIteration(uint64 iterationNumber)
+{
+    if (iterationNumber < 100) {
+        return 0.01f;
+    }
+    
+    if (iterationNumber < 250) {
+        return 0.005f;
+    }
+    
+    return 0.001f;
+}
+
 void BatchTextProcessor::start()
 {
     uint32 lastDumpTimestamp = Time::getMillisecondCounter();
     bool shouldContinue = true;
     const uint64 memoryDumpTimeout = (1000 * 60 * 15);
     const uint64 samplesDumpMaxIterations = 20;
+    bool supervised = true;
     
     do
     {
@@ -52,10 +66,26 @@ void BatchTextProcessor::start()
         const String textSequence = loadTextSequence(currentFile);
         TextTrainIteration textTrainIteration(this->clNetwork);
         
+        if (supervised)
+        {
+            std::cout << "Enter the learning rate for this iteration (0 to continue in automatic mode): ";
+            std::string userRate;
+            std::getline(std::cin, userRate);
+            float rate = stof(userRate);
+            if (rate <= 0.f || rate >= 1.f)
+            {
+                supervised = false;
+                rate = rateForIteration(this->numIterations);
+            }
+            
+            TinyRNN::ScopedTimer timer("Training with " + currentFile.getFileName().toStdString());
+            textTrainIteration.processWith(textSequence, rate);
+        }
+        else
         {
             // 2. process them with MidiTrainer
             TinyRNN::ScopedTimer timer("Training with " + currentFile.getFileName().toStdString());
-            textTrainIteration.processWith(textSequence, this->numIterations);
+            textTrainIteration.processWith(textSequence, rateForIteration(this->numIterations));
         }
         
         this->numIterations++;
@@ -63,7 +93,8 @@ void BatchTextProcessor::start()
         // 3. once X time passed, dump memory
         const uint32 millisecondsPassed = (Time::getMillisecondCounter() - lastDumpTimestamp);
         
-        if (millisecondsPassed > memoryDumpTimeout)
+        if (supervised ||
+            millisecondsPassed > memoryDumpTimeout)
         {
             lastDumpTimestamp = Time::getMillisecondCounter();
             
@@ -73,11 +104,13 @@ void BatchTextProcessor::start()
             }
         }
         
-        if ((this->numIterations % samplesDumpMaxIterations) == 0)
+        if (supervised ||
+            (this->numIterations % samplesDumpMaxIterations) == 0)
         {
             if (this->delegate != nullptr)
             {
-                this->delegate->onDumpSample(this->numIterations, textTrainIteration.generateSample());
+                this->delegate->onDumpSample(this->numIterations,
+                                             textTrainIteration.generateSample());
             }
         }
         

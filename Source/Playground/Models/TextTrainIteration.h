@@ -18,7 +18,7 @@ public:
     explicit TextTrainIteration(TinyRNN::VMNetwork::Ptr targetNetwork);
     
     // Process one iteration of training.
-    void processWith(const String &text, uint64 iterationNumber);
+    void processWith(const String &text, float rate);
     String generateSample() const;
     void test();
     
