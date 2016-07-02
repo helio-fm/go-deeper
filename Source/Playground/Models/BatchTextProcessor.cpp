@@ -27,6 +27,7 @@ memDumpIntervalSeconds(10.f)
                                      true,
                                      "*.txt;*.xml");
         
+        this->targetFiles.sort();
         this->currentFileIndex = iterationsCounter % this->targetFiles.size();
     }
 }
