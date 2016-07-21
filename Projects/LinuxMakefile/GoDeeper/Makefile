@@ -21,7 +21,7 @@ ifeq ($(CONFIG),Release)
   CPPFLAGS := $(DEPFLAGS) -D "LINUX=1" -D "NDEBUG=1" -D "JUCER_LINUX_MAKE_692442C7=1" -D "JUCE_APP_VERSION=1.0.0" -D "JUCE_APP_VERSION_HEX=0x10000" -I /usr/include -I /usr/include/freetype2 -I ../../Introjucer/JuceLibraryCode -I ../../../ThirdParty/JUCE/modules -I /usr/local/include -I ./../../../ThirdParty/pugixml/src -I ./../../../ThirdParty/TinyRNN/Source -I ./../../../Resources/Hardcoded -I ./../../../Source/Playground -I ./../../../Source/Playground/Models -I ./../../../Source/Playground/UI
   CFLAGS += $(CPPFLAGS) $(TARGET_ARCH) -O3
   CXXFLAGS += $(CFLAGS) -std=c++11
-  LDFLAGS += $(TARGET_ARCH) -L$(BINDIR) -L$(LIBDIR) -fvisibility=hidden -L/usr/X11R6/lib/ -lX11 -ldl -lpthread -lrt -lOpenCL
+  LDFLAGS += $(TARGET_ARCH) -L$(BINDIR) -L$(LIBDIR) -fvisibility=hidden -L/usr/X11R6/lib/ -lX11 -ldl -lpthread -lrt 
 
   TARGET := GoDeeper
   BLDCMD = $(CXX) -o $(OUTDIR)/$(TARGET) $(OBJECTS) $(LDFLAGS) $(RESOURCES) $(TARGET_ARCH)
