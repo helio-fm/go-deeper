@@ -13,7 +13,7 @@
 #include "MidiTrainIteration.h"
 
 BatchMidiProcessor::BatchMidiProcessor(File targetsFolder,
-                                       TinyRNN::VMNetwork::Ptr targetNetwork,
+                                       TinyRNN::UnrolledNetwork::Ptr targetNetwork,
                                        uint64 iterationsCounter) :
 clNetwork(targetNetwork),
 currentFileIndex(0),

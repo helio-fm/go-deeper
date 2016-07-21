@@ -13,7 +13,7 @@
 #include "TextTrainIteration.h"
 
 BatchTextProcessor::BatchTextProcessor(File targetsFolder,
-                                       TinyRNN::VMNetwork::Ptr targetNetwork,
+                                       TinyRNN::UnrolledNetwork::Ptr targetNetwork,
                                        uint64 iterationsCounter) :
 clNetwork(targetNetwork),
 currentFileIndex(0),
@@ -140,4 +140,6 @@ String BatchTextProcessor::dumpMemoryAsBase64()
                                                     sizeof(TinyRNN::Value) * context->getMemory().size());
         return String(std::move(memoryEncoded));
     }
+    
+    return String();
 }

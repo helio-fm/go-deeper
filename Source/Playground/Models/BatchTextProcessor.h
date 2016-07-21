@@ -16,7 +16,7 @@ class BatchTextProcessor final
 public:
     
     BatchTextProcessor(File targetsFolder,
-                       TinyRNN::VMNetwork::Ptr targetNetwork,
+                       TinyRNN::UnrolledNetwork::Ptr targetNetwork,
                        uint64 iterationsCounter);
     
     class Delegate
@@ -41,7 +41,7 @@ private:
     
     String dumpMemoryAsBase64();
     
-    TinyRNN::VMNetwork::Ptr clNetwork;
+    TinyRNN::UnrolledNetwork::Ptr clNetwork;
     WeakReference<Delegate> delegate;
     
     Array<File> targetFiles;

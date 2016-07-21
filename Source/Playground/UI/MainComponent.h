@@ -38,7 +38,7 @@ private:
     //[UserVariables]
 
     TinyRNN::Network::Ptr network;
-    TinyRNN::HardcodedNetwork::Ptr clNetwork;
+    TinyRNN::UnrolledNetwork::Ptr clNetwork;
 
     //[/UserVariables]
 

@@ -177,7 +177,7 @@ public:
             }
             
             TinyRNN::Network::Ptr network;
-            TinyRNN::VMNetwork::Ptr vmNetwork;
+            TinyRNN::UnrolledNetwork::Ptr vmNetwork;
             
             {
                 ScopedTimer timer("Creating a network");
@@ -200,7 +200,7 @@ public:
                 {
                     ScopedTimer timer("Saving the kernels");
                     PugiXMLSerializer serializer;
-                    const std::string xmlString(std::move(serializer.serialize(vmNetwork, TinyRNN::Keys::VM::Network)));
+                    const std::string xmlString(std::move(serializer.serialize(vmNetwork, TinyRNN::Keys::Unrolled::Network)));
                     const File xmlFile(networkDirectory.getChildFile(kernelsFileName));
                     xmlFile.replaceWithText(xmlString);
                 }
@@ -209,7 +209,7 @@ public:
                     ScopedTimer timer("Saving the memory mapping");
                     PugiXMLSerializer serializer;
                     const std::string xmlString(std::move(serializer.serialize(vmNetwork->getContext(),
-                                                                               TinyRNN::Keys::Hardcoded::TrainingContext)));
+                                                                               TinyRNN::Keys::Unrolled::TrainingContext)));
                     const File xmlFile(networkDirectory.getChildFile(mappingFileName + ".Full.xml"));
                     xmlFile.replaceWithText(xmlString);
                 }
@@ -219,7 +219,7 @@ public:
                     vmNetwork->getContext()->clearMappings();
                     PugiXMLSerializer serializer;
                     const std::string xmlString(std::move(serializer.serialize(vmNetwork->getContext(),
-                                                                               TinyRNN::Keys::Hardcoded::TrainingContext)));
+                                                                               TinyRNN::Keys::Unrolled::TrainingContext)));
                     const File xmlFile(networkDirectory.getChildFile(mappingFileName));
                     xmlFile.replaceWithText(xmlString);
                     vmNetwork = nullptr;
@@ -227,14 +227,14 @@ public:
                 
             {
                 ScopedTimer timer("Creating a feed-only vm-driven version");
-                vmNetwork = network->toFeedOnlyVM();
+                vmNetwork = network->toStaticVM();
                 network = nullptr;
             }
                 
                 {
                     ScopedTimer timer("Saving the kernels");
                     PugiXMLSerializer serializer;
-                    const std::string xmlString(std::move(serializer.serialize(vmNetwork, TinyRNN::Keys::VM::Network)));
+                    const std::string xmlString(std::move(serializer.serialize(vmNetwork, TinyRNN::Keys::Unrolled::Network)));
                     const File xmlFile(networkDirectory.getChildFile(kernelsFileName + "FeedOnly.xml"));
                     xmlFile.replaceWithText(xmlString);
                 }
@@ -243,7 +243,7 @@ public:
                     ScopedTimer timer("Saving the memory mapping");
                     PugiXMLSerializer serializer;
                     const std::string xmlString(std::move(serializer.serialize(vmNetwork->getContext(),
-                                                                               TinyRNN::Keys::Hardcoded::TrainingContext)));
+                                                                               TinyRNN::Keys::Unrolled::TrainingContext)));
                     const File xmlFile(networkDirectory.getChildFile(mappingFileName + ".FeedOnly.Full.xml"));
                     xmlFile.replaceWithText(xmlString);
                 }
@@ -253,7 +253,7 @@ public:
                     vmNetwork->getContext()->clearMappings();
                     PugiXMLSerializer serializer;
                     const std::string xmlString(std::move(serializer.serialize(vmNetwork->getContext(),
-                                                                               TinyRNN::Keys::Hardcoded::TrainingContext)));
+                                                                               TinyRNN::Keys::Unrolled::TrainingContext)));
                     const File xmlFile(networkDirectory.getChildFile(mappingFileName + "FeedOnly.xml"));
                     xmlFile.replaceWithText(xmlString);
                     vmNetwork = nullptr;
@@ -313,8 +313,8 @@ public:
                 return;
             }
             
-            TinyRNN::HardcodedTrainingContext::Ptr mappings(new TinyRNN::HardcodedTrainingContext());
-            TinyRNN::VMNetwork::Ptr vmNetwork(new TinyRNN::VMNetwork(mappings));
+            TinyRNN::UnrolledTrainingContext::Ptr mappings(new TinyRNN::UnrolledTrainingContext());
+            TinyRNN::UnrolledNetwork::Ptr vmNetwork(new TinyRNN::UnrolledNetwork(mappings));
             
             { // Here we do not need the mappings actually, only the rest stuff
                 ScopedTimer timer("Loading the mapping");

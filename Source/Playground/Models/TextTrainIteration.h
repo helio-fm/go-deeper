@@ -15,7 +15,7 @@ class TextTrainIteration final
 {
 public:
     
-    explicit TextTrainIteration(TinyRNN::VMNetwork::Ptr targetNetwork);
+    explicit TextTrainIteration(TinyRNN::UnrolledNetwork::Ptr targetNetwork);
     
     // Process one iteration of training.
     void processWith(const String &text, float rate);
@@ -24,7 +24,7 @@ public:
     
 private:
     
-    TinyRNN::VMNetwork::Ptr clNetwork;
+    TinyRNN::UnrolledNetwork::Ptr clNetwork;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(TextTrainIteration)
 };

@@ -16,7 +16,7 @@
 
 #define ALPHABET_RANGE 40
 
-TextTrainIteration::TextTrainIteration(TinyRNN::VMNetwork::Ptr targetNetwork) :
+TextTrainIteration::TextTrainIteration(TinyRNN::UnrolledNetwork::Ptr targetNetwork) :
 clNetwork(targetNetwork)
 {
     jassert(targetNetwork->getContext()->getOutputs().size() == ALPHABET_RANGE);
@@ -191,18 +191,49 @@ juce_wchar charByOutputNodeIndex40(int nodeIndex)
 #pragma mark - Processing
 
 // Process one iteration of training.
+//void TextTrainIteration::processWith(const String &text, float rate)
+//{
+//    int currentCharIndex = 0;
+//    const size_t emptyTrainIterations = 2; // For some zeroes at the end, both inputs and targets
+//    const size_t numBatches = text.length() + emptyTrainIterations;
+//    
+//    TinyRNN::UnrolledTrainingContext::RawData inputs;
+//    inputs.resize(ALPHABET_RANGE * numBatches);
+//    std::fill(inputs.begin(), inputs.end(), 0.f);
+//    
+//    TinyRNN::UnrolledTrainingContext::RawData targets;
+//    targets.resize(ALPHABET_RANGE * numBatches);
+//    std::fill(targets.begin(), targets.end(), 0.f);
+//    
+//    while (currentCharIndex < text.length())
+//    {
+//        const int currentCharNodeIndex = inputNodeIndexByChar40(text[currentCharIndex]);
+//        const size_t inputBaseIndex = currentCharIndex * ALPHABET_RANGE;
+//        inputs[inputBaseIndex + currentCharNodeIndex] = 1.f;
+//        
+//        const bool isLastChar = (currentCharIndex == (text.length() - 1));
+//        const int nextCharNodeIndex = isLastChar ? inputNodeIndexByChar40('\n') : inputNodeIndexByChar40(text[currentCharIndex + 1]);
+//        const size_t targetBaseIndex = currentCharIndex * ALPHABET_RANGE;
+//        targets[targetBaseIndex + nextCharNodeIndex] = 1.f;
+//        
+//        currentCharIndex++;
+//    }
+//    
+//    this->clNetwork->batchTrain(rate, numBatches, ALPHABET_RANGE, ALPHABET_RANGE, inputs, targets);
+//}
+
 void TextTrainIteration::processWith(const String &text, float rate)
 {
     // 1. go through events and train the network
     
     //const int backpropTruncate = 10;
-    int backpropCounter = 0;
+    //int backpropCounter = 0;
     int currentCharIndex = 0;
     
-    TinyRNN::HardcodedTrainingContext::RawData inputs;
+    TinyRNN::UnrolledTrainingContext::RawData inputs;
     inputs.resize(ALPHABET_RANGE);
     
-    TinyRNN::HardcodedTrainingContext::RawData targets;
+    TinyRNN::UnrolledTrainingContext::RawData targets;
     targets.resize(ALPHABET_RANGE);
     
     while (currentCharIndex < text.length())
@@ -241,7 +272,7 @@ String TextTrainIteration::generateSample() const
     srand(time(NULL));
     
     const int seedLength = 10;
-    TinyRNN::HardcodedTrainingContext::RawData inputs;
+    TinyRNN::UnrolledTrainingContext::RawData inputs;
     inputs.resize(ALPHABET_RANGE);
     
     for (int i = 0; i < seedLength; ++i)
@@ -254,6 +285,15 @@ String TextTrainIteration::generateSample() const
     
     String result;
     const int sampleLength = 500;
+    
+//    // Softmax
+//    Vector y = mlp(x); // output of the neural network without softmax activation function
+//    double ymax = maximal component of y
+//    for(int f = 0; f < y.rows(); f++)
+//        y(f) = fexp(y(f) - ymax);
+//    y /= y.sum();
+    
+    
     
     for (int i = 0; i < sampleLength; ++i)
     {

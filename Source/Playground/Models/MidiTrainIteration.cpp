@@ -13,7 +13,7 @@
 
 #define KEY_RANGE 64
 
-MidiTrainIteration::MidiTrainIteration(TinyRNN::VMNetwork::Ptr targetNetwork) :
+MidiTrainIteration::MidiTrainIteration(TinyRNN::UnrolledNetwork::Ptr targetNetwork) :
 clNetwork(targetNetwork)
 {
     jassert(targetNetwork->getContext()->getOutputs().size() == KEY_RANGE);
@@ -49,7 +49,8 @@ static int midiKeyToArperRangeKey(int midiKey)
 
 static int arperRangeKeyToMidiKey(int arperRangeKey)
 {
-    
+    // TODO
+    return 0;
 }
 
 // Process one iteration of training.
@@ -72,10 +73,10 @@ void MidiTrainIteration::processWith(const MidiMessageSequence &sortedSequence)
     
     // presuming that we have a lstm like 128 -> ... -> 128
     
-    TinyRNN::HardcodedTrainingContext::RawData inputs;
+    TinyRNN::UnrolledTrainingContext::RawData inputs;
     inputs.resize(KEY_RANGE);
     
-    TinyRNN::HardcodedTrainingContext::RawData targets;
+    TinyRNN::UnrolledTrainingContext::RawData targets;
     targets.resize(KEY_RANGE);
     
     std::unordered_map<int, double> holdingNotes;

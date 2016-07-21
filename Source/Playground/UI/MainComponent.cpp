@@ -251,8 +251,8 @@ void MainComponent::buttonClicked (Button* buttonThatWasClicked)
         //[UserButtonCode_hardcodeButton] -- add your button handler code here..
         if (this->network != nullptr)
         {
-            TinyRNN::ScopedTimer timer("Hardcoding a network");
-            this->clNetwork = this->network->hardcode();
+            //TinyRNN::ScopedTimer timer("Hardcoding a network");
+            //this->clNetwork = this->network->hardcode();
         }
         //[/UserButtonCode_hardcodeButton]
     }
@@ -261,8 +261,8 @@ void MainComponent::buttonClicked (Button* buttonThatWasClicked)
         //[UserButtonCode_compileButton] -- add your button handler code here..
         if (this->clNetwork != nullptr)
         {
-            TinyRNN::ScopedTimer timer("Compiling a network");
-            this->clNetwork->compile();
+            //TinyRNN::ScopedTimer timer("Compiling a network");
+            //this->clNetwork->compile();
         }
         //[/UserButtonCode_compileButton]
     }
@@ -276,11 +276,11 @@ void MainComponent::buttonClicked (Button* buttonThatWasClicked)
         //[UserButtonCode_saveTopoButton] -- add your button handler code here..
         if (this->network != nullptr)
         {
-            TinyRNN::ScopedTimer timer("Serializing a network topology");
-            JuceXMLSerializer serializer;
-            File topoXml = File::getSpecialLocation(File::currentExecutableFile).getSiblingFile("topo.xml");
-            topoXml.replaceWithText(serializer.serialize(this->network,
-                                                         TinyRNN::Keys::Core::Network));
+            //TinyRNN::ScopedTimer timer("Serializing a network topology");
+            //JuceXMLSerializer serializer;
+            //File topoXml = File::getSpecialLocation(File::currentExecutableFile).getSiblingFile("topo.xml");
+            //topoXml.replaceWithText(serializer.serialize(this->network,
+            //                                             TinyRNN::Keys::Core::Network));
         }
         //[/UserButtonCode_saveTopoButton]
     }
@@ -289,11 +289,11 @@ void MainComponent::buttonClicked (Button* buttonThatWasClicked)
         //[UserButtonCode_saveStateButton] -- add your button handler code here..
         if (this->network != nullptr)
         {
-            TinyRNN::ScopedTimer timer("Serializing a network state");
-            JuceXMLSerializer serializer;
-            File stateXml = File::getSpecialLocation(File::currentExecutableFile).getSiblingFile("state.xml");
-            stateXml.replaceWithText(serializer.serialize(this->network->getContext(),
-                                                          TinyRNN::Keys::Core::TrainingContext));
+            //TinyRNN::ScopedTimer timer("Serializing a network state");
+            //JuceXMLSerializer serializer;
+            //File stateXml = File::getSpecialLocation(File::currentExecutableFile).getSiblingFile("state.xml");
+            //stateXml.replaceWithText(serializer.serialize(this->network->getContext(),
+            //                                              TinyRNN::Keys::Core::TrainingContext));
         }
         //[/UserButtonCode_saveStateButton]
     }
@@ -302,11 +302,11 @@ void MainComponent::buttonClicked (Button* buttonThatWasClicked)
         //[UserButtonCode_saveHardcodedTopoButton] -- add your button handler code here..
         if (this->clNetwork != nullptr)
         {
-            TinyRNN::ScopedTimer timer("Serializing a hardcoded network kernels");
-            JuceXMLSerializer serializer;
-            File kernelsXml = File::getSpecialLocation(File::currentExecutableFile).getSiblingFile("kernels.xml");
-            kernelsXml.replaceWithText(serializer.serialize(this->clNetwork,
-                                                            TinyRNN::Keys::Hardcoded::Network));
+            //TinyRNN::ScopedTimer timer("Serializing a hardcoded network kernels");
+            //JuceXMLSerializer serializer;
+            //File kernelsXml = File::getSpecialLocation(File::currentExecutableFile).getSiblingFile("kernels.xml");
+            //kernelsXml.replaceWithText(serializer.serialize(this->clNetwork,
+            //                                                TinyRNN::Keys::Hardcoded::Network));
         }
         //[/UserButtonCode_saveHardcodedTopoButton]
     }
@@ -315,11 +315,11 @@ void MainComponent::buttonClicked (Button* buttonThatWasClicked)
         //[UserButtonCode_saveHardcodedStateButton] -- add your button handler code here..
         if (this->clNetwork != nullptr)
         {
-            TinyRNN::ScopedTimer timer("Serializing a hardcoded network memory");
-            JuceXMLSerializer serializer;
-            File memoryXml = File::getSpecialLocation(File::currentExecutableFile).getSiblingFile("memory.xml");
-            memoryXml.replaceWithText(serializer.serialize(this->clNetwork->getContext(),
-                                                           TinyRNN::Keys::Hardcoded::TrainingContext));
+            //TinyRNN::ScopedTimer timer("Serializing a hardcoded network memory");
+            //JuceXMLSerializer serializer;
+            //File memoryXml = File::getSpecialLocation(File::currentExecutableFile).getSiblingFile("memory.xml");
+            //memoryXml.replaceWithText(serializer.serialize(this->clNetwork->getContext(),
+            //                                               TinyRNN::Keys::Hardcoded::TrainingContext));
         }
         //[/UserButtonCode_saveHardcodedStateButton]
     }
