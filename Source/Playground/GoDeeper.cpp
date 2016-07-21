@@ -56,7 +56,22 @@ int main (int argc, char* argv[])
     static const String mappingFileName = "Mapping.xml";
     static const String latestDumpFileName = "LatestDump.xml";
     
-    const String commandLine = JUCEApplicationBase::getCommandLineParameters();
+    //const String commandLine = JUCEApplicationBase::getCommandLineParameters();
+    String commandLine;
+    
+    for (int i = 1; i < argc; ++i)
+    {
+        String arg (argv[i]);
+        
+        if (arg.containsChar (' ') && ! arg.isQuotedString())
+            arg = arg.quoted ('"');
+        
+        commandLine << arg << ' ';
+    }
+    
+    commandLine.trim();
+    
+    
     const String defaultCommandline = "init GoDeeper 40 120 120 40";
     //const String defaultCommandline = "text Deeper targets=Training";
     
