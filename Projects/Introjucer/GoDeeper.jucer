@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="NtTT2W" name="GoDeeper" projectType="guiapp" version="1.0.0"
               bundleIdentifier="com.peterrudenko.GoDeeper" includeBinaryInAppConfig="1"
-              jucerVersion="4.2.0">
+              jucerVersion="4.2.1">
   <MAINGROUP id="yXzcEv" name="GoDeeper">
     <GROUP id="{79CDBC84-AA00-53E0-AF14-46C0DDAFF2E1}" name="Source">
       <GROUP id="{5FF0CFD8-384F-D0A6-B315-9618BA55DBCB}" name="Models">
@@ -17,11 +17,11 @@
                 file="../../Source/Playground/Models/TextTrainIteration.h"/>
         </GROUP>
         <GROUP id="{EC3D3262-33EF-0637-169B-DBBE860171AE}" name="Midi">
-          <FILE id="zKgHG1" name="BatchMidiProcessor.cpp" compile="1" resource="0"
+          <FILE id="zKgHG1" name="BatchMidiProcessor.cpp" compile="0" resource="0"
                 file="../../Source/Playground/Models/BatchMidiProcessor.cpp"/>
           <FILE id="GZlaN1" name="BatchMidiProcessor.h" compile="0" resource="0"
                 file="../../Source/Playground/Models/BatchMidiProcessor.h"/>
-          <FILE id="N5Z3NC" name="MidiTrainIteration.cpp" compile="1" resource="0"
+          <FILE id="N5Z3NC" name="MidiTrainIteration.cpp" compile="0" resource="0"
                 file="../../Source/Playground/Models/MidiTrainIteration.cpp"/>
           <FILE id="ZUqz87" name="MidiTrainIteration.h" compile="0" resource="0"
                 file="../../Source/Playground/Models/MidiTrainIteration.h"/>
@@ -36,25 +36,10 @@
           <FILE id="Bz8Ucp" name="PugiXMLSerializer.h" compile="0" resource="0"
                 file="../../Source/Playground/Models/PugiXMLSerializer.h"/>
         </GROUP>
-        <FILE id="r2AR4u" name="UnrolledNetwork.cpp" compile="1" resource="0"
-              file="../../Source/Playground/Models/UnrolledNetwork.cpp"/>
         <FILE id="Qhx4XW" name="TrainingPipeline.cpp" compile="1" resource="0"
               file="../../Source/Playground/Models/TrainingPipeline.cpp"/>
         <FILE id="cYXRL2" name="TrainingPipeline.h" compile="0" resource="0"
               file="../../Source/Playground/Models/TrainingPipeline.h"/>
-      </GROUP>
-      <GROUP id="{8FF8AF99-A6EC-399C-179E-8395333009DA}" name="UI">
-        <FILE id="ynqnrF" name="LayerConnectionComponent.cpp" compile="1" resource="0"
-              file="../../Source/Playground/UI/LayerConnectionComponent.cpp"/>
-        <FILE id="ybCPqt" name="LayerConnectionComponent.h" compile="0" resource="0"
-              file="../../Source/Playground/UI/LayerConnectionComponent.h"/>
-        <FILE id="DtZtjL" name="LayerNodeComponent.cpp" compile="1" resource="0"
-              file="../../Source/Playground/UI/LayerNodeComponent.cpp"/>
-        <FILE id="PLfcUK" name="LayerNodeComponent.h" compile="0" resource="0"
-              file="../../Source/Playground/UI/LayerNodeComponent.h"/>
-        <FILE id="myXJSP" name="MainComponent.cpp" compile="1" resource="0"
-              file="../../Source/Playground/UI/MainComponent.cpp"/>
-        <FILE id="oTAd10" name="MainComponent.h" compile="0" resource="0" file="../../Source/Playground/UI/MainComponent.h"/>
       </GROUP>
       <FILE id="zxBf9L" name="GoDeeper.cpp" compile="1" resource="0" file="../../Source/Playground/GoDeeper.cpp"/>
       <FILE id="XsLpFC" name="Precompiled.h" compile="0" resource="0" file="../../Source/Playground/Precompiled.h"/>
@@ -67,7 +52,7 @@
   </MAINGROUP>
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="../../Projects/MacOSX" extraFrameworks="OpenCL"
-               extraDefs="TRAINING_MODE=1">
+               extraDefs="">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" osxSDK="default" osxCompatibility="10.7 SDK" osxArchitecture="64BitUniversal"
                        isDebug="1" optimisation="1" targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../ThirdParty/pugixml/src&#10;./../../ThirdParty/TinyRNN/Source&#10;./../../Resources/Hardcoded"
@@ -78,18 +63,12 @@
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_data_structures" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_cryptography" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../ThirdParty/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
-    <VS2010 targetFolder="../../Projects/VisualStudio2010" extraDefs="TRAINING_MODE=1">
+    <VS2010 targetFolder="../../Projects/VisualStudio2010" extraDefs="">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
                        isDebug="1" optimisation="1" targetName="GoDeeper" headerPath="./../../ThirdParty/pugixml/src&#10;./../../ThirdParty/TinyRNN/Source&#10;./../../Resources/Hardcoded"/>
@@ -98,48 +77,30 @@
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_data_structures" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_cryptography" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../ThirdParty/JUCE/modules"/>
       </MODULEPATHS>
     </VS2010>
     <LINUX_MAKE targetFolder="../../Projects/LinuxMakefile/GoDeeper" cppLanguageStandard="-std=c++11"
-                extraLinkerFlags="-lOpenCL" extraDefs="TRAINING_MODE=1">
+                extraLinkerFlags="-lOpenCL" extraDefs="">
       <CONFIGURATIONS>
         <CONFIGURATION name="Release" libraryPath="/usr/X11R6/lib/" isDebug="0" optimisation="3"
                        targetName="GoDeeper" headerPath="/usr/local/include&#10;./../../../ThirdParty/pugixml/src&#10;./../../../ThirdParty/TinyRNN/Source&#10;./../../../Resources/Hardcoded&#10;./../../../Source/Playground&#10;./../../../Source/Playground/Models&#10;./../../../Source/Playground/UI"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_gui_extra" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_data_structures" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_cryptography" path="../../ThirdParty/JUCE/modules"/>
         <MODULEPATH id="juce_core" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../ThirdParty/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../ThirdParty/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../ThirdParty/JUCE/modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
   </EXPORTFORMATS>
   <MODULES>
-    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0"/>
     <MODULES id="juce_core" showAllCode="1" useLocalCopy="0"/>
     <MODULES id="juce_cryptography" showAllCode="1" useLocalCopy="0"/>
     <MODULES id="juce_data_structures" showAllCode="1" useLocalCopy="0"/>
-    <MODULES id="juce_events" showAllCode="1" useLocalCopy="0"/>
-    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0"/>
-    <MODULES id="juce_gui_basics" showAllCode="1" useLocalCopy="0"/>
-    <MODULES id="juce_gui_extra" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0"/>
   </MODULES>
   <JUCEOPTIONS JUCE_WEB_BROWSER="disabled" JUCE_ENABLE_LIVE_CONSTANT_EDITOR="disabled"
                JUCE_ENABLE_REPAINT_DEBUGGING="disabled" JUCE_USE_XSHM="disabled"
@@ -151,4 +112,7 @@
                JUCE_USE_ANDROID_OPENSLES="disabled" JUCE_USE_CDREADER="disabled"
                JUCE_USE_CDBURNER="disabled" JUCE_USE_COREIMAGE_LOADER="disabled"
                JUCE_USE_DIRECTWRITE="disabled"/>
+  <LIVE_SETTINGS>
+    <OSX/>
+  </LIVE_SETTINGS>
 </JUCERPROJECT>
