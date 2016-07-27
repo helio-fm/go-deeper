@@ -41,14 +41,14 @@ static String loadTextSequence(File file)
 static float rateForIteration(uint64 iterationNumber)
 {
     if (iterationNumber < 100) {
-        return 0.015f;
-    }
-    
-    if (iterationNumber < 250) {
         return 0.01f;
     }
     
-    return 0.005f;
+    if (iterationNumber < 250) {
+        return 0.005f;
+    }
+    
+    return 0.001f;
 }
 
 void BatchTextProcessor::start()
